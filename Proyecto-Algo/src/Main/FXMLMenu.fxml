@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="652.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="proyecto.FXMLMenuController">
+   <children>
+      <BorderPane fx:id="bp" layoutX="2.0" layoutY="52.0" prefHeight="511.0" prefWidth="652.0" />
+      <MenuBar prefHeight="28.0" prefWidth="663.0" style="-fx-border-color: black; -fx-background-color: #508cfc;">
+        <menus>
+          <Menu mnemonicParsing="false" text="Carreras">
+            <items>
+              <MenuItem fx:id="Cursos" mnemonicParsing="false" text="Cursos" />
+                  <MenuItem fx:id="Horarios" mnemonicParsing="false" text="Horarios" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Matrícula">
+            <items>
+                  <MenuItem fx:id="eMatriculados" mnemonicParsing="false" text="Estudiantes Matriculados" />
+                  <MenuItem fx:id="matricularE" mnemonicParsing="false" text="Matricular Estudiante" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Reportes">
+            <items>
+              <MenuItem fx:id="Rmatricula" mnemonicParsing="false" text="Reporte de Matrícula" />
+                  <MenuItem fx:id="RretiroCursos" mnemonicParsing="false" text="Reporte de retiro de cursos" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
