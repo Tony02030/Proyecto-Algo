@@ -57,19 +57,19 @@ public class CircularLinkedList implements List {
 
     }
 
-    public boolean contains1(Object element) throws ListException {
+    public boolean contains1(Object element, Object element2) throws ListException {
 
         if (isEmpty()) {
             return false;
         }
         Node aux = first;
         while (aux != last) {
-            if (util.Utility.equals(aux.data, element)) {
+            if (util.Utility.equals1(aux.data, element, element2)) {
                 return true;
             }
             aux = aux.next;
         }
-        return util.Utility.equals(aux.data, element); //indica q el elemento no existe
+        return util.Utility.equals1(aux.data, element,element2); //indica q el elemento no existe
 
     }
 

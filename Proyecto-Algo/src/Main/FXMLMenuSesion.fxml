@@ -10,7 +10,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="728.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuSesionController">
    <children>
-      <BorderPane fx:id="bp" layoutX="-3.0" layoutY="86.0" prefHeight="498.0" prefWidth="734.0" />
+      <BorderPane fx:id="bp1" layoutY="-7.0" prefHeight="585.0" prefWidth="728.0" />
+      <BorderPane fx:id="bp" layoutX="-4.0" layoutY="77.0" prefHeight="509.0" prefWidth="734.0" />
       <MenuBar prefHeight="28.0" prefWidth="728.0" style="-fx-background-color: #508cfc;">
         <menus>
           <Menu mnemonicParsing="false" onAction="#openAdmin" text="Ingreso de Usuario">

@@ -5,8 +5,10 @@
  */
 package Main;
 
+import domain.CircularLinkedList;
 import java.io.IOException;
 import java.net.URL;
+
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import domain.Security;
 
 /**
  *
@@ -32,6 +35,16 @@ public class FXMLMenuSesionController implements Initializable {
     private MenuItem openStudent;
     @FXML
     private BorderPane bp;
+    @FXML
+    private BorderPane bp1;
+
+    public BorderPane getBp1() {
+        return bp1;
+    }
+   
+    
+    
+   
     
     private void loadPage(String page) {
         Parent root = null;
@@ -47,7 +60,8 @@ public class FXMLMenuSesionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+    
 
     @FXML
     private void openAdmin(ActionEvent event) {

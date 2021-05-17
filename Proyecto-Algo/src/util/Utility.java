@@ -7,17 +7,53 @@ package util;
 
 //import domain.Course;
 //import domain.Student;
-
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import domain.SingleLinkedList;
+import domain.CircularLinkedList;
+import domain.DoublyLinkedList;
+import domain.CircularDoublyLinkedList;
+import domain.Security;
 
 /**
  *
  * @author User
  */
 public class Utility {
+
+    private static SingleLinkedList students = new SingleLinkedList();
+    private static CircularLinkedList security = new CircularLinkedList();
+    private static DoublyLinkedList careers = new DoublyLinkedList();
+    private static CircularDoublyLinkedList courses = new CircularDoublyLinkedList();
+    private static SingleLinkedList schedules = new SingleLinkedList();
+    private static CircularDoublyLinkedList enrollment = new CircularDoublyLinkedList();
+
+    public static SingleLinkedList getStudents() {
+        return students;
+    }
+
+    public static CircularLinkedList getSecurity() {
+        security.add(new Security("admin", "1234"));
+        return security;
+    }
+
+    public static DoublyLinkedList getCareers() {
+        return careers;
+    }
+
+    public static CircularDoublyLinkedList getCourses() {
+        return courses;
+    }
+
+    public static SingleLinkedList getSchedules() {
+        return schedules;
+    }
+
+    public static CircularDoublyLinkedList getEnrollment() {
+        return enrollment;
+    }
 
     public static int random() {
         return 1 + (int) Math.floor(Math.random() * 99);
@@ -27,9 +63,10 @@ public class Utility {
         //return 1+random.nextInt(bound);
         return (int) Math.floor(Math.random() * bound);
     }
-     public static int random1() {
+
+    public static int random1() {
         //return 1+random.nextInt(bound);
-        return (int) Math.floor(Math.random() *(50-40+1)+40);
+        return (int) Math.floor(Math.random() * (50 - 40 + 1) + 40);
     }
 
     public static String format(double value) {
@@ -80,6 +117,45 @@ public class Utility {
 //                JobPosition j1 = (JobPosition) data;
 //                String j2 = (String) element;
 //                return j1.getDescription().equals(j2);
+            case "security":
+                Security se = (Security) data;
+                String str = (String) element;
+                return se.getUser().equals(str) || se.getPassword().equals(str);
+        }
+        return false;
+    }
+
+    public static boolean equals1(Object data, Object element, Object element2) {
+        switch (instanceOf1(data, element, element2)) {
+            case "integer":
+                Integer x = (Integer) data;
+                Integer y = (Integer) element;
+                return x.equals(y);
+            case "string":
+                String s1 = (String) data;
+                String s2 = (String) element;
+                return s1.compareTo(s2) == 0;
+//            case "student1":
+//                Student st1 = (Student) data;
+//                String st2 = (String) element;
+//                return st1.getId().equals(st2) || st1.getName().equals(st2);
+//            case "course1":
+//                Course c1 = (Course) data;
+//                String c2 = (String) element;
+//                return c1.getId().equals(c2) || c1.getName().equals(c2);
+//                case "employee":
+//                Employee e1 = (Employee) data;
+//                String e2 = (String) element;
+//                return e1.getTitle().equals(e2);
+//                case "job":
+//                JobPosition j1 = (JobPosition) data;
+//                String j2 = (String) element;
+//                return j1.getDescription().equals(j2);
+            case "security":
+                Security se = (Security) data;
+                String str = (String) element;
+                String str2 = (String) element2;
+                return se.getUser().equals(str) && se.getPassword().equals(str2);
         }
         return false;
     }
@@ -106,14 +182,14 @@ public class Utility {
 //        if (data instanceof Employee && element instanceof String) {
 //            return "employee";
 //        }
-//        if (data instanceof JobPosition && element instanceof String) {
-//            return "job";
-        
+        if (data instanceof Security && element instanceof String) {
+            return "security";
+        }
 
         return "unknown";
     }
 
-    public static boolean instanceOf1(Object data) {
+    public static String instanceOf1(Object data, Object element, Object element2) {
 //        if (data instanceof Employee) {
 //            return true;
 //        }
@@ -130,7 +206,10 @@ public class Utility {
 //         if (data instanceof Course && element instanceof Course) {
 //            return "course";
 //        }
-        return false;
+        if (data instanceof Security && element instanceof String && element2 instanceof String) {
+            return "security";
+        }
+        return "unknown";
     }
 
     public static boolean greaterT(Object data, Object element) {

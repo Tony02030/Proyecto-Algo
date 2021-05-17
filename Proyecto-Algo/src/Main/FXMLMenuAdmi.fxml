@@ -7,8 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="646.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLMenuAdmiController">
+<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="646.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuAdmiController">
    <children>
       <Text layoutX="153.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Usuario">
          <font>
@@ -20,8 +19,13 @@
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <TextField layoutX="330.0" layoutY="142.0" prefHeight="26.0" prefWidth="162.0" />
-      <PasswordField layoutX="330.0" layoutY="204.0" prefHeight="26.0" prefWidth="162.0" />
-      <Button fx:id="btnIngreso" layoutX="381.0" layoutY="272.0" mnemonicParsing="false" onAction="#btnIngreso" style="-fx-background-color: #0073ff;" text="Ingresar" textFill="WHITE" />
+      <TextField fx:id="textFieldUser" layoutX="330.0" layoutY="142.0" prefHeight="26.0" prefWidth="162.0" />
+      <PasswordField fx:id="textFieldPassword" layoutX="330.0" layoutY="204.0" prefHeight="26.0" prefWidth="162.0" />
+      <Button fx:id="btnIngreso" layoutX="381.0" layoutY="272.0" mnemonicParsing="false" onMouseClicked="#btnIngreso" style="-fx-background-color: #0073ff;" text="Ingresar" textFill="WHITE" />
+      <Text fx:id="txtMessage" fill="RED" layoutX="145.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" wrappingWidth="256.80006408691406">
+         <font>
+            <Font name="Corbel" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
