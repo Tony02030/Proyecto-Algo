@@ -16,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
 
 /**
  *
@@ -24,6 +26,12 @@ import javafx.scene.control.Label;
 public class FXMLMenuSesionController implements Initializable {
     
     private Label label;
+    @FXML
+    private MenuItem openAdmin;
+    @FXML
+    private MenuItem openStudent;
+    @FXML
+    private BorderPane bp;
     
     private void loadPage(String page) {
         Parent root = null;
@@ -32,6 +40,7 @@ public class FXMLMenuSesionController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLMenuSesionController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        bp.setCenter(root);
        
     }
     
@@ -42,10 +51,14 @@ public class FXMLMenuSesionController implements Initializable {
 
     @FXML
     private void openAdmin(ActionEvent event) {
+        loadPage("FXMLMenuAdmi");
     }
 
     @FXML
     private void openStudent(ActionEvent event) {
+         loadPage("FXMLMenuStudent");
     }
+
+    
     
 }
