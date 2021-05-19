@@ -17,11 +17,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -30,14 +33,14 @@ import javafx.scene.text.Text;
  */
 public class FXMLMenuAdmiController implements Initializable {
 
-    private FXMLMenuSesionController mn = new FXMLMenuSesionController();
+    private FXMLMenuSesionController mn;
     @FXML
     private Button btnIngreso;
     @FXML
     private TextField textFieldUser;
     @FXML
     private PasswordField textFieldPassword;
-     
+
     private CircularLinkedList security = util.Utility.getSecurity();
     @FXML
     private Text txtMessage;
@@ -47,8 +50,8 @@ public class FXMLMenuAdmiController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
+
+    }
 
     private void loadPage(String page) {
         Parent root = null;
@@ -59,28 +62,44 @@ public class FXMLMenuAdmiController implements Initializable {
         }
 
         mn.getBp1().setCenter(root);
-       
-    }
-    private void btnIngreso(ActionEvent event) {
-//        try {
-//            if(this.security.contains1(this.textFieldUser.getText(), this.textFieldPassword.getText())){
-////                loadPage("FXMLMenu");
-//                this.txtMessage.setText("Si funciona");
-//
-//            }
-//             this.txtMessage.setText("No funciona");
-//        } catch (ListException ex) {
-//            Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
     }
 
+    public void start(Stage primaryStage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLMenuSesion.fxml"));
+
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Proyecto");
+        primaryStage.setTitle("Inicio de Sesion");
+        primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        primaryStage.show();
+    }
+
+   
     @FXML
     private void btnIngreso(MouseEvent event) {
         try {
             
             if(this.security.contains1(this.textFieldUser.getText(), this.textFieldPassword.getText())){
-               loadPage("FXMLMenu");
-                this.txtMessage.setVisible(true);
+               try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMenu.fxml"));
+
+                    Parent root = loader.load();
+                    
+                    FXMLMenuController controlador = loader.getController();
+                    
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setScene(scene);
+                    stage.showAndWait();
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+               
                 
 
             }else{
@@ -90,6 +109,8 @@ public class FXMLMenuAdmiController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
         }
+//        
+
     }
-    
+
 }

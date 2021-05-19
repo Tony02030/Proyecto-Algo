@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="652.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="proyecto.FXMLMenuController">
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="652.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLMenuController">
    <children>
       <BorderPane fx:id="bp" layoutX="2.0" layoutY="52.0" prefHeight="511.0" prefWidth="652.0" />
       <MenuBar prefHeight="28.0" prefWidth="663.0" style="-fx-border-color: black; -fx-background-color: #508cfc;">
