@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,17 +28,35 @@ public class FXMLMenuController implements Initializable {
     @FXML
     private BorderPane bp;
     @FXML
-    private MenuItem Cursos;
+    private MenuItem agregaCurso;
     @FXML
-    private MenuItem Horarios;
+    private MenuItem moficaCurso;
     @FXML
-    private MenuItem eMatriculados;
+    private MenuItem eliminaCurso;
     @FXML
-    private MenuItem matricularE;
+    private MenuItem muestraCursos;
     @FXML
-    private MenuItem Rmatricula;
+    private MenuItem agregaEstudiante;
     @FXML
-    private MenuItem RretiroCursos;
+    private MenuItem modificaEstudiante;
+    @FXML
+    private MenuItem eliminaEstudiante;
+    @FXML
+    private MenuItem muestraEstudiantes;
+    @FXML
+    private MenuItem modificaCurso;
+    @FXML
+    private MenuItem matriculaEstudiante;
+    @FXML
+    private MenuItem retiroCurso;
+    @FXML
+    private MenuItem muestraEstudiantesM;
+    @FXML
+    private MenuItem agregaHorario;
+    @FXML
+    private MenuItem muestraHorarios;
+    @FXML
+    private MenuItem agregaAdministrador;
 
     /**
      * Initializes the controller class.
@@ -57,6 +76,63 @@ public class FXMLMenuController implements Initializable {
         }
         this.bp.setCenter(root);
         
+    }
+
+    @FXML
+    private void agregaCurso(ActionEvent event) {
+        
+    }
+
+    @FXML
+    private void modificaCurso(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminaCurso(ActionEvent event) {
+    }
+
+    @FXML
+    private void muestraCursos(ActionEvent event) {
+    }
+
+    @FXML
+    private void agregaEstudiante(ActionEvent event) {
+    }
+
+    @FXML
+    private void modificaEstudiante(ActionEvent event) {
+    }
+
+    @FXML
+    private void eliminaEstudiante(ActionEvent event) {
+    }
+
+    @FXML
+    private void muestraEstudiante(ActionEvent event) {
+    }
+
+    @FXML
+    private void matriculaEstudiante(ActionEvent event) {
+    }
+
+    @FXML
+    private void retiroCurso(ActionEvent event) {
+    }
+
+    @FXML
+    private void muestraEstudianteM(ActionEvent event) {
+    }
+
+    @FXML
+    private void agregaHorario(ActionEvent event) {
+    }
+
+    @FXML
+    private void muestraHorarios(ActionEvent event) {
+    }
+
+    @FXML
+    private void agregaAdministrador(ActionEvent event) {
     }
     
 }

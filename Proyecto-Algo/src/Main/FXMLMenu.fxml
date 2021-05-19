@@ -6,30 +6,53 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="652.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLMenuController">
+<AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="731.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuController">
    <children>
-      <BorderPane fx:id="bp" layoutX="2.0" layoutY="52.0" prefHeight="511.0" prefWidth="652.0" />
-      <MenuBar prefHeight="28.0" prefWidth="663.0" style="-fx-border-color: black; -fx-background-color: #508cfc;">
+      <BorderPane fx:id="bp" layoutX="2.0" layoutY="28.0" prefHeight="535.0" prefWidth="738.0" />
+      <MenuBar prefHeight="27.0" prefWidth="738.0" style="-fx-border-color: black; -fx-background-color: #508cfc;">
         <menus>
           <Menu mnemonicParsing="false" text="Carreras">
             <items>
-              <MenuItem fx:id="Cursos" mnemonicParsing="false" text="Cursos" />
-                  <MenuItem fx:id="Horarios" mnemonicParsing="false" text="Horarios" />
+              <MenuItem fx:id="agregaCurso" mnemonicParsing="false" onAction="#agregaCurso" text="Agregar carrera" />
+                  <MenuItem fx:id="moficaCurso" mnemonicParsing="false" onAction="#modificaCurso" text="Modificar carrera" />
+                  <MenuItem fx:id="eliminaCurso" mnemonicParsing="false" onAction="#eliminaCurso" text="Eliminar carrera" />
+                  <MenuItem fx:id="muestraCursos" mnemonicParsing="false" onAction="#muestraCursos" text="Mostrar carreras" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Estudiantes">
+              <items>
+                <MenuItem fx:id="agregaEstudiante" mnemonicParsing="false" onAction="#agregaEstudiante" text="Agregar estudiante" />
+                  <MenuItem fx:id="modificaEstudiante" mnemonicParsing="false" onAction="#modificaEstudiante" text="Modificar estudiante" />
+                  <MenuItem fx:id="eliminaEstudiante" mnemonicParsing="false" onAction="#eliminaEstudiante" text="Eliminar estudiante" />
+                  <MenuItem fx:id="muestraEstudiantes" mnemonicParsing="false" onAction="#muestraEstudiante" text="Mostrar estudiantes" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Cursos">
+              <items>
+                <MenuItem fx:id="agregaCurso" mnemonicParsing="false" onAction="#agregaCurso" text="Agregar curso" />
+                  <MenuItem fx:id="modificaCurso" mnemonicParsing="false" onAction="#modificaCurso" text="Modificar curso" />
+                  <MenuItem fx:id="eliminaCurso" mnemonicParsing="false" onAction="#eliminaCurso" text="Eliminar curso" />
+                  <MenuItem fx:id="muestraCursos" mnemonicParsing="false" onAction="#muestraCursos" text="Mostrar cursos" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Matrícula">
             <items>
-                  <MenuItem fx:id="eMatriculados" mnemonicParsing="false" text="Estudiantes Matriculados" />
-                  <MenuItem fx:id="matricularE" mnemonicParsing="false" text="Matricular Estudiante" />
+                  <MenuItem fx:id="matriculaEstudiante" mnemonicParsing="false" onAction="#matriculaEstudiante" text="Matricular Estudiante" />
+                  <MenuItem fx:id="retiroCurso" mnemonicParsing="false" onAction="#retiroCurso" text="Retirar curso" />
+                  <MenuItem fx:id="muestraEstudiantesM" mnemonicParsing="false" onAction="#muestraEstudianteM" text="Estudiantes Matriculados" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Reportes">
+          <Menu mnemonicParsing="false" text="Horarios">
             <items>
-              <MenuItem fx:id="Rmatricula" mnemonicParsing="false" text="Reporte de Matrícula" />
-                  <MenuItem fx:id="RretiroCursos" mnemonicParsing="false" text="Reporte de retiro de cursos" />
+              <MenuItem fx:id="agregaHorario" mnemonicParsing="false" onAction="#agregaHorario" text="Horario Curso" />
+                  <MenuItem fx:id="muestraHorarios" mnemonicParsing="false" onAction="#muestraHorarios" text="Mostrar horarios" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Administrador">
+              <items>
+                <MenuItem fx:id="agregaAdministrador" mnemonicParsing="false" onAction="#agregaAdministrador" text="Agregar Administrador" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
    </children>
