@@ -5,6 +5,9 @@
  */
 package Main;
 
+import domain.CircularDoublyLinkedList;
+import domain.DoublyLinkedList;
+import domain.SingleLinkedList;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -57,6 +60,12 @@ public class FXMLMenuController implements Initializable {
     private MenuItem muestraHorarios;
     @FXML
     private MenuItem agregaAdministrador;
+    
+    private SingleLinkedList student=util.Utility.getStudents();
+    private SingleLinkedList schedule = util.Utility.getSchedules();
+    private CircularDoublyLinkedList course = util.Utility.getCourses();
+    private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
+    private DoublyLinkedList career = util.Utility.getCareers();
 
     /**
      * Initializes the controller class.

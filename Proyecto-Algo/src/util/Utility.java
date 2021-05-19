@@ -15,7 +15,10 @@ import domain.SingleLinkedList;
 import domain.CircularLinkedList;
 import domain.DoublyLinkedList;
 import domain.CircularDoublyLinkedList;
+import domain.ListException;
 import domain.Security;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,8 +37,14 @@ public class Utility {
         return students;
     }
 
-    public static CircularLinkedList getSecurity() {
-        security.add(new Security("admin", "1234"));
+    public static CircularLinkedList getSecurity()  {
+        try {
+            if (!security.contains1("admin", "1234")) {
+                security.add(new Security("admin", "1234"));
+            }
+        } catch (ListException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return security;
     }
 
