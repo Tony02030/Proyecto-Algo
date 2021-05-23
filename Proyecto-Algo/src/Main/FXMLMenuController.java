@@ -106,6 +106,7 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void agregaEstudiante(ActionEvent event) {
+        this.loadPage("FXMLAddAndReportS");
     }
 
     @FXML

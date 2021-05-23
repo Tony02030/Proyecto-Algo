@@ -12,6 +12,7 @@ import java.util.Date;
  * @author User
  */
 public class Student {
+
     private int id;
     private String studentID;
     private String lastname;
@@ -105,15 +106,15 @@ public class Student {
     public void setCareerID(int careerID) {
         this.careerID = careerID;
     }
-    
-     public int getAge() {
-        if(birthday.getMonth()<=05){
+
+    public int getAge() {
+        if (birthday.getMonth() <= 05) {
             return 2021 - (birthday.getYear() + 1900);
         }
         return (2020 - (birthday.getYear() + 1900));
     }
     //Para refencia en como guardar la fecha en String 
-     
+
 //     @Override
 //    public String toString() {
 //        return "(ID)" + id + "/(Name)" + lastName + ", " + firstName
