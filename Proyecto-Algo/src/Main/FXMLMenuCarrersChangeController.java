@@ -29,7 +29,7 @@ import javafx.scene.text.Text;
  * @author User
  */
 public class FXMLMenuCarrersChangeController implements Initializable {
-    
+
     private DoublyLinkedList carrer = util.Utility.getCareers();
     @FXML
     private Text txtInfo;
@@ -59,7 +59,7 @@ public class FXMLMenuCarrersChangeController implements Initializable {
         numericOnly(txtFieldChangeId);
         numericOnly(txtFieldSearch);
     }
-    
+
     public static void numericOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -72,7 +72,7 @@ public class FXMLMenuCarrersChangeController implements Initializable {
             }
         });
     }
-    
+
     @FXML
     private void btnBuscar(ActionEvent event) {
         int x = Integer.parseInt(txtFieldSearch.getText());
@@ -93,23 +93,30 @@ public class FXMLMenuCarrersChangeController implements Initializable {
             this.txtInfo3.setVisible(true);
         }
     }
-    
-    
+
     @FXML
     private void btnCambiar(ActionEvent event) {
-        
+
         try {
             Node aux = carrer.getNode(1);
             int x = Integer.parseInt(this.txtFieldChangeId.getText());
-            
+
             while (aux != null) {
-                if (util.Utility.equals(aux.data, x)) {
+                if (!util.Utility.equals(aux.data, x)) {
                     aux.data = new Career(x, this.txtFieldChangeName.getText());
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Ventana de dialogo");
                     alert.setHeaderText("Informacion");
                     alert.setContentText("Se cambió la carrera");
                     alert.showAndWait();
+                } else {
+                    aux.data = new Career(x, this.txtFieldChangeName.getText());
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ventana de dialogo");
+                    alert.setHeaderText("Informacion");
+                    alert.setContentText("Se cambió la carrera");
+                    alert.showAndWait();
+
                 }
                 aux = aux.next;
             }
@@ -123,11 +130,11 @@ public class FXMLMenuCarrersChangeController implements Initializable {
             this.txtFieldChangeId.setVisible(false);
             this.txtFieldChangeName.setText("");
             this.txtFieldChangeId.setText("");
-            
+
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }
