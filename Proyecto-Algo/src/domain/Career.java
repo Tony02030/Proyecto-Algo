@@ -12,9 +12,10 @@ package domain;
 public class Career {
     private int id;
     private String description;
+    private static int idCount;
 
-    public Career(int id, String description) {
-        this.id = id;
+    public Career(String description) {
+        this.id = ++idCount;
         this.description = description;
     }
 

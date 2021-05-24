@@ -8,18 +8,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="670.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuCarrersAddController">
    <children>
-      <Text layoutX="177.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id">
+      <Text layoutX="163.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carrera">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="157.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carrera">
-         <font>
-            <Font name="Corbel" size="18.0" />
-         </font>
-      </Text>
-      <TextField fx:id="textFieldId" layoutX="238.0" layoutY="109.0" prefHeight="26.0" prefWidth="194.0" />
-      <TextField fx:id="textFieldCareer" layoutX="238.0" layoutY="163.0" prefHeight="26.0" prefWidth="194.0" />
-      <Button fx:id="btnAdd" layoutX="309.0" layoutY="210.0" mnemonicParsing="false" onAction="#btnAdd" style="-fx-background-color: #0073ff;" text="Agregar" textFill="WHITE" />
+      <TextField fx:id="textFieldCareer" layoutX="241.0" layoutY="126.0" prefHeight="26.0" prefWidth="194.0" />
+      <Button fx:id="btnAdd" layoutX="305.0" layoutY="175.0" mnemonicParsing="false" onAction="#btnAdd" style="-fx-background-color: #0073ff;" text="Agregar" textFill="WHITE" />
    </children>
 </AnchorPane>

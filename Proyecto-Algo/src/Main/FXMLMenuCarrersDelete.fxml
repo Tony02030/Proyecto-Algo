@@ -6,10 +6,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLMenuCarrersDeleteController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuCarrersDeleteController">
    <children>
-      <Text fx:id="txtInfo" layoutX="143.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el id de la carrera que desea eliminar">
+      <Text fx:id="txtInfo" layoutX="125.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese la descripción de la carrera que desea eliminar" textAlignment="CENTER" wrappingWidth="361.4150390625">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>

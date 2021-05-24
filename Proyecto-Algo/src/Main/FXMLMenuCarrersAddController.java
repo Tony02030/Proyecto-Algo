@@ -36,8 +36,7 @@ public class FXMLMenuCarrersAddController implements Initializable {
     
     @FXML
     private TextField textFieldCareer;
-    @FXML
-    private TextField textFieldId;
+    
     
 
     /**
@@ -45,7 +44,7 @@ public class FXMLMenuCarrersAddController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        numericOnly(textFieldId);
+        
     }
     public static void numericOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
@@ -62,15 +61,14 @@ public class FXMLMenuCarrersAddController implements Initializable {
 
     @FXML
     private void btnAdd(ActionEvent event) {
-        int temp = Integer.parseInt(this.textFieldId.getText());
-        carrer.add(new Career(temp,this.textFieldCareer.getText()));
+        carrer.add(new Career(this.textFieldCareer.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");
             alert.setHeaderText("Informacion");
             alert.setContentText("Se agregó la carrera");
             alert.showAndWait();
             this.textFieldCareer.setText("");
-            this.textFieldId.setText("");
+            
     }
 
     

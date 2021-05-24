@@ -117,8 +117,8 @@ public class Utility {
                 return se.getUser().equals(str) && se.getPassword().equals(str);
             case "career":
                 Career cr1 = (Career) data;
-                Integer cr2 = (Integer) element;
-                return cr1.getId()==cr2;
+                String cr2 = (String) element;
+                return cr1.getDescription().equals(cr2);
         }
         return false;
     }
@@ -183,7 +183,7 @@ public class Utility {
         if (data instanceof Security && element instanceof String) {
             return "security";
         }
-         if (data instanceof Career && element instanceof Integer) {
+         if (data instanceof Career && element instanceof String) {
             return "career";
         }
 

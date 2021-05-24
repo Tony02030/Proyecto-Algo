@@ -43,7 +43,7 @@ public class FXMLMenuCarrersDeleteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        numericOnly(txtFieldSearch);
+       
     }
 
     public static void numericOnly(final TextField field) {
@@ -61,10 +61,10 @@ public class FXMLMenuCarrersDeleteController implements Initializable {
 
     @FXML
     private void btnBuscar(ActionEvent event) {
-        int value = Integer.parseInt(this.txtFieldSearch.getText());
+       
         try {
-            if (carrer.contains1(value)) {
-                carrer.remove(value);
+            if (carrer.contains1(this.txtFieldSearch.getText())) {
+                carrer.remove(this.txtFieldSearch.getText());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Ventana de dialogo");
                 alert.setHeaderText("Informacion");
