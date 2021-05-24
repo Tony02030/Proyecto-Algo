@@ -41,7 +41,7 @@ import javafx.scene.text.Text;
  */
 public class FXMLAddStudentController implements Initializable {
 
-    private SingleLinkedList sLL = util.Utility.getStudents();
+    private SingleLinkedList Student = util.Utility.getStudents();
     private DoublyLinkedList dLL = util.Utility.getCareers();
     @FXML
     private TextField txfID;
@@ -127,14 +127,14 @@ public class FXMLAddStudentController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        sLL.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(),id));
+        Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(),id));
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
         alert.setHeaderText("Informacion");
         alert.setContentText("Estudiante agregado correctamente");
         alert.showAndWait();
-        int a = 0;
+  
         txfID.setText("");
         txfStudentID.setText("");
         txfLastname.setText("");

@@ -119,14 +119,47 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void modificaEstudiante(ActionEvent event) {
+        if (student.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            this.loadPage("FXMLModifyStudent");
+        }
+
     }
 
     @FXML
     private void eliminaEstudiante(ActionEvent event) {
+        if (student.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            this.loadPage("FXMLRemoveStudent");
+        }
+
     }
 
     @FXML
     private void muestraEstudiante(ActionEvent event) {
+         if (student.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            this.loadPage("FXMLDisplayStudent");
+        }
+       
     }
 
     @FXML
@@ -171,7 +204,7 @@ public class FXMLMenuController implements Initializable {
             loadPage("FXMLMenuCarrersChange");
 
         }
-        
+
     }
 
     @FXML
@@ -202,7 +235,7 @@ public class FXMLMenuController implements Initializable {
             loadPage("FXMLMenuCareersDisplay");
 
         }
-        
+
     }
 
 }

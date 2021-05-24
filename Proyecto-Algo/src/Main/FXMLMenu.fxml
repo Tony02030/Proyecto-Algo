@@ -8,8 +8,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="565.0" prefWidth="731.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuController">
    <children>
-      <BorderPane fx:id="bp" layoutX="2.0" layoutY="28.0" prefHeight="535.0" prefWidth="738.0" />
-      <MenuBar prefHeight="27.0" prefWidth="738.0" style="-fx-border-color: black; -fx-background-color: #508cfc;">
+      <BorderPane fx:id="bp" layoutX="2.0" layoutY="28.0" prefHeight="581.0" prefWidth="874.0" />
+      <MenuBar prefHeight="27.0" prefWidth="878.0" style="-fx-border-color: black; -fx-background-color: #508cfc;">
         <menus>
           <Menu mnemonicParsing="false" text="Carreras">
             <items>

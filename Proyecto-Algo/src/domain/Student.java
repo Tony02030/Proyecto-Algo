@@ -5,7 +5,9 @@
  */
 package domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javafx.beans.property.SimpleStringProperty;
 
 /**
  *
@@ -22,6 +24,7 @@ public class Student {
     private String email;
     private String address;
     private int careerID;
+    private SimpleStringProperty dateBirth;
 
     public Student(int id, String studentID, String lastname, String firstname, Date birthday, String phoneNumber, String email, String address, int careerID) {
         this.id = id;
@@ -33,6 +36,7 @@ public class Student {
         this.email = email;
         this.address = address;
         this.careerID = careerID;
+        this.dateBirth = new SimpleStringProperty(new SimpleDateFormat("dd/MM/yyyy").format(birthday));
     }
 
     public int getId() {
