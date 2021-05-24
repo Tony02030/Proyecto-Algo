@@ -133,7 +133,7 @@ public class FXMLAddStudentController implements Initializable {
         alert.setHeaderText("Informacion");
         alert.setContentText("Estudiante agregado correctamente");
         alert.showAndWait();
-        
+        int a = 0;
         txfID.setText("");
         txfStudentID.setText("");
         txfLastname.setText("");
