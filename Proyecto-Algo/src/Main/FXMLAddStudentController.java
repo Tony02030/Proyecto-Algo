@@ -121,6 +121,7 @@ public class FXMLAddStudentController implements Initializable {
                     Career temp = (Career) aux.data;
                     id = temp.getId();
                 }
+                aux=aux.next;
 
             }
         } catch (ListException ex) {
