@@ -18,6 +18,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 
@@ -32,8 +34,6 @@ public class FXMLMenuController implements Initializable {
     private BorderPane bp;
     @FXML
     private MenuItem agregaCurso;
-    @FXML
-    private MenuItem moficaCurso;
     @FXML
     private MenuItem eliminaCurso;
     @FXML
@@ -60,12 +60,20 @@ public class FXMLMenuController implements Initializable {
     private MenuItem muestraHorarios;
     @FXML
     private MenuItem agregaAdministrador;
-    
-    private SingleLinkedList student=util.Utility.getStudents();
+
+    private SingleLinkedList student = util.Utility.getStudents();
     private SingleLinkedList schedule = util.Utility.getSchedules();
     private CircularDoublyLinkedList course = util.Utility.getCourses();
     private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
     private DoublyLinkedList career = util.Utility.getCareers();
+    @FXML
+    private MenuItem agregaCarrera;
+    @FXML
+    private MenuItem modificaCarrera;
+    @FXML
+    private MenuItem eliminaCarrera;
+    @FXML
+    private MenuItem muestraCarreras;
 
     /**
      * Initializes the controller class.
@@ -73,23 +81,23 @@ public class FXMLMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
-     private void loadPage(String page){
+    }
+
+    private void loadPage(String page) {
         Parent root = null;
         try {
-            
-            root = FXMLLoader.load(getClass().getResource(page+".fxml"));
+
+            root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
         } catch (IOException ex) {
             Logger.getLogger(FXMLMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.bp.setCenter(root);
-        
+
     }
 
     @FXML
     private void agregaCurso(ActionEvent event) {
-        
+
     }
 
     @FXML
@@ -144,5 +152,57 @@ public class FXMLMenuController implements Initializable {
     @FXML
     private void agregaAdministrador(ActionEvent event) {
     }
-    
+
+    @FXML
+    private void agregaCarrera(ActionEvent event) {
+        loadPage("FXMLMenuCarrersAdd");
+    }
+
+    @FXML
+    private void modificaCarrera(ActionEvent event) {
+        if (career.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            loadPage("FXMLMenuCarrersChange");
+
+        }
+        
+    }
+
+    @FXML
+    private void eliminaCarrera(ActionEvent event) {
+        if (career.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            loadPage("FXMLMenuCarrersDelete");
+
+        }
+    }
+
+    @FXML
+    private void muestraCarreras(ActionEvent event) {
+        if (career.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            loadPage("FXMLMenuCareersDisplay");
+
+        }
+        
+    }
+
 }

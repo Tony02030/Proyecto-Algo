@@ -13,10 +13,10 @@
         <menus>
           <Menu mnemonicParsing="false" text="Carreras">
             <items>
-              <MenuItem fx:id="agregaCurso" mnemonicParsing="false" onAction="#agregaCurso" text="Agregar carrera" />
-                  <MenuItem fx:id="moficaCurso" mnemonicParsing="false" onAction="#modificaCurso" text="Modificar carrera" />
-                  <MenuItem fx:id="eliminaCurso" mnemonicParsing="false" onAction="#eliminaCurso" text="Eliminar carrera" />
-                  <MenuItem fx:id="muestraCursos" mnemonicParsing="false" onAction="#muestraCursos" text="Mostrar carreras" />
+              <MenuItem fx:id="agregaCarrera" mnemonicParsing="false" onAction="#agregaCarrera" text="Agregar carrera" />
+                  <MenuItem fx:id="modificaCarrera" mnemonicParsing="false" onAction="#modificaCarrera" text="Modificar carrera" />
+                  <MenuItem fx:id="eliminaCarrera" mnemonicParsing="false" onAction="#eliminaCarrera" text="Eliminar carrera" />
+                  <MenuItem fx:id="muestraCarreras" mnemonicParsing="false" onAction="#muestraCarreras" text="Mostrar carreras" />
             </items>
           </Menu>
             <Menu mnemonicParsing="false" text="Estudiantes">

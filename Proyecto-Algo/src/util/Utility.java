@@ -7,6 +7,7 @@ package util;
 
 //import domain.Course;
 //import domain.Student;
+import domain.Career;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -110,26 +111,14 @@ public class Utility {
                 String s1 = (String) data;
                 String s2 = (String) element;
                 return s1.compareTo(s2) == 0;
-//            case "student1":
-//                Student st1 = (Student) data;
-//                String st2 = (String) element;
-//                return st1.getId().equals(st2) || st1.getName().equals(st2);
-//            case "course1":
-//                Course c1 = (Course) data;
-//                String c2 = (String) element;
-//                return c1.getId().equals(c2) || c1.getName().equals(c2);
-//                case "employee":
-//                Employee e1 = (Employee) data;
-//                String e2 = (String) element;
-//                return e1.getTitle().equals(e2);
-//                case "job":
-//                JobPosition j1 = (JobPosition) data;
-//                String j2 = (String) element;
-//                return j1.getDescription().equals(j2);
             case "security":
                 Security se = (Security) data;
                 String str = (String) element;
-                return se.getUser().equals(str) || se.getPassword().equals(str);
+                return se.getUser().equals(str) && se.getPassword().equals(str);
+            case "career":
+                Career cr1 = (Career) data;
+                Integer cr2 = (Integer) element;
+                return cr1.getId()==cr2;
         }
         return false;
     }
@@ -193,6 +182,9 @@ public class Utility {
 //        }
         if (data instanceof Security && element instanceof String) {
             return "security";
+        }
+         if (data instanceof Career && element instanceof Integer) {
+            return "career";
         }
 
         return "unknown";

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLMenuCarrersDeleteController">
+   <children>
+      <Text fx:id="txtInfo" layoutX="143.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el id de la carrera que desea eliminar">
+         <font>
+            <Font name="Corbel" size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtFieldSearch" layoutX="225.0" layoutY="92.0" />
+      <Button fx:id="btnBuscar" layoutX="277.0" layoutY="140.0" mnemonicParsing="false" onAction="#btnBuscar" style="-fx-background-color: #0073ff;" text="Eliminar" textFill="WHITE" />
+      <Text fx:id="txtInfo2" fill="RED" layoutX="300.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="La carrera no está en la lista" visible="false">
+         <font>
+            <Font name="Corbel" size="18.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
