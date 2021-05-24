@@ -18,6 +18,7 @@ import domain.DoublyLinkedList;
 import domain.CircularDoublyLinkedList;
 import domain.ListException;
 import domain.Security;
+import domain.Student;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -133,10 +134,10 @@ public class Utility {
                 String s1 = (String) data;
                 String s2 = (String) element;
                 return s1.compareTo(s2) == 0;
-//            case "student1":
-//                Student st1 = (Student) data;
-//                String st2 = (String) element;
-//                return st1.getId().equals(st2) || st1.getName().equals(st2);
+            case "student":
+                Student st1 = (Student) data;
+                Integer i = (Integer) element;
+                return st1.getId()==(i);
 //            case "course1":
 //                Course c1 = (Course) data;
 //                String c2 = (String) element;
@@ -165,9 +166,10 @@ public class Utility {
         if (data instanceof String && element instanceof String) {
             return "string";
         }
-//        if (data instanceof Student && element instanceof String) {
-//            return "student1";
-//        }
+        
+        if (data instanceof Student && element instanceof Integer) {
+            return "student";
+       }
 //         if (data instanceof Student && element instanceof Student) {
 //            return "student";
 //        }

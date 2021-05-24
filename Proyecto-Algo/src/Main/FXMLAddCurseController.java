@@ -58,15 +58,15 @@ public class FXMLAddCurseController implements Initializable {
 
     @FXML
     private void btnAgregarCurso(ActionEvent event) {
-         int temp = Integer.parseInt(this.tfAgregarCurso1.getText());
-        course.add(new Courses(temp,this.tfAgregarCurso.getText()));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
-            alert.setContentText("Se agregó la carrera");
-            alert.showAndWait();
-            this.tfAgregarCurso.setText("");
-            this.tfAgregarCurso1.setText("");
+//         int temp = Integer.parseInt(this.tfAgregarCurso1.getText());
+//        course.add(new Courses(temp,this.tfAgregarCurso.getText()));
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Ventana de dialogo");
+//            alert.setHeaderText("Informacion");
+//            alert.setContentText("Se agregó la carrera");
+//            alert.showAndWait();
+//            this.tfAgregarCurso.setText("");
+//            this.tfAgregarCurso1.setText("");
     }
     }
     

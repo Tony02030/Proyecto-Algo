@@ -42,20 +42,20 @@ public class FXMLMenuCurseDisplayController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
           Node aux;
-        try {
-            aux = course.getNode(1);
-            int x=0;
-            while (aux != null) {
-                Course temp=(Course)aux.data;
-                courses.add(x, temp);
-                aux=aux.next;
-                x=x+1;
-            }
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        colCarrers.setCellValueFactory(new PropertyValueFactory("description"));
-        tableCourses.setItems(courses);
+//        try {
+//            aux = course.getNode(1);
+//            int x=0;
+//            while (aux != null) {
+//                Course temp=(Course)aux.data;
+//                courses.add(x, temp);
+//                aux=aux.next;
+//                x=x+1;
+//            }
+//        } catch (ListException ex) {
+//            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        colCarrers.setCellValueFactory(new PropertyValueFactory("description"));
+//        tableCourses.setItems(courses);
         
 
             

@@ -39,6 +39,14 @@ public class Student {
         this.dateBirth = new SimpleStringProperty(new SimpleDateFormat("dd/MM/yyyy").format(birthday));
     }
 
+    public String getDateBirth() {
+        return dateBirth.getValue();
+    }
+
+    public void setDateBirth(SimpleStringProperty dateBirth) {
+        this.dateBirth = dateBirth;
+    }
+
     public int getId() {
         return id;
     }

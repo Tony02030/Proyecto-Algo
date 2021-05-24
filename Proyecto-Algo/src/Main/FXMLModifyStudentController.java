@@ -62,8 +62,8 @@ public class FXMLModifyStudentController implements Initializable {
     @FXML
     private void btnModify(ActionEvent event) throws ListException {
 
-        if (Student.contains(txfID.getText())) {
-
+        if (Student.contains1(txfID.getText())) {
+            
         } else {
 
             txtMessage2.setVisible(true);

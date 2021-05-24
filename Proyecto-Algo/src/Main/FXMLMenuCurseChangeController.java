@@ -97,43 +97,43 @@ public static void numericOnly(final TextField field) {
     @FXML
     private void btnCambiarCurso1(ActionEvent event) {
         
-        try {
-            Node aux = course.getNode(1);
-            int x = Integer.parseInt(this.tfNuevoID.getText());
-
-            while (aux != null) {
-                if (!util.Utility.equals(aux.data, x)) {
-                    aux.data = new Course("","",x, this.tfCambiarNombre.getText());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Informacion");
-                    alert.setContentText("Se cambió la carrera");
-                    alert.showAndWait();
-                } else {
-                    aux.data = new Course(x, this.tfCambiarNombre.getText());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Informacion");
-                    alert.setContentText("Se cambió la carrera");
-                    alert.showAndWait();
-
-                }
-                aux = aux.next;
-            }
-            this.btnBuscarCurso.setVisible(true);
-            this.tfCursoID.setVisible(true);
-            this.txCursoID.setVisible(true);
-            this.btnCambiarCurso1.setVisible(false);
-            this.tfCambiarNombre.setVisible(false);
-            this.txNuevoID.setVisible(false);
-            this.txCambiarNombre.setVisible(false);
-            this.tfNuevoID.setVisible(false);
-            this.tfCambiarNombre.setText("");
-            this.tfNuevoID.setText("");
-
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            Node aux = course.getNode(1);
+//            int x = Integer.parseInt(this.tfNuevoID.getText());
+//
+//            while (aux != null) {
+//                if (!util.Utility.equals(aux.data, x)) {
+//                    aux.data = new Course("","",x, Integer.parseInt(tfCambiarNombre.getText()));
+//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Ventana de dialogo");
+//                    alert.setHeaderText("Informacion");
+//                    alert.setContentText("Se cambió la carrera");
+//                    alert.showAndWait();
+//                } else {
+//                    aux.data = new Course(x, Integer.parseInt(tfCambiarNombre.getText());
+//                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Ventana de dialogo");
+//                    alert.setHeaderText("Informacion");
+//                    alert.setContentText("Se cambió la carrera");
+//                    alert.showAndWait();
+//
+//                }
+//                aux = aux.next;
+//            }
+//            this.btnBuscarCurso.setVisible(true);
+//            this.tfCursoID.setVisible(true);
+//            this.txCursoID.setVisible(true);
+//            this.btnCambiarCurso1.setVisible(false);
+//            this.tfCambiarNombre.setVisible(false);
+//            this.txNuevoID.setVisible(false);
+//            this.txCambiarNombre.setVisible(false);
+//            this.tfNuevoID.setVisible(false);
+//            this.tfCambiarNombre.setText("");
+//            this.tfNuevoID.setText("");
+//
+//        } catch (ListException ex) {
+//            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
     
 }
