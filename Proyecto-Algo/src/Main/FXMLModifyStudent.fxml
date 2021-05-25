@@ -62,7 +62,7 @@
       <TextField fx:id="txfPhoneNumber" layoutX="394.0" layoutY="263.0" visible="false" />
       <TextField fx:id="txfEmail" layoutX="394.0" layoutY="308.0" visible="false" />
       <TextField fx:id="txfAdress" layoutX="394.0" layoutY="350.0" visible="false" />
-      <Button fx:id="btnModifyS" layoutX="252.0" layoutY="464.0" mnemonicParsing="false" onAction="#btnModifyS" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white;" text="Añadir Estudiante" />
+      <Button fx:id="btnModifyS" layoutX="252.0" layoutY="464.0" mnemonicParsing="false" onAction="#btnModifyS" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white;" text="Modificar Estudiante" visible="false" />
       <DatePicker fx:id="dPBirthday" layoutX="373.0" layoutY="216.0" style="-fx-background-color: white;" visible="false" />
       <ComboBox fx:id="ComboBox" layoutX="394.0" layoutY="402.0" prefWidth="150.0" visible="false" />
       <Button fx:id="btnSearchS" layoutX="252.0" layoutY="94.0" mnemonicParsing="false" onAction="#btnSearchS" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white;" text="Buscar" />

@@ -57,19 +57,6 @@ public class FXMLMenuCarrersChangeController implements Initializable {
 
     }
 
-    public static void numericOnly(final TextField field) {
-        field.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                    ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    field.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-    }
-
     @FXML
     private void btnBuscar(ActionEvent event) {
 
@@ -97,8 +84,10 @@ public class FXMLMenuCarrersChangeController implements Initializable {
             
 
             while (aux != null) {
-                if (!util.Utility.equals(aux.data, this.txtFieldChangeName.getText())) {
-                    aux.data = new Career(this.txtFieldChangeName.getText());
+                if (util.Utility.equals(aux.data, this.txtFieldSearch.getText())) {
+                    Career temp = (Career) aux.data;
+                    temp.setDescription(txtFieldChangeName.getText());
+                    aux.data = temp;
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Ventana de dialogo");
                     alert.setHeaderText("Informacion");

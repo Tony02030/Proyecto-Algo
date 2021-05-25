@@ -33,43 +33,28 @@ public class FXMLMenuCarrersAddController implements Initializable {
     private DoublyLinkedList carrer = util.Utility.getCareers();
     @FXML
     private Button btnAdd;
-    
+
     @FXML
     private TextField textFieldCareer;
-    
-    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }
-    public static void numericOnly(final TextField field) {
-        field.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                    ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    field.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
+
     }
 
     @FXML
     private void btnAdd(ActionEvent event) {
         carrer.add(new Career(this.textFieldCareer.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
-            alert.setContentText("Se agregó la carrera");
-            alert.showAndWait();
-            this.textFieldCareer.setText("");
-            
+        alert.setTitle("Ventana de dialogo");
+        alert.setHeaderText("Informacion");
+        alert.setContentText("Se agregó la carrera");
+        alert.showAndWait();
+        this.textFieldCareer.setText("");
+
     }
 
-    
 }

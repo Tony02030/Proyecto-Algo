@@ -126,6 +126,7 @@ public class FXMLModifyStudentController implements Initializable {
         
         try {
             if (student.contains1(txfID.getText())) {
+                btnSearchS.setVisible(false);
                 txtStudentID.setVisible(true);
                 txtLastname.setVisible(true);
                 txtFirstname.setVisible(true);
@@ -134,6 +135,7 @@ public class FXMLModifyStudentController implements Initializable {
                 txtEmail.setVisible(true);
                 txtAdress.setVisible(true);
                 ComboBox.setVisible(true);
+                btnModifyS.setVisible(true);
                 
                 txfID.setVisible(true);
                 txfStudentID.setVisible(true);
@@ -143,25 +145,7 @@ public class FXMLModifyStudentController implements Initializable {
                 txfEmail.setVisible(true);
                 txfAdress.setVisible(true);
                 
-                int id = 0;
-                ZoneId defaultZoneId = ZoneId.systemDefault();
-                
-                LocalDate lD = dPBirthday.getValue();
-                
-                Date date = Date.from(lD.atStartOfDay(defaultZoneId).toInstant());
-                
-                Node aux;
-                
-                aux = career.getNode(1);
-                
-                while (aux != null) {
-                    if (util.Utility.equals(aux.data, ComboBox.getValue())) {
-                        Career temp = (Career) aux.data;
-                        id = temp.getId();
-                    }
-                    aux = aux.next;
-                    
-                }//while
+               
             } else {
                 txtMessage.setText("La cédula insertada no corresponde con ningún estudiante registrado");
             }
@@ -198,9 +182,17 @@ public class FXMLModifyStudentController implements Initializable {
             Node aux = student.getNode(1);
             
             while (aux != null) {
-                if (!util.Utility.equals(aux.data, this.txfID.getText())) {
-                    aux.data = new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), id);
-                    
+                if (util.Utility.equals(aux.data, this.txfID.getText())) {
+                    Student temp = (Student) aux.data;
+                    temp.setId(id);
+                    temp.setStudentID(txfStudentID.getText());
+                    temp.setLastname(txfLastname.getText());
+                    temp.setFirstname(txfName.getText());
+                    temp.setBirthday(date);
+                    temp.setPhoneNumber(txfPhoneNumber.getText());
+                    temp.setEmail(txfEmail.getText());
+                    temp.setAddress(txfAdress.getText());
+                    aux.data = temp;
                 }
                 aux = aux.next;
             }
@@ -223,6 +215,8 @@ public class FXMLModifyStudentController implements Initializable {
         txtEmail.setVisible(false);
         txtAdress.setVisible(false);
         ComboBox.setVisible(false);
+        btnModifyS.setVisible(false);
+        btnSearchS.setVisible(true);
         
         txfID.setText("");
         txfStudentID.setText("");
