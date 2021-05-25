@@ -72,7 +72,6 @@ public class FXMLAddStudentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         numericOnly(txfID);
-        
 
         Node aux;
         try {
@@ -115,26 +114,26 @@ public class FXMLAddStudentController implements Initializable {
         Node aux;
         try {
             aux = dLL.getNode(1);
-            int x = 0;
+
             while (aux != null) {
                 if (util.Utility.equals(aux.data, ComboBox.getValue())) {
                     Career temp = (Career) aux.data;
                     id = temp.getId();
                 }
-                aux=aux.next;
+                aux = aux.next;
 
             }
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(),id));
-        
+        Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), id));
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
         alert.setHeaderText("Informacion");
         alert.setContentText("Estudiante agregado correctamente");
         alert.showAndWait();
-  
+
         txfID.setText("");
         txfStudentID.setText("");
         txfLastname.setText("");
@@ -142,7 +141,6 @@ public class FXMLAddStudentController implements Initializable {
         txfPhoneNumber.setText("");
         txfEmail.setText("");
         txfAdress.setText("");
-       
 
     }
 
