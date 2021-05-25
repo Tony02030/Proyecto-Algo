@@ -31,6 +31,7 @@ import javafx.scene.text.Text;
 public class FXMLMenuCarrersChangeController implements Initializable {
 
     private DoublyLinkedList carrer = util.Utility.getCareers();
+    private String temp1;
     @FXML
     private Text txtInfo;
     @FXML
@@ -62,6 +63,7 @@ public class FXMLMenuCarrersChangeController implements Initializable {
 
         try {
             if (carrer.contains1(this.txtFieldSearch.getText())) {
+                temp1=this.txtFieldSearch.getText();
                 this.btnBuscar.setVisible(false);
                 this.txtFieldSearch.setVisible(false);
                 this.txtInfo.setVisible(false);
@@ -82,19 +84,28 @@ public class FXMLMenuCarrersChangeController implements Initializable {
         try {
             Node aux = carrer.getNode(1);
             
-
+            int count=0;
             while (aux != null) {
-                if (util.Utility.equals(aux.data, this.txtFieldSearch.getText())) {
+                if (util.Utility.equals(aux.data, temp1)) {
                     Career temp = (Career) aux.data;
                     temp.setDescription(txtFieldChangeName.getText());
                     aux.data = temp;
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    count++;
+                } 
+                aux = aux.next;
+            }
+            if(count==1){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Ventana de dialogo");
                     alert.setHeaderText("Informacion");
                     alert.setContentText("Se cambió la carrera");
                     alert.showAndWait();
-                } 
-                aux = aux.next;
+            }else{
+               Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ventana de dialogo");
+                    alert.setHeaderText("Informacion");
+                    alert.setContentText("No se pudó cambiar la carrera");
+                    alert.showAndWait(); 
             }
             this.btnBuscar.setVisible(true);
             this.txtFieldSearch.setVisible(true);

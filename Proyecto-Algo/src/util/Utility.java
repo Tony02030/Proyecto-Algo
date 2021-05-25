@@ -138,6 +138,10 @@ public class Utility {
                 Student st1 = (Student) data;
                 Integer i = (Integer) element;
                 return st1.getId()==(i);
+            case "career":
+                Career c1 = (Career) data;
+                String c2 = (String) element;
+                return c1.getDescription().equals(c2);
 //            case "course1":
 //                Course c1 = (Course) data;
 //                String c2 = (String) element;

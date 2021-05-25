@@ -43,6 +43,19 @@ public class FXMLMenuCarrersAddController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        letterOnly(this.textFieldCareer);
+    }
+    public static void letterOnly(final TextField field) {
+        field.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(
+                    ObservableValue<? extends String> observable,
+                    String oldValue, String newValue) {
+                if (!newValue.matches("[a-zA-Z]")) {
+                    field.setText(newValue.replaceAll("[\\d||\\p{Punct}]",""));
+                }
+            }
+        });
     }
 
     @FXML

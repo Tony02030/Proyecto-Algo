@@ -34,7 +34,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class FXMLMenuTimeTableController implements Initializable {
 
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
-    ;
+    
     @FXML
     private ComboBox<String> comboBox;
     @FXML
@@ -78,6 +78,7 @@ public class FXMLMenuTimeTableController implements Initializable {
 
     @FXML
     private void btnAdd(ActionEvent event) {
+        
     }
     
 }
