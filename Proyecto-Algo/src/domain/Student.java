@@ -23,10 +23,10 @@ public class Student {
     private String phoneNumber;
     private String email;
     private String address;
-    private int careerID;
+    private Career careerID;
     private SimpleStringProperty dateBirth;
 
-    public Student(int id, String studentID, String lastname, String firstname, Date birthday, String phoneNumber, String email, String address, int careerID) {
+    public Student(int id, String studentID, String lastname, String firstname, Date birthday, String phoneNumber, String email, String address, Career careerID) {
         this.id = id;
         this.studentID = studentID;
         this.lastname = lastname;
@@ -38,6 +38,7 @@ public class Student {
         this.careerID = careerID;
         this.dateBirth = new SimpleStringProperty(new SimpleDateFormat("dd/MM/yyyy").format(birthday));
     }
+    
 
     public String getDateBirth() {
         return dateBirth.getValue();
@@ -111,13 +112,16 @@ public class Student {
         this.address = address;
     }
 
-    public int getCareerID() {
+    public Career getCareerID() {
         return careerID;
     }
 
-    public void setCareerID(int careerID) {
+    public void setCareerID(Career careerID) {
         this.careerID = careerID;
     }
+    
+
+   
 
     public int getAge() {
         if (birthday.getMonth() <= 05) {

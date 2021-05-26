@@ -43,6 +43,7 @@ public class FXMLAddStudentController implements Initializable {
 
     private SingleLinkedList Student = util.Utility.getStudents();
     private DoublyLinkedList dLL = util.Utility.getCareers();
+    private Career temp;
     @FXML
     private TextField txfID;
     @FXML
@@ -117,8 +118,8 @@ public class FXMLAddStudentController implements Initializable {
 
             while (aux != null) {
                 if (util.Utility.equals(aux.data, ComboBox.getValue())) {
-                    Career temp = (Career) aux.data;
-                    id = temp.getId();
+                    temp = (Career) aux.data;
+                    
                 }
                 aux = aux.next;
 
@@ -126,7 +127,7 @@ public class FXMLAddStudentController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), id));
+        Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp));
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
