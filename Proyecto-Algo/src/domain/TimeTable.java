@@ -14,12 +14,14 @@ public class TimeTable {
    private String period;
    private String schedule1;
    private String schedule2;
+   
 
     public TimeTable(Course courseID, String period, String schedule1, String schedule2) {
         this.courseID = courseID;
         this.period = period;
         this.schedule1 = schedule1;
         this.schedule2 = schedule2;
+        
     }
 
     public Course getCourseID() {

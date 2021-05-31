@@ -19,7 +19,7 @@ public class JavaFXMain extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLMenuSesion.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLMenu.fxml"));
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Proyecto");

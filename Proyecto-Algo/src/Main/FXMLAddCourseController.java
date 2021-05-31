@@ -106,7 +106,7 @@ public class FXMLAddCourseController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        course.add(new Course(this.txfID.getText(), this.txfName.getText(), temp1, temp));
+        course.add(new Course(this.txfID.getText(), this.txfName.getText(), temp1, temp, 0));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
         alert.setHeaderText("Informacion");

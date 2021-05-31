@@ -14,13 +14,24 @@ public class Course {
     private String name;
     private int credits;
     private Career careerID;
+    private int identifier;
 
-    public Course(String id, String name, int credits, Career careerID) {
+    public Course(String id, String name, int credits, Career careerID, int identifier) {
         this.id = id;
         this.name = name;
         this.credits = credits;
         this.careerID = careerID;
+        this.identifier=identifier;
     }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
+    }
+    
 
     public String getId() {
         return id;

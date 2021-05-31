@@ -125,6 +125,10 @@ public class Utility {
                 Student st1 = (Student) data;
                 Integer i = (Integer) element;
                 return st1.getId() == (i);
+            case "course":
+                Course co1 = (Course) data;
+                String co2 = (String) element;
+                return co1.getName().equals(co2);
         }
         return false;
     }
@@ -269,5 +273,12 @@ public class Utility {
 
     public static String dateFormat(Date birthday) {
         return new SimpleDateFormat("dd/MM/yyyy").format(birthday);
+    }
+
+    public static boolean exist(int identifier) {
+        if (identifier == 0) {
+            return false;
+        }
+        return true;
     }
 }
