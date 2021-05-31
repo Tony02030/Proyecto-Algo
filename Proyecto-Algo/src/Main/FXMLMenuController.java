@@ -103,12 +103,32 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void modificaCurso(ActionEvent event) {
-        loadPage("FXMLModifyCourse");
+        if (course.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            this.loadPage("FXMLModifyCourse");
+        }
+
     }
 
     @FXML
     private void eliminaCurso(ActionEvent event) {
-        loadPage("FXMLRemoveCourse");
+        if (course.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("La lista esta vacia");
+
+            alert.showAndWait();
+        } else {
+            this.loadPage("FXMLRemoveCourse");
+        }
+
     }
 
     @FXML
@@ -153,7 +173,7 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void muestraEstudiante(ActionEvent event) {
-         if (student.isEmpty()) {
+        if (student.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");
             alert.setHeaderText("Informacion");
@@ -163,7 +183,7 @@ public class FXMLMenuController implements Initializable {
         } else {
             this.loadPage("FXMLDisplayStudent");
         }
-       
+
     }
 
     @FXML
@@ -180,10 +200,12 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void agregaHorario(ActionEvent event) {
+        loadPage("FXMLMenuTimeTable");
     }
 
     @FXML
     private void muestraHorarios(ActionEvent event) {
+        
     }
 
     @FXML

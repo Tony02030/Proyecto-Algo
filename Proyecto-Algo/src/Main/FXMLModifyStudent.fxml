@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="669.0" style="-fx-background-color: #0073ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLModifyStudentController">
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="751.0" style="-fx-background-color: #0073ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLModifyStudentController">
    <children>
-      <Text fx:id="txtFirstname" fill="WHITE" layoutX="122.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su nombre:" visible="false" wrappingWidth="176.154296875">
+      <Text fx:id="txtFirstname" fill="WHITE" layoutX="122.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su nombre:" wrappingWidth="176.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
@@ -20,53 +20,53 @@
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="txtStudentID" fill="WHITE" layoutX="122.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su carné:" visible="false" wrappingWidth="176.154296875">
+      <Text fx:id="txtStudentID" fill="WHITE" layoutX="122.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su carné:" wrappingWidth="176.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="txtPhoneNumber" fill="WHITE" layoutX="122.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su número de teléfono:" visible="false" wrappingWidth="229.154296875">
+      <Text fx:id="txtPhoneNumber" fill="WHITE" layoutX="122.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su número de teléfono:" wrappingWidth="229.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="txtAdress" fill="WHITE" layoutX="122.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su dirección:" visible="false" wrappingWidth="176.154296875">
+      <Text fx:id="txtAdress" fill="WHITE" layoutX="122.0" layoutY="368.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su dirección:" wrappingWidth="176.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="txtEmail" fill="WHITE" layoutX="122.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su correo electrónico:" visible="false" wrappingWidth="229.154296875">
+      <Text fx:id="txtEmail" fill="WHITE" layoutX="122.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su correo electrónico:" wrappingWidth="229.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="txtLastname" fill="WHITE" layoutX="122.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite sus apellidos:" visible="false" wrappingWidth="176.154296875">
+      <Text fx:id="txtLastname" fill="WHITE" layoutX="122.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite sus apellidos:" wrappingWidth="176.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="txtBirthday" fill="WHITE" layoutX="122.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su fecha de nacimiento:" visible="false" wrappingWidth="229.154296875">
+      <Text fx:id="txtBirthday" fill="WHITE" layoutX="122.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su fecha de nacimiento:" wrappingWidth="229.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Text fx:id="txtComboBox" fill="WHITE" layoutX="122.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite el ID de la carrera elegida:" visible="false" wrappingWidth="259.154296875">
+      <Text fx:id="txtComboBox" fill="WHITE" layoutX="122.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite el ID de la carrera elegida:" wrappingWidth="259.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
       <TextField fx:id="txfID" layoutX="395.0" layoutY="44.0" />
-      <TextField fx:id="txfStudentID" layoutX="394.0" layoutY="88.0" visible="false" />
-      <TextField fx:id="txfLastname" layoutX="394.0" layoutY="129.0" visible="false" />
-      <TextField fx:id="txfName" layoutX="394.0" layoutY="168.0" visible="false" />
-      <TextField fx:id="txfPhoneNumber" layoutX="394.0" layoutY="263.0" visible="false" />
-      <TextField fx:id="txfEmail" layoutX="394.0" layoutY="308.0" visible="false" />
-      <TextField fx:id="txfAdress" layoutX="394.0" layoutY="350.0" visible="false" />
-      <Button fx:id="btnModifyS" layoutX="252.0" layoutY="464.0" mnemonicParsing="false" onAction="#btnModifyS" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white;" text="Modificar Estudiante" visible="false" />
-      <DatePicker fx:id="dPBirthday" layoutX="373.0" layoutY="216.0" style="-fx-background-color: white;" visible="false" />
-      <ComboBox fx:id="ComboBox" layoutX="394.0" layoutY="402.0" prefWidth="150.0" visible="false" />
-      <Button fx:id="btnSearchS" layoutX="252.0" layoutY="94.0" mnemonicParsing="false" onAction="#btnSearchS" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white;" text="Buscar" />
-      <Text fx:id="txtMessage" fill="WHITE" layoutX="243.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="176.154296875">
+      <TextField fx:id="txfStudentID" layoutX="394.0" layoutY="88.0" />
+      <TextField fx:id="txfLastname" layoutX="394.0" layoutY="129.0" />
+      <TextField fx:id="txfName" layoutX="394.0" layoutY="168.0" />
+      <TextField fx:id="txfPhoneNumber" layoutX="394.0" layoutY="263.0" />
+      <TextField fx:id="txfEmail" layoutX="394.0" layoutY="308.0" />
+      <TextField fx:id="txfAdress" layoutX="394.0" layoutY="350.0" />
+      <Button fx:id="btnModifyS" layoutX="252.0" layoutY="464.0" mnemonicParsing="false" onAction="#btnModifyS" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white;" text="Modificar Estudiante" />
+      <DatePicker fx:id="dPBirthday" layoutX="373.0" layoutY="216.0" style="-fx-background-color: white;" />
+      <ComboBox fx:id="ComboBox" layoutX="394.0" layoutY="402.0" prefWidth="150.0" />
+      <Button fx:id="btnSearchS" layoutX="252.0" layoutY="82.0" mnemonicParsing="false" onAction="#btnSearchS" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: white;" text="Buscar" />
+      <Text fx:id="txtMessage" fill="WHITE" layoutX="170.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="321.154296875">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>

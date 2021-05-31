@@ -39,25 +39,23 @@ public class FXMLAddCourseController implements Initializable {
     private Career temp;
 
     @FXML
-    private Button btnAgregarCurso;
-    private TextField tfAgregarCurso1;
-    private TextField tfAgregarCurso;
+    private TextField txfID;
     @FXML
-    private ComboBox<String> CboxAgregarCurso;
+    private TextField txfName;
+    @FXML
+    private Button btnAddCourse;
+    @FXML
+    private ComboBox<String> CareerComboBox;
     ObservableList<String> oL_ComboBox = FXCollections.observableArrayList();
     @FXML
-    private TextField txtFID;
-    @FXML
-    private TextField txtFfAgregarCurso;
-    @FXML
-    private TextField txtFfCréditos;
+    private TextField txfCredits;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        numericOnly(this.txtFfCréditos);
+        numericOnly(this.txfCredits);
         Node aux;
         try {
             aux = carrer.getNode(1);
@@ -72,7 +70,7 @@ public class FXMLAddCourseController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        CboxAgregarCurso.setItems(oL_ComboBox);
+        CareerComboBox.setItems(oL_ComboBox);
         // TODO
     }
 
@@ -90,15 +88,15 @@ public class FXMLAddCourseController implements Initializable {
     }
 
     @FXML
-    private void btnAgregarCurso(ActionEvent event) {
+    private void btnAddCourse(ActionEvent event) {
 
-        int temp1 = Integer.parseInt(this.txtFfCréditos.getText());
+        int temp1 = Integer.parseInt(this.txfCredits.getText());
         Node aux;
         try {
             aux = carrer.getNode(1);
 
             while (aux != null) {
-                if (util.Utility.equals(aux.data, this.CboxAgregarCurso.getValue())) {
+                if (util.Utility.equals(aux.data, this.CareerComboBox.getValue())) {
                     temp = (Career) aux.data;
 
                 }
@@ -108,15 +106,14 @@ public class FXMLAddCourseController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        course.add(new Course(this.txtFID.getText(), this.txtFfAgregarCurso.getText(), temp1, temp));
+        course.add(new Course(this.txfID.getText(), this.txfName.getText(), temp1, temp));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
         alert.setHeaderText("Informacion");
         alert.setContentText("Se agregó la carrera");
         alert.showAndWait();
-        this.txtFfAgregarCurso.setText("");
-        this.txtFID.setText("");
-        this.txtFfCréditos.setText("");
-
+        this.txfName.setText("");
+        this.txfID.setText("");
+        this.txfCredits.setText("");
     }
 }
