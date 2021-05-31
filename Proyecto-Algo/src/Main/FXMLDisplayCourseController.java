@@ -34,7 +34,7 @@ import javafx.util.Callback;
  */
 public class FXMLDisplayCourseController implements Initializable {
     private CircularDoublyLinkedList course = util.Utility.getCourses();
-     ObservableList<Career> carrers = FXCollections.observableArrayList();
+     ObservableList<Course> courses = FXCollections.observableArrayList();
 
     @FXML
     private TableView<List<String>> tableCurse;
@@ -52,8 +52,8 @@ public class FXMLDisplayCourseController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          Node aux;
-//        try {
+//          Node aux;
+////        try {
 //            aux = course.getNode(1);
 //            int x=0;
 //            while (aux != null) {
@@ -92,7 +92,7 @@ public class FXMLDisplayCourseController implements Initializable {
                 return new ReadOnlyStringWrapper(data.getValue().get(3));
             }
         });
-            
+            this.tableCurse.setItems(getData());
     }    
         // TODO
     public ObservableList<List<String>> getData() {
