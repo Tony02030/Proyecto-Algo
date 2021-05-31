@@ -115,5 +115,6 @@ public class FXMLAddCourseController implements Initializable {
         this.txfName.setText("");
         this.txfID.setText("");
         this.txfCredits.setText("");
+        temp = null;
     }
 }

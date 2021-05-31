@@ -43,12 +43,12 @@ import javafx.util.Callback;
  * @author User
  */
 public class FXMLMenuTimeTableController implements Initializable {
-    
+
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
     private DoublyLinkedList career = util.Utility.getCareers();
     private SingleLinkedList schedule = util.Utility.getSchedules();
     private Course temp;
-    
+
     @FXML
     private ComboBox<String> comboBox;
     @FXML
@@ -58,7 +58,7 @@ public class FXMLMenuTimeTableController implements Initializable {
     @FXML
     private Button btnAdd;
     ObservableList<String> course = FXCollections.observableArrayList();
-    
+
     @FXML
     private TableView<List<String>> tableCourse;
     @FXML
@@ -92,40 +92,47 @@ public class FXMLMenuTimeTableController implements Initializable {
         Node last;
         try {
             aux = courses.getNode(1);
-//            last = courses.getNode(courses.size());
-            last = aux.prev;
+            //last = courses.getNode(courses.size()+1);
             int x = 0;
-            while (aux.next != last) {
+            while (aux != courses.getNodeLast()) {
                 Course temp = (Course) aux.data;
                 String y = temp.getName();
                 course.add(x, y);
                 aux = aux.next;
                 x = x + 1;
             }
+            Course temp = (Course) aux.data;
+            String y = temp.getName();
+            course.add(x, y);
+            x = x + 1;
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
         comboBox.setItems(course);
-        
+
     }
-    
+
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;
+
         try {
             aux = courses.getNode(1);
-            Node last = courses.getNode(courses.size());
-            
-            while (aux != last) {
-                Course temp = (Course) aux.data;
+            //Node last = courses.getNode(courses.size());
+            while (aux != courses.getNodeLast()) {
                 List<String> array = new ArrayList<>();
-                array.add(String.valueOf(temp.getId()));
+                Course temp = (Course) aux.data;
                 array.add(temp.getName());
                 array.add(temp.getCareerID().getDescription());
                 data.add(array);
                 aux = aux.next;
-                
+
             }
+             List<String> array = new ArrayList<>();
+                Course temp = (Course) aux.data;
+                array.add(temp.getName());
+                array.add(temp.getCareerID().getDescription());
+                data.add(array);
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -143,20 +150,20 @@ public class FXMLMenuTimeTableController implements Initializable {
             }
         });
     }
-    
+
     @FXML
     private void btnAdd(ActionEvent event) {
         int count = 0;
         try {
             Node aux = schedule.getNode(1);
-            
+
             while (aux != null) {
                 if (util.Utility.equals(aux.data, this.txtFieldSchedule1) && util.Utility.equals(aux.data, this.txtFieldSchedule2)) {
                     count++;
                 }
                 aux = aux.next;
             }
-            
+
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -173,40 +180,42 @@ public class FXMLMenuTimeTableController implements Initializable {
             try {
                 Node aux = courses.getNode(1);
                 Node last = courses.getNode(courses.size());
-                
-                while (aux != last) {
+
+                while (aux != courses.getNodeLast()) {
                     if (util.Utility.equals(aux.data, this.comboBox.getValue())) {
                         temp = (Course) aux.data;
-                        
+
                     }
                     aux = aux.next;
                 }
-                
+                if (util.Utility.equals(aux.data, this.comboBox.getValue())) {
+                        temp = (Course) aux.data;
+
+                    }
+
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             String temp1 = this.txtFieldSchedule1.getText();
             String temp2 = this.txtFieldSchedule2.getText();
-            temp1 = temp1.trim();
-            temp2 = temp2.trim();
-            
+
             char[] v = temp1.toCharArray();
             char[] b = temp2.toCharArray();
             char[] c = new char[v.length - 4];
             char[] d = new char[b.length - 4];
-            
+
             int x = 0;
             for (int i = 4; i < v.length; i++) {
                 c[x] = v[i];
                 x++;
-                
+
             }
             x = 0;
             for (int i = 4; i < b.length; i++) {
                 d[x] = b[i];
                 x++;
-                
+
             }
             String tem = String.valueOf(c);
             String temm = String.valueOf(d);
@@ -225,7 +234,7 @@ public class FXMLMenuTimeTableController implements Initializable {
             int p = Integer.parseInt(hor01);
             int n = Integer.parseInt(hor2);
             int q = Integer.parseInt(hor02);
-            
+
             if (day != day01 && day2 != day02 && o < p && n < q && o >= 07 && o <= 21 && n >= 07 && n <= 21 && p <= 21 && q <= 21) {
                 this.schedule.add(new TimeTable(temp, this.txtFPeriod.getText(), this.txtFieldSchedule1.getText(), this.txtFieldSchedule2.getText()));
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -246,8 +255,8 @@ public class FXMLMenuTimeTableController implements Initializable {
                 this.txtFieldSchedule1.setText("");
                 this.txtFieldSchedule2.setText("");
             }
-            
+
         }
     }
-    
+
 }

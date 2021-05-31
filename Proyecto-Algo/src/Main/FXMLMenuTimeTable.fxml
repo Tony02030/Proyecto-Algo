@@ -16,7 +16,7 @@
             <TableColumn fx:id="colCareer" prefWidth="199.20001220703125" text="Carrera" />
         </columns>
       </TableView>
-      <ComboBox fx:id="comboBox" layoutX="49.0" layoutY="359.0" prefHeight="26.0" prefWidth="159.0" />
+      <ComboBox fx:id="comboBox" layoutX="29.0" layoutY="359.0" prefHeight="26.0" prefWidth="195.0" />
       <TextField fx:id="txtFieldSchedule1" layoutX="259.0" layoutY="359.0" prefHeight="26.0" prefWidth="195.0" />
       <TextField fx:id="txtFieldSchedule2" layoutX="503.0" layoutY="359.0" prefHeight="26.0" prefWidth="186.0" />
       <Text layoutX="107.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos" />

@@ -358,6 +358,10 @@ public class CircularDoublyLinkedList implements List {
         }
         return null;
     }
+   
+    public Node getNodeLast(){
+        return last;
+    }
 
     @Override
     public Node getNode(int index) throws ListException {
