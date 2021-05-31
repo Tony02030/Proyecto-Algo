@@ -66,9 +66,7 @@ public class FXMLAddStudentController implements Initializable {
     private ComboBox<String> ComboBox;
     ObservableList<String> oL_ComboBox = FXCollections.observableArrayList();
 
-    /**
-     * Initializes the controller class.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

@@ -97,6 +97,7 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void agregaCurso(ActionEvent event) {
+        loadPage("FXMLAddCurse");
 
     }
 

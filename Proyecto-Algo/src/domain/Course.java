@@ -13,9 +13,9 @@ public class Course {
     private String id;
     private String name;
     private int credits;
-    private int careerID;
+    private Career careerID;
 
-    public Course(String id, String name, int credits, int careerID) {
+    public Course(String id, String name, int credits, Career careerID) {
         this.id = id;
         this.name = name;
         this.credits = credits;
@@ -46,13 +46,15 @@ public class Course {
         this.credits = credits;
     }
 
-    public int getCareerID() {
+    public Career getCareerID() {
         return careerID;
     }
 
-    public void setCareerID(int careerID) {
+    public void setCareerID(Career careerID) {
         this.careerID = careerID;
     }
+
+    
     
     
 }

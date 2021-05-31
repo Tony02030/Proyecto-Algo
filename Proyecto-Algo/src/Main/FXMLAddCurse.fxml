@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLAddCurseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #0073ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLAddCurseController">
    <children>
       <Text layoutX="192.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
          <font>
@@ -17,9 +17,9 @@
          <font>
             <Font size="18.0" />
          </font></Text>
-      <TextField fx:id="tfAgregarCurso1" layoutX="246.0" layoutY="41.0" />
-      <TextField fx:id="tfAgregarCurso" layoutX="246.0" layoutY="88.0" />
-      <Button fx:id="btnAgregarCurso" layoutX="274.0" layoutY="293.0" mnemonicParsing="false" onAction="#btnAgregarCurso" text="Agregar" />
+      <TextField fx:id="txtFID" layoutX="246.0" layoutY="41.0" />
+      <TextField fx:id="txtFfAgregarCurso" layoutX="246.0" layoutY="88.0" />
+      <Button fx:id="btnAgregarCurso" layoutX="263.0" layoutY="274.0" mnemonicParsing="false" onAction="#btnAgregarCurso" prefHeight="32.0" prefWidth="74.0" style="-fx-background-color: white;" text="Agregar" />
       <Text layoutX="172.0" layoutY="230.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carrera">
          <font>
             <Font name="Corbel" size="18.0" />
@@ -31,6 +31,6 @@
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="tfCréditos" layoutX="246.0" layoutY="154.0" />
+      <TextField fx:id="txtFfCréditos" layoutX="246.0" layoutY="154.0" />
    </children>
 </AnchorPane>

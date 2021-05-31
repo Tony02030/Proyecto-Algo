@@ -66,28 +66,7 @@ public class FXMLDisplayStudentController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 //        Node aux;
-//        try {
-//            aux = Student.getNode(1);
-//            int x = 0;
-//            while (aux != null) {
-//                Student temp = (Student) aux.data;
-//                oL_tVStudent.add(x, temp);
-//                aux = aux.next;
-//                x = x + 1;
-//            }
-//        } catch (ListException ex) {
-//            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//           tC_ID.setCellValueFactory(new PropertyValueFactory<Student, Integer>("id"));
-//        tC_StudentID.setCellValueFactory(new PropertyValueFactory<Student, String>("studentID"));
-//        tC_Lastname.setCellValueFactory(new PropertyValueFactory<Student, String>("lastname"));
-//        tC_Firstname.setCellValueFactory(new PropertyValueFactory<Student, String>("firstname"));
-//        tC_Birthday.setCellValueFactory(new PropertyValueFactory<Student, String>("dateBirth"));
-//        tC_PhoneN.setCellValueFactory(new PropertyValueFactory<Student, String>("phoneNumber"));
-//        tC_Email.setCellValueFactory(new PropertyValueFactory<Student, String>("email"));
-//        tC_Adress.setCellValueFactory(new PropertyValueFactory<Student, String>("address"));
-//        //tC_Career.setCellValueFactory(new PropertyValueFactory<Student, Integer>("careerID"));
-//        tV_ShowStudents.setItems(oL_tVStudent);
+//        t
         this.tC_ID.setCellValueFactory(new Callback<CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<List<String>, String> data) {
