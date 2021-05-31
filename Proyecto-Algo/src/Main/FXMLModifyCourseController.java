@@ -5,6 +5,7 @@
  */
 package Main;
 
+import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.Course;
 import domain.DoublyLinkedList;
@@ -16,11 +17,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
@@ -29,60 +33,94 @@ import javafx.scene.text.Text;
  *
  * @author 31670
  */
-public class FXMLMenuCurseChangeController implements Initializable {
-     private CircularDoublyLinkedList course = util.Utility.getCourses();
+public class FXMLModifyCourseController implements Initializable {
 
-    private TextField tfCambiarCurso;
-    @FXML
-    private Button btnBuscarCurso;
-    @FXML
-    private Button btnCambiarCurso1;
-    @FXML
-    private Text txCursoNoAgregado;
-    @FXML
-    private Text txNuevoID;
-    @FXML
-    private TextField tfNuevoID;
-    @FXML
-    private Text txCursoID;
+    private CircularDoublyLinkedList course = util.Utility.getCourses();
+    private DoublyLinkedList career = util.Utility.getCareers();
+
     @FXML
     private TextField tfCursoID;
     @FXML
-    private Text txCambiarNombre;
+    private Text txtCursoNoAgregado;
     @FXML
-    private TextField tfCambiarNombre;
+    private Text txtMessage1;
+    @FXML
+    private Text txtMessage2;
+    @FXML
+    private Text txtMessage3;
+    @FXML
+    private Text txtMessage4;
+    @FXML
+    private TextField txfNewID;
+    @FXML
+    private TextField txfNewName;
+    @FXML
+    private TextField txfNewCredits;
+    @FXML
+    private ComboBox<String> ComboBox;
+    ObservableList<String> oL_ComboBox = FXCollections.observableArrayList();
+    @FXML
+    private Button btnCambiarCurso;
+    @FXML
+    private Button btnBuscarCurso;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        numericOnly(tfNuevoID);
+
         numericOnly(tfCursoID);
+        numericOnly(txfNewID);
         // TODO
-    }    
+
+        Node aux;
+        try {
+            aux = career.getNode(1);
+            int x = 0;
+            while (aux != null) {
+                Career temp = (Career) aux.data;
+                String y = temp.getDescription();
+                oL_ComboBox.add(x, y);
+                aux = aux.next;
+                x = x + 1;
+            }
+        } catch (ListException ex) {
+            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ComboBox.setItems(oL_ComboBox);
+    }
 
     @FXML
     private void btnBuscarCurso(ActionEvent event) {
-       int x = Integer.parseInt(tfCursoID.getText());
+        int x = Integer.parseInt(tfCursoID.getText());
+
         try {
             if (course.contains1(x)) {
-                this.btnBuscarCurso.setVisible(false);
-                this.tfCursoID.setVisible(false);
-                this.txCursoID.setVisible(false);
-                this.btnCambiarCurso1.setVisible(true);
-                this.tfCambiarNombre.setVisible(true);
-                this.txNuevoID.setVisible(true);
-                this.txCambiarNombre.setVisible(true);
-                this.tfNuevoID.setVisible(true);
-                this.tfCursoID.setText("");
-                this.txCursoNoAgregado.setVisible(false);
+                txtCursoNoAgregado.setVisible(false);
+                txtMessage1.setVisible(true);
+                txtMessage2.setVisible(true);
+                txtMessage3.setVisible(true);
+                txtMessage4.setVisible(true);
+                txfNewID.setVisible(true);
+                txfNewName.setVisible(true);
+                txfNewCredits.setVisible(true);
+                ComboBox.setVisible(true);
+
+            } else {
+                this.txtCursoNoAgregado.setVisible(true);
             }
         } catch (ListException ex) {
-            this.txCursoNoAgregado.setVisible(true);
+            Logger.getLogger(FXMLModifyCourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
-public static void numericOnly(final TextField field) {
+
+    @FXML
+    private void btnCambiarCurso(ActionEvent event) {
+    }
+
+    public static void numericOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(
@@ -94,9 +132,7 @@ public static void numericOnly(final TextField field) {
             }
         });
     }
-    @FXML
-    private void btnCambiarCurso1(ActionEvent event) {
-        
+
 //        try {
 //            Node aux = course.getNode(1);
 //            int x = Integer.parseInt(this.tfNuevoID.getText());
@@ -134,6 +170,4 @@ public static void numericOnly(final TextField field) {
 //        } catch (ListException ex) {
 //            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-    }
-    
 }

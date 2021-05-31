@@ -16,6 +16,7 @@ import domain.SingleLinkedList;
 import domain.CircularLinkedList;
 import domain.DoublyLinkedList;
 import domain.CircularDoublyLinkedList;
+import domain.Course;
 import domain.ListException;
 import domain.Security;
 import domain.Student;
@@ -39,7 +40,7 @@ public class Utility {
         return students;
     }
 
-    public static CircularLinkedList getSecurity()  {
+    public static CircularLinkedList getSecurity() {
         try {
             if (!security.contains1("admin", "1234")) {
                 security.add(new Security("admin", "1234"));
@@ -137,15 +138,15 @@ public class Utility {
             case "student":
                 Student st1 = (Student) data;
                 Integer i = (Integer) element;
-                return st1.getId()==(i);
+                return st1.getId() == (i);
             case "career":
                 Career c1 = (Career) data;
                 String c2 = (String) element;
                 return c1.getDescription().equals(c2);
-//            case "course1":
-//                Course c1 = (Course) data;
-//                String c2 = (String) element;
-//                return c1.getId().equals(c2) || c1.getName().equals(c2);
+            case "course":
+                Course co1 = (Course) data;
+                String co2 = (String) element;
+                return co1.getId().equals(co2);
 //                case "employee":
 //                Employee e1 = (Employee) data;
 //                String e2 = (String) element;
@@ -170,16 +171,18 @@ public class Utility {
         if (data instanceof String && element instanceof String) {
             return "string";
         }
-        
+
         if (data instanceof Student && element instanceof Integer) {
             return "student";
-       }
+        }
+
+        if (data instanceof Course && element instanceof String) {
+            return "course";
+        }
 //         if (data instanceof Student && element instanceof Student) {
 //            return "student";
 //        }
-//         if (data instanceof Course && element instanceof String) {
-//            return "course1";
-//        }
+
 //         if (data instanceof Course && element instanceof Course) {
 //            return "course";
 //        }
@@ -189,7 +192,7 @@ public class Utility {
         if (data instanceof Security && element instanceof String) {
             return "security";
         }
-         if (data instanceof Career && element instanceof String) {
+        if (data instanceof Career && element instanceof String) {
             return "career";
         }
 

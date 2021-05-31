@@ -97,20 +97,23 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void agregaCurso(ActionEvent event) {
-        loadPage("FXMLAddCurse");
+        loadPage("FXMLAddCourse");
 
     }
 
     @FXML
     private void modificaCurso(ActionEvent event) {
+        loadPage("FXMLModifyCourse");
     }
 
     @FXML
     private void eliminaCurso(ActionEvent event) {
+        loadPage("FXMLRemoveCourse");
     }
 
     @FXML
     private void muestraCursos(ActionEvent event) {
+        loadPage("FXMLDisplayCourse");
     }
 
     @FXML

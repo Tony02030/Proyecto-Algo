@@ -27,7 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author 31670
  */
-public class FXMLMenuCurseDisplayController implements Initializable {
+public class FXMLDisplayCourseController implements Initializable {
     private CircularDoublyLinkedList course = util.Utility.getCourses();
     @FXML
     private TableColumn<Career, String> colCarrers;

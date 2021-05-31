@@ -26,7 +26,7 @@ import javafx.scene.text.Text;
  *
  * @author 31670
  */
-public class FXMLMenuCurseDeleteController implements Initializable {
+public class FXMLRemoveCourseController implements Initializable {
     private CircularDoublyLinkedList course = util.Utility.getCourses();
 
     @FXML
