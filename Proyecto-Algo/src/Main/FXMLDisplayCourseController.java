@@ -11,9 +11,13 @@ import domain.Course;
 import domain.ListException;
 import domain.Node;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -21,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -29,12 +34,18 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class FXMLDisplayCourseController implements Initializable {
     private CircularDoublyLinkedList course = util.Utility.getCourses();
-    @FXML
-    private TableColumn<Career, String> colCarrers;
      ObservableList<Career> carrers = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<?> tableCurse;
+    private TableView<List<String>> tableCurse;
+    @FXML
+    private TableColumn<List<String>,String > IDcolumn;
+    @FXML
+    private TableColumn<List<String>, String> NombreColumn;
+    @FXML
+    private TableColumn<List<String>, String> CreditsColumn;
+    @FXML
+    private TableColumn<List<String>, String> CarreraColumn;
 
     /**
      * Initializes the controller class.
@@ -57,10 +68,57 @@ public class FXMLDisplayCourseController implements Initializable {
 //        colCarrers.setCellValueFactory(new PropertyValueFactory("description"));
 //        tableCourses.setItems(courses);
         
-
+  this.IDcolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
+                return new ReadOnlyStringWrapper(data.getValue().get(0));
+            }
+        });
+         this.NombreColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
+                return new ReadOnlyStringWrapper(data.getValue().get(1));
+            }
+        });
+          this.CreditsColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
+                return new ReadOnlyStringWrapper(data.getValue().get(2));
+            }
+        });
+           this.CarreraColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
+                return new ReadOnlyStringWrapper(data.getValue().get(3));
+            }
+        });
             
     }    
         // TODO
+    public ObservableList<List<String>> getData() {
+        final ObservableList<List<String>> data = FXCollections.observableArrayList();
+        Node aux;
+        try {
+            aux = course.getNode(1);
+
+            while (aux != null) {
+                Course temp = (Course) aux.data;
+                List<String> array = new ArrayList<>();
+              
+                array.add(temp.getId());
+                array.add(temp.getName());
+                array.add((String.valueOf(temp.getCredits())));
+                array.add(temp.getCareerID().getDescription());
+                data.add(array);
+                aux = aux.next;
+
+            }
+        } catch (ListException ex) {
+            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+    }
+
     }    
     
 
