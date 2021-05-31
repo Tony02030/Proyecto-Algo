@@ -61,7 +61,7 @@ public class FXMLRemoveStudentController implements Initializable {
     private void btnRemove(ActionEvent event) throws ListException {
          int temp = Integer.parseInt(txfID.getText());
         if (Student.contains(temp)) {
-            Student.remove(txfID.getText());
+            Student.remove(temp);
             txtMessage.setText("Estudiante removido de la lista correctamente");
         } else {
             txtMessage.setText("El estudiante no se encuentra en la lista");
