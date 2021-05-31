@@ -121,6 +121,10 @@ public class Utility {
                 Career cr1 = (Career) data;
                 String cr2 = (String) element;
                 return cr1.getDescription().equals(cr2);
+            case "student":
+                Student st1 = (Student) data;
+                Integer i = (Integer) element;
+                return st1.getId() == (i);
         }
         return false;
     }

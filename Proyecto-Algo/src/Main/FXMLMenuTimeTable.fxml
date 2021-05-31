@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="496.0" prefWidth="713.0" style="-fx-background-color: #0073ff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLMenuTimeTableController">
+<AnchorPane id="AnchorPane" prefHeight="515.0" prefWidth="775.0" style="-fx-background-color: #0073ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuTimeTableController">
    <children>
-      <TableView fx:id="tableCourse" layoutX="160.0" layoutY="14.0" prefHeight="286.0" prefWidth="413.0">
+      <TableView fx:id="tableCourse" layoutX="161.0" layoutY="8.0" prefHeight="286.0" prefWidth="413.0">
         <columns>
           <TableColumn fx:id="colCourse" prefWidth="210.3999481201172" text="Curso" />
             <TableColumn fx:id="colCareer" prefWidth="199.20001220703125" text="Carrera" />
@@ -19,10 +18,12 @@
       </TableView>
       <ComboBox fx:id="comboBox" layoutX="49.0" layoutY="359.0" prefHeight="26.0" prefWidth="159.0" />
       <TextField fx:id="txtFieldSchedule1" layoutX="259.0" layoutY="359.0" prefHeight="26.0" prefWidth="195.0" />
-      <TextField fx:id="txtFieldSchedule2" layoutX="496.0" layoutY="359.0" prefHeight="26.0" prefWidth="186.0" />
+      <TextField fx:id="txtFieldSchedule2" layoutX="503.0" layoutY="359.0" prefHeight="26.0" prefWidth="186.0" />
       <Text layoutX="107.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos" />
       <Text layoutX="331.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horario 1" />
       <Text layoutX="572.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horario 2" />
-      <Button fx:id="btnAdd" layoutX="340.0" layoutY="424.0" mnemonicParsing="false" onAction="#btnAdd" style="-fx-background-color: white;" text="Agregar" />
+      <Button fx:id="btnAdd" layoutX="326.0" layoutY="465.0" mnemonicParsing="false" onAction="#btnAdd" style="-fx-background-color: white;" text="Agregar" />
+      <Text layoutX="104.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Periodo" />
+      <TextField fx:id="txtFPeriod" layoutX="31.0" layoutY="438.0" prefHeight="26.0" prefWidth="195.0" />
    </children>
 </AnchorPane>

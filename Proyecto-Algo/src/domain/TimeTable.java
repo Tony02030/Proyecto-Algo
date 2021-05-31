@@ -10,23 +10,23 @@ package domain;
  * @author User
  */
 public class TimeTable {
-   private String courseID;
+   private Course courseID;
    private String period;
    private String schedule1;
    private String schedule2;
 
-    public TimeTable(String courseID, String period, String schedule1, String schedule2) {
+    public TimeTable(Course courseID, String period, String schedule1, String schedule2) {
         this.courseID = courseID;
         this.period = period;
         this.schedule1 = schedule1;
         this.schedule2 = schedule2;
     }
 
-    public String getCourseID() {
+    public Course getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(String courseID) {
+    public void setCourseID(Course courseID) {
         this.courseID = courseID;
     }
 
