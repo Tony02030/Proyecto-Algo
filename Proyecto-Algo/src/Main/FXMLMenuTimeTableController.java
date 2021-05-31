@@ -92,9 +92,10 @@ public class FXMLMenuTimeTableController implements Initializable {
         Node last;
         try {
             aux = courses.getNode(1);
-            last = courses.getNode(courses.size());
+//            last = courses.getNode(courses.size());
+            last = aux.prev;
             int x = 0;
-            while (aux != last) {
+            while (aux.next != last) {
                 Course temp = (Course) aux.data;
                 String y = temp.getName();
                 course.add(x, y);

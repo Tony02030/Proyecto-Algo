@@ -123,9 +123,9 @@ public class FXMLModifyStudentController implements Initializable {
     
     @FXML
     private void btnSearchS(ActionEvent event) {
-        
+        int temp = Integer.parseInt(txfID.getText());
         try {
-            if (student.contains1(txfID.getText())) {
+            if (student.contains1(temp)) {
                 btnSearchS.setVisible(false);
                 txtStudentID.setVisible(true);
                 txtLastname.setVisible(true);
