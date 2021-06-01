@@ -173,14 +173,23 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void muestraEstudiante(ActionEvent event) {
+        if (student.isEmpty() && career.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("No hay estudiantes ni carreras agregadas");
+
+            alert.showAndWait();
+        }
         if (student.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");
             alert.setHeaderText("Informacion");
-            alert.setContentText("La lista esta vacia");
+            alert.setContentText("No hay estudiantes agregados");
 
             alert.showAndWait();
-        } else {
+        }
+        if (!this.student.isEmpty() && !this.career.isEmpty()) {
             this.loadPage("FXMLDisplayStudent");
         }
 
@@ -200,12 +209,41 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void agregaHorario(ActionEvent event) {
-        loadPage("FXMLMenuTimeTable");
+        if (course.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("No hay cursos agregados");
+
+            alert.showAndWait();
+        } else {
+            this.loadPage("FXMLMenuTimeTable");
+        }
+
     }
 
     @FXML
     private void muestraHorarios(ActionEvent event) {
-        
+        if (course.isEmpty() && this.schedule.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("No hay cursos ni horarios agregados");
+
+            alert.showAndWait();
+        }
+        if (this.schedule.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("No hay horarios agregados");
+
+            alert.showAndWait();
+        }
+        if (!course.isEmpty() && !this.schedule.isEmpty()) {
+            this.loadPage("FXMLMenuTimeTableDisplay");
+        }
+
     }
 
     @FXML
@@ -223,7 +261,7 @@ public class FXMLMenuController implements Initializable {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");
             alert.setHeaderText("Informacion");
-            alert.setContentText("La lista esta vacia");
+            alert.setContentText("No hay carreras agragadas");
 
             alert.showAndWait();
         } else {
