@@ -88,9 +88,10 @@ public class FXMLAddCourseController implements Initializable {
     }
 
     @FXML
-    private void btnAddCourse(ActionEvent event) {
-
-        int temp1 = Integer.parseInt(this.txfCredits.getText());
+    private void btnAddCourse(ActionEvent event) throws ListException {
+        
+        if(!course.contains(this.txfID.getText().toUpperCase())){
+             int temp1 = Integer.parseInt(this.txfCredits.getText());
         Node aux;
         try {
             aux = carrer.getNode(1);
@@ -106,15 +107,24 @@ public class FXMLAddCourseController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        course.add(new Course(this.txfID.getText(), this.txfName.getText(), temp1, temp, 0));
+        course.add(new Course(this.txfID.getText().toUpperCase(), this.txfName.getText(), temp1, temp, 0));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
         alert.setHeaderText("Informacion");
-        alert.setContentText("Se agregó la carrera");
+        alert.setContentText("Se agregó el curso");
         alert.showAndWait();
         this.txfName.setText("");
         this.txfID.setText("");
         this.txfCredits.setText("");
         temp = null;
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ventana de dialogo");
+        alert.setHeaderText("Informacion");
+        alert.setContentText("Ya se agregó ese curso");
+        alert.showAndWait();
+        }
+
+        
     }
 }

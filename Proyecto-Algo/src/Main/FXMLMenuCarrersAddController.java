@@ -7,6 +7,7 @@ package Main;
 
 import domain.Career;
 import domain.DoublyLinkedList;
+import domain.ListException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -59,14 +60,25 @@ public class FXMLMenuCarrersAddController implements Initializable {
     }
 
     @FXML
-    private void btnAdd(ActionEvent event) {
-        carrer.add(new Career(this.textFieldCareer.getText()));
+    private void btnAdd(ActionEvent event) throws ListException {
+        if(!carrer.contains1(this.textFieldCareer.getText())){
+            carrer.add(new Career(this.textFieldCareer.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
         alert.setHeaderText("Informacion");
         alert.setContentText("Se agregó la carrera");
         alert.showAndWait();
         this.textFieldCareer.setText("");
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ventana de dialogo");
+        alert.setHeaderText("Informacion");
+        alert.setContentText("Ya existe esa carrera");
+        alert.showAndWait();
+        }
+       
+       
+        
 
     }
 

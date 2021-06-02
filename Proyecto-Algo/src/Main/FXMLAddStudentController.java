@@ -66,7 +66,6 @@ public class FXMLAddStudentController implements Initializable {
     private ComboBox<String> ComboBox;
     ObservableList<String> oL_ComboBox = FXCollections.observableArrayList();
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -103,43 +102,51 @@ public class FXMLAddStudentController implements Initializable {
     }
 
     @FXML
-    private void btnAddS(ActionEvent event) {
-        int id = 0;
-        ZoneId defaultZoneId = ZoneId.systemDefault();
+    private void btnAddS(ActionEvent event) throws ListException {
+        if (!Student.contains1(Integer.parseInt(txfID.getText()))) {
+            int id = 0;
+            ZoneId defaultZoneId = ZoneId.systemDefault();
 
-        LocalDate lD = dPBirthday.getValue();
+            LocalDate lD = dPBirthday.getValue();
 
-        Date date = Date.from(lD.atStartOfDay(defaultZoneId).toInstant());
-        Node aux;
-        try {
-            aux = dLL.getNode(1);
+            Date date = Date.from(lD.atStartOfDay(defaultZoneId).toInstant());
+            Node aux;
+            try {
+                aux = dLL.getNode(1);
 
-            while (aux != null) {
-                if (util.Utility.equals(aux.data, ComboBox.getValue())) {
-                    temp = (Career) aux.data;
-                    
+                while (aux != null) {
+                    if (util.Utility.equals(aux.data, ComboBox.getValue())) {
+                        temp = (Career) aux.data;
+
+                    }
+                    aux = aux.next;
+
                 }
-                aux = aux.next;
-
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+            Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp));
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Estudiante agregado correctamente");
+            alert.showAndWait();
+
+            txfID.setText("");
+            txfStudentID.setText("");
+            txfLastname.setText("");
+            txfName.setText("");
+            txfPhoneNumber.setText("");
+            txfEmail.setText("");
+            txfAdress.setText("");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Ya existe ese estudiante");
+            alert.showAndWait();
         }
-        Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp));
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de dialogo");
-        alert.setHeaderText("Informacion");
-        alert.setContentText("Estudiante agregado correctamente");
-        alert.showAndWait();
-
-        txfID.setText("");
-        txfStudentID.setText("");
-        txfLastname.setText("");
-        txfName.setText("");
-        txfPhoneNumber.setText("");
-        txfEmail.setText("");
-        txfAdress.setText("");
 
     }
 

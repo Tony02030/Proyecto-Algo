@@ -286,7 +286,7 @@ public class FXMLMenuTimeTableController implements Initializable {
                 while (aux != null) {
 
                     if (util.Utility.equals(aux.data, this.txtFieldSchedule1) && util.Utility.equals(aux.data, this.txtFieldSchedule2)) {
-                        count++;
+                        count1++;
 
                     }
 
@@ -345,21 +345,7 @@ public class FXMLMenuTimeTableController implements Initializable {
 
                     sch = (TimeTable) aux.data;
                     if (sch.getCourseID().getCareerID().getDescription().equals(temp.getCareerID().getDescription())) {
-                        //L,M:07:00 a 09:00
-                       //J,V:07:00 a 09:00
                        
-                       // o=07 y p=09
-                       
-                       //n=07 y q=09
-                       
-                       //oo=10 y pp= 12
-                       
-                       //nn=10 y qq=12
-                       
-                       //L,M:10:00 a 12:00
-                       //J,V:10:00 a 12:00
-                       
-                          //       false                        false               false                  false 
                         if (((oo >= o && oo <= p) || (pp >= o && pp <= p)) || ((nn >= n && nn <= q) || (qq >= n && qq <= q))) {
                             if (day == day3 || day2 == day4 || day01 == day03 || day02 == day04) {
                                 count++;
@@ -375,6 +361,15 @@ public class FXMLMenuTimeTableController implements Initializable {
                 Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (count1 == 1) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Los horarios ya fueron ingresados");
+            alert.showAndWait();
+            display();
+
+        }
 
         if (count == 1) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -386,7 +381,7 @@ public class FXMLMenuTimeTableController implements Initializable {
 
         }
          
-        if (count == 0) {
+        if (count == 0 && count1==0) {
 
 //Este if verifica que no se puedan hacer horarios antes de la 7am, despues de las 9pm, los domingos,que la hora que termine sea menor a la hora que empieza y que no se ingrese otras letras que no sean las abreviaturas de los dias de la semana
             if (day != day01 && day2 != day02 && o < p && n < q && o >= 07 && o <= 21 && n >= 07 && n <= 21 && p <= 21 && q <= 21 && day != 'D' && day01 != 'D' && day2 != 'D' && day02 != 'D' && ("LMKJVS").contains(day + "") && ("LMKJVS").contains(day01 + "") && ("LMKJVS").contains(day2 + "") && ("LMKJVS").contains(day02 + "")) {
