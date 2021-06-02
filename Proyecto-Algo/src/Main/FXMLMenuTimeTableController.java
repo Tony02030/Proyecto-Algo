@@ -211,6 +211,8 @@ public class FXMLMenuTimeTableController implements Initializable {
 
     @FXML
     private void btnAdd(ActionEvent event) {
+        int count1=0;
+        int count = 0;
         try {
             Node aux = courses.getNode(1);
 
@@ -229,7 +231,7 @@ public class FXMLMenuTimeTableController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        int count = 0;
+        
         String temp1 = this.txtFieldSchedule1.getText();
         String temp2 = this.txtFieldSchedule2.getText();
         String temp3 = temp1.toUpperCase();
@@ -303,8 +305,8 @@ public class FXMLMenuTimeTableController implements Initializable {
                     TimeTable tempo1 = (TimeTable) aux.data;
                     String tem1 = tempo1.getSchedule1();
                     String tem2 = tempo1.getSchedule2();
-                    String tem3 = temp1.toUpperCase();
-                    String tem4 = temp2.toUpperCase();
+                    String tem3 = tem1.toUpperCase();
+                    String tem4 = tem2.toUpperCase();
 
                     char[] l = tem3.toCharArray();
                     char[] ñ = tem4.toCharArray();
@@ -343,7 +345,22 @@ public class FXMLMenuTimeTableController implements Initializable {
 
                     sch = (TimeTable) aux.data;
                     if (sch.getCourseID().getCareerID().getDescription().equals(temp.getCareerID().getDescription())) {
-                        if ((oo >= o && oo <= p) || (pp == o && pp <= p) || (n == nn && nn <= q) || (qq == o && qq <= q)) {
+                        //L,M:07:00 a 09:00
+                       //J,V:07:00 a 09:00
+                       
+                       // o=07 y p=09
+                       
+                       //n=07 y q=09
+                       
+                       //oo=10 y pp= 12
+                       
+                       //nn=10 y qq=12
+                       
+                       //L,M:10:00 a 12:00
+                       //J,V:10:00 a 12:00
+                       
+                          //       false                        false               false                  false 
+                        if (((oo >= o && oo <= p) || (pp >= o && pp <= p)) || ((nn >= n && nn <= q) || (qq >= n && qq <= q))) {
                             if (day == day3 || day2 == day4 || day01 == day03 || day02 == day04) {
                                 count++;
 
@@ -368,6 +385,7 @@ public class FXMLMenuTimeTableController implements Initializable {
             display();
 
         }
+         
         if (count == 0) {
 
 //Este if verifica que no se puedan hacer horarios antes de la 7am, despues de las 9pm, los domingos,que la hora que termine sea menor a la hora que empieza y que no se ingrese otras letras que no sean las abreviaturas de los dias de la semana
