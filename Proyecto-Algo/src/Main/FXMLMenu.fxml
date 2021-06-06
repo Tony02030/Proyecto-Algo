@@ -53,6 +53,10 @@
                 <MenuItem fx:id="agregaAdministrador" mnemonicParsing="false" onAction="#agregaAdministrador" text="Agregar Administrador" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Más Opciones">
+               <items>
+                  <MenuItem fx:id="Exit" mnemonicParsing="false" onAction="#Exit" text="Sair" />
+               </items></Menu>
         </menus>
       </MenuBar>
    </children>

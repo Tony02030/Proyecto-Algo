@@ -13,7 +13,10 @@ import domain.Node;
 import domain.SingleLinkedList;
 import domain.Student;
 import domain.TimeTable;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -56,7 +59,7 @@ public class FXMLEnroll2Controller implements Initializable {
     private Student student = util.Utility.getTemporal();
     private SingleLinkedList students = util.Utility.getStudents();
     private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
-    
+
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
     private Enrollment enroll;
 
@@ -200,7 +203,7 @@ public class FXMLEnroll2Controller implements Initializable {
     }
 
     @FXML
-    private void btn_EnrollCourse(ActionEvent event) {
+    private void btn_EnrollCourse(ActionEvent event) throws FileNotFoundException, IOException {
 
         int count = 0;
         int count1 = 0;
@@ -227,6 +230,12 @@ public class FXMLEnroll2Controller implements Initializable {
                     aux = aux.next;
 
                 }
+
+                //Escribe los _________ en el archivo txt
+                FileOutputStream fos = new FileOutputStream("StudentsReport.txt");
+                ObjectOutputStream oos;
+                oos = new ObjectOutputStream(fos);
+                oos.writeObject(enrollment);
 
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
@@ -351,7 +360,7 @@ public class FXMLEnroll2Controller implements Initializable {
 
             } else {
                 this.student.setIdEnrollment(1);
-                this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(),0));
+                this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(), 0));
                 display();
                 this.ComboBox_Course.setValue("");
                 this.txf_Schedule.setText("");

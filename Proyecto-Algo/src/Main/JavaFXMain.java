@@ -29,6 +29,7 @@ public class JavaFXMain extends Application {
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
         primaryStage.show();
+       
     }
 
     /**

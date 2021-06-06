@@ -74,6 +74,8 @@ public class FXMLMenuController implements Initializable {
     private MenuItem eliminaCarrera;
     @FXML
     private MenuItem muestraCarreras;
+    @FXML
+    private MenuItem Exit;
 
     /**
      * Initializes the controller class.
@@ -229,7 +231,7 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void muestraEstudianteM(ActionEvent event) {
-        
+
     }
 
     @FXML
@@ -324,6 +326,12 @@ public class FXMLMenuController implements Initializable {
             loadPage("FXMLMenuCareersDisplay");
 
         }
+
+    }
+
+    @FXML
+    private void Exit(ActionEvent event) {
+       System.exit(0);
 
     }
 

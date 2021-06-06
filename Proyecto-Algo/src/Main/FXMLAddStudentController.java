@@ -11,6 +11,10 @@ import domain.ListException;
 import domain.Node;
 import domain.SingleLinkedList;
 import domain.Student;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -132,7 +136,7 @@ public class FXMLAddStudentController implements Initializable {
     }
 
     @FXML
-    private void btnAddS(ActionEvent event) throws ListException {
+    private void btnAddS(ActionEvent event) throws ListException, FileNotFoundException, IOException {
         if (!Student.contains1(Integer.parseInt(txfID.getText()))) {
             int id = 0;
             ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -155,8 +159,16 @@ public class FXMLAddStudentController implements Initializable {
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             Student.add(st = new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp, 0));
 
+            //Escribe los estudiantes en el archivo txt
+            FileOutputStream fos = new FileOutputStream("StudentsReport.txt");
+            ObjectOutputStream oos;
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(Student);
+            
+            
             Properties propiedad = new Properties();
             propiedad.put("mail smtp host", "smtp gmail com");
             propiedad.put("mail smtp port", "587");

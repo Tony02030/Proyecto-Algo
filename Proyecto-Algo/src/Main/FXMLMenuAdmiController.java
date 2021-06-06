@@ -7,7 +7,9 @@ package Main;
 
 import domain.CircularLinkedList;
 import domain.ListException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -95,6 +97,12 @@ public class FXMLMenuAdmiController implements Initializable {
                     stage.initModality(Modality.APPLICATION_MODAL);
                     stage.setScene(scene);
                     stage.showAndWait();
+
+                    //Escribe el usuario y contraseña en el archivo txt
+                    FileOutputStream fos = new FileOutputStream("SecurityReport.txt");
+                    ObjectOutputStream oos;
+                    oos = new ObjectOutputStream(fos);
+                    oos.writeObject(security);
 
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);

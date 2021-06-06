@@ -5,13 +5,14 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author User
  */
-public class DeEnrollment {
+public class DeEnrollment implements Serializable{
     private int id;
    private Date date;
    private Student studentID;

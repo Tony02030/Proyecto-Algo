@@ -11,6 +11,10 @@ import domain.Course;
 import domain.DoublyLinkedList;
 import domain.ListException;
 import domain.Node;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -74,46 +78,50 @@ public class FXMLAddCourseController implements Initializable {
         // TODO
     }
 
-   
-
     @FXML
-    private void btnAddCourse(ActionEvent event) throws ListException {
-        
-        if(!course.contains1(this.txfID.getText().toUpperCase())){
-             int temp1 = Integer.parseInt(this.txfCredits.getText());
-        Node aux;
-        try {
-            aux = carrer.getNode(1);
+    private void btnAddCourse(ActionEvent event) throws ListException, FileNotFoundException, IOException {
 
-            while (aux != null) {
-                if (util.Utility.equals(aux.data, this.CareerComboBox.getValue())) {
-                    temp = (Career) aux.data;
+        if (!course.contains1(this.txfID.getText().toUpperCase())) {
+            int temp1 = Integer.parseInt(this.txfCredits.getText());
+            Node aux;
+            try {
+                aux = carrer.getNode(1);
+
+                while (aux != null) {
+                    if (util.Utility.equals(aux.data, this.CareerComboBox.getValue())) {
+                        temp = (Career) aux.data;
+
+                    }
+                    aux = aux.next;
 
                 }
-                aux = aux.next;
-
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        course.add(new Course(this.txfID.getText().toUpperCase(), this.txfName.getText(), temp1, temp, 0));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de dialogo");
-        alert.setHeaderText("Informacion");
-        alert.setContentText("Se agregó el curso");
-        alert.showAndWait();
-        this.txfName.setText("");
-        this.txfID.setText("");
-        this.txfCredits.setText("");
-        temp = null;
-        }else{
+            course.add(new Course(this.txfID.getText().toUpperCase(), this.txfName.getText(), temp1, temp, 0));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de dialogo");
-        alert.setHeaderText("Informacion");
-        alert.setContentText("Ya se agregó ese curso");
-        alert.showAndWait();
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Se agregó el curso");
+            alert.showAndWait();
+            this.txfName.setText("");
+            this.txfID.setText("");
+            this.txfCredits.setText("");
+            temp = null;
+
+            //Escribe los cursos en el archivo txt
+            FileOutputStream fos = new FileOutputStream("CourseReport.txt");
+            ObjectOutputStream oos;
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(course);
+      
+        } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Ya se agregó ese curso");
+            alert.showAndWait();
         }
 
-        
     }
 }

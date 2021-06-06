@@ -5,11 +5,13 @@
  */
 package domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author User
  */
-public class Security {
+public class Security implements Serializable{
 
     private String user;
     private String password;

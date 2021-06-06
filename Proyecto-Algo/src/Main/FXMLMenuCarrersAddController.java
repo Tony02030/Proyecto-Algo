@@ -8,6 +8,10 @@ package Main;
 import domain.Career;
 import domain.DoublyLinkedList;
 import domain.ListException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -31,7 +35,7 @@ import javafx.scene.text.Text;
  */
 public class FXMLMenuCarrersAddController implements Initializable {
 
-    private DoublyLinkedList carrer = util.Utility.getCareers();
+    private DoublyLinkedList career = util.Utility.getCareers();
     @FXML
     private Button btnAdd;
 
@@ -49,15 +53,22 @@ public class FXMLMenuCarrersAddController implements Initializable {
     
 
     @FXML
-    private void btnAdd(ActionEvent event) throws ListException {
-        if(!carrer.contains1(this.textFieldCareer.getText())){
-            carrer.add(new Career(this.textFieldCareer.getText()));
+    private void btnAdd(ActionEvent event) throws ListException, FileNotFoundException, IOException {
+        if(!career.contains1(this.textFieldCareer.getText())){
+            career.add(new Career(this.textFieldCareer.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
         alert.setHeaderText("Informacion");
         alert.setContentText("Se agregó la carrera");
         alert.showAndWait();
         this.textFieldCareer.setText("");
+        
+         //Escribe las carreras en el archivo txt
+            FileOutputStream fos = new FileOutputStream("CareersReport.txt");
+            ObjectOutputStream oos;
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(career);
+            
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");
