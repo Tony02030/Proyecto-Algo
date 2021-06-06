@@ -66,6 +66,14 @@ public class Utility {
     }
 
     public static CircularDoublyLinkedList getCourses() {
+         try {
+            if (!careers.contains1("info")) {
+                careers.add(new Career("info"));
+            }
+        } catch (ListException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return courses;
     }
 

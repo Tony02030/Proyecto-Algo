@@ -37,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 /**
@@ -46,7 +47,7 @@ import javafx.util.Callback;
  */
 public class FXMLEnroll1Controller implements Initializable {
 
-    SingleLinkedList student = util.Utility.getStudents();
+    private SingleLinkedList student = util.Utility.getStudents();
     @FXML
     private TableView<List<String>> tV_Student;
     @FXML
@@ -151,10 +152,10 @@ public class FXMLEnroll1Controller implements Initializable {
 
     @FXML
     private void btn_StartEnrollment(ActionEvent event) {
-         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
         alert.setHeaderText("AVISO");
-        alert.setContentText("¿Desea matricular este curso?");
+        alert.setContentText("¿Desea matricular a este estudiante?");
         ButtonType buttonTypeYes = new ButtonType("Sí");
         ButtonType buttonTypeNo = new ButtonType("No");
         alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
@@ -163,43 +164,49 @@ public class FXMLEnroll1Controller implements Initializable {
         if (result.get() == buttonTypeYes) {
             Node aux;
 
-        try {
-            aux = student.getNode(1);
-            //Node last = courses.getNode(courses.size());
-            while (aux != null) {
-                
-                Student temp = (Student) aux.data;
-                if (util.Utility.equals(this.ComboBox_StudentID.getValue(),String.valueOf(temp.getId()))) {
-                   util.Utility.setTemporal(temp);
+            try {
+                aux = student.getNode(1);
+                //Node last = courses.getNode(courses.size());
+                while (aux != null) {
+
+                    Student temp = (Student) aux.data;
+                    if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId()))) {
+                        util.Utility.setTemporal(temp);
+                    }
+
+                    aux = aux.next;
+
                 }
 
-                aux = aux.next;
-
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            try {
+//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEnroll2.fxml"));
+//
+//                    Parent root = loader.load();
+//
+//                    FXMLMenuController controlador = loader.getController();
+//
+//                    Scene scene = new Scene(root);
+//                    Stage stage = new Stage();
+//                    stage.initModality(Modality.APPLICATION_MODAL);
+//                    stage.setScene(scene);
+//                    stage.showAndWait();
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("FXMLEnroll2.fxml"));
+                Scene scene = new Scene(root);
+                stage = new Stage(StageStyle.DECORATED);
+                stage.setScene(scene);
+                stage.show();
 
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMenuEnroll2.fxml"));
-
-                    Parent root = loader.load();
-
-                    FXMLMenuController controlador = loader.getController();
-
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.initModality(Modality.APPLICATION_MODAL);
-                    stage.setScene(scene);
-                    stage.showAndWait();
-
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        }else{
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
             display();
         }
-         
+
     }
 
     private void loadPage(String page) {

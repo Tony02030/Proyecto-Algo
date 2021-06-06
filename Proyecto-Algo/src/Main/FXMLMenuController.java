@@ -197,6 +197,7 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void matriculaEstudiante(ActionEvent event) {
+        loadPage("FXMLEnroll1");
     }
 
     @FXML

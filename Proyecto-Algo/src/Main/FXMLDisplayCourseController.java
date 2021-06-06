@@ -33,13 +33,14 @@ import javafx.util.Callback;
  * @author 31670
  */
 public class FXMLDisplayCourseController implements Initializable {
+
     private CircularDoublyLinkedList course = util.Utility.getCourses();
-     ObservableList<Course> courses = FXCollections.observableArrayList();
+    ObservableList<Course> courses = FXCollections.observableArrayList();
 
     @FXML
     private TableView<List<String>> tableCurse;
     @FXML
-    private TableColumn<List<String>,String > IDcolumn;
+    private TableColumn<List<String>, String> IDcolumn;
     @FXML
     private TableColumn<List<String>, String> NombreColumn;
     @FXML
@@ -67,44 +68,45 @@ public class FXMLDisplayCourseController implements Initializable {
 //        }
 //        colCarrers.setCellValueFactory(new PropertyValueFactory("description"));
 //        tableCourses.setItems(courses);
-        
-  this.IDcolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+
+        this.IDcolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
                 return new ReadOnlyStringWrapper(data.getValue().get(0));
             }
         });
-         this.NombreColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+        this.NombreColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
                 return new ReadOnlyStringWrapper(data.getValue().get(1));
             }
         });
-          this.CreditsColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+        this.CreditsColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
                 return new ReadOnlyStringWrapper(data.getValue().get(2));
             }
         });
-           this.CarreraColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
+        this.CarreraColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
                 return new ReadOnlyStringWrapper(data.getValue().get(3));
             }
         });
-            this.tableCurse.setItems(getData());
-    }    
-        // TODO
+        this.tableCurse.setItems(getData());
+    }
+    // TODO
+
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;
         try {
             aux = course.getNode(1);
 
-            while (aux != null) {
+            while (aux != course.getNodeLast()) {
                 Course temp = (Course) aux.data;
                 List<String> array = new ArrayList<>();
-              
+
                 array.add(temp.getId());
                 array.add(temp.getName());
                 array.add((String.valueOf(temp.getCredits())));
@@ -113,12 +115,18 @@ public class FXMLDisplayCourseController implements Initializable {
                 aux = aux.next;
 
             }
+            Course temp = (Course) aux.data;
+            List<String> array = new ArrayList<>();
+
+            array.add(temp.getId());
+            array.add(temp.getName());
+            array.add((String.valueOf(temp.getCredits())));
+            array.add(temp.getCareerID().getDescription());
+            data.add(array);
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return data;
     }
 
-    }    
-    
-
+}
