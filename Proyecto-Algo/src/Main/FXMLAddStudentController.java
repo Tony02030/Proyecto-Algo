@@ -214,47 +214,47 @@ public class FXMLAddStudentController implements Initializable {
     }
      @FXML
     private void bEnviar(ActionEvent event) {
-        Properties propiedad= new Properties();
-        propiedad.setProperty("mail smtp host", "smtp gmail com");
-        propiedad.setProperty("mail.smtp.starttls.enable", "true");
-        propiedad.setProperty("mail smtp port", "587");
-        propiedad.setProperty("mail.smtp.auth", "true");
-        
-        Session sesion= Session.getDefaultInstance(propiedad);
-        
-        String correoEnvia="jpizarrog1@gmail.com";
-        String contraseña="Jafeth2808*";
-        String destinatario=txfRecibe.getText();
-        String asunto=txtAsunto.getText();
-        String mensaje=txtMensaje.getText();
-        
-        
-        
-        MimeMessage mail=new MimeMessage(sesion);
-        
-        try {
-            mail.setFrom(new InternetAddress(correoEnvia));
-            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-            mail.setSubject(asunto);
-            mail.setText(mensaje);
-            Transport transporte= sesion.getTransport("smtp");
-            transporte.connect(correoEnvia,contraseña);
-            transporte.sendMessage(mail,mail.getRecipients(Message.RecipientType.TO));
-            transporte.close();
-            JOptionPane.showMessageDialog(null,"Correo enviado");
-           
-            
-            
-        } catch (AddressException ex) {
-            Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-     txfRecibe.setVisible(false);
-        bEnviar.setVisible(false);
-        txtMensaje.setVisible(false);
-        txtAsunto.setVisible(false);
+//        Properties propiedad= new Properties();
+//        propiedad.setProperty("mail smtp host", "smtp gmail com");
+//        propiedad.setProperty("mail.smtp.starttls.enable", "true");
+//        propiedad.setProperty("mail smtp port", "587");
+//        propiedad.setProperty("mail.smtp.auth", "true");
+//        
+//        Session sesion= Session.getDefaultInstance(propiedad);
+//        
+//        String correoEnvia="jpizarrog1@gmail.com";
+//        String contraseña="Jafeth2808*";
+//        String destinatario=txfRecibe.getText();
+//        String asunto=txtAsunto.getText();
+//        String mensaje=txtMensaje.getText();
+//        
+//        
+//        
+//        MimeMessage mail=new MimeMessage(sesion);
+//        
+//        try {
+//            mail.setFrom(new InternetAddress(correoEnvia));
+//            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+//            mail.setSubject(asunto);
+//            mail.setText(mensaje);
+//            Transport transporte= sesion.getTransport("smtp");
+//            transporte.connect(correoEnvia,contraseña);
+//            transporte.sendMessage(mail,mail.getRecipients(Message.RecipientType.TO));
+//            transporte.close();
+//            JOptionPane.showMessageDialog(null,"Correo enviado");
+//           
+//            
+//            
+//        } catch (AddressException ex) {
+//            Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (MessagingException ex) {
+//            Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    
+//     txfRecibe.setVisible(false);
+//        bEnviar.setVisible(false);
+//        txtMensaje.setVisible(false);
+//        txtAsunto.setVisible(false);
     }       
 }
 
