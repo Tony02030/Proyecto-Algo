@@ -13,6 +13,7 @@ import domain.Node;
 import domain.SingleLinkedList;
 import domain.Student;
 import domain.TimeTable;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,7 +30,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -38,6 +41,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.util.Callback;
 
 /**
@@ -50,9 +55,9 @@ public class FXMLEnroll2Controller implements Initializable {
     private SingleLinkedList schedules = util.Utility.getSchedules();
     private Student student = util.Utility.getTemporal();
     private SingleLinkedList students = util.Utility.getStudents();
-    private CircularDoublyLinkedList enrollment= util.Utility.getEnrollment();
+    private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
-    
+
     @FXML
     private TableView<List<String>> tV_EnrollCourse;
     @FXML
@@ -70,9 +75,17 @@ public class FXMLEnroll2Controller implements Initializable {
     @FXML
     private Button btn_EnrollCourse;
     ObservableList<String> courses1 = FXCollections.observableArrayList();
-    
+
     private Date dateToDay = Calendar.getInstance().getTime();
     private Course temp;
+    @FXML
+    private Button btn_EndEnrollment;
+    @FXML
+    private Text txtMessage;
+    @FXML
+    private Text txtMessage2;
+    @FXML
+    private BorderPane bp;
 
     /**
      * Initializes the controller class.
@@ -81,8 +94,16 @@ public class FXMLEnroll2Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         display();
         addTextLimiter(txf_Schedule, 17);
-        
+        tV_EnrollCourse.setVisible(true);
+        txtMessage.setVisible(true);
+        ComboBox_Course.setVisible(true);
+        txtMessage2.setVisible(true);
+        txf_Schedule.setVisible(true);
+        btn_EnrollCourse.setVisible(true);
+        btn_EndEnrollment.setVisible(true);
+
     }
+
     public static void addTextLimiter(final TextField tf, final int maxLength) {
         tf.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -176,7 +197,7 @@ public class FXMLEnroll2Controller implements Initializable {
 
     @FXML
     private void btn_EnrollCourse(ActionEvent event) {
-        
+
 //        try {
 //            Node aux = courses.getNode(1);
 //
@@ -196,7 +217,6 @@ public class FXMLEnroll2Controller implements Initializable {
 //        } catch (ListException ex) {
 //            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
         alert.setHeaderText("AVISO");
@@ -208,29 +228,65 @@ public class FXMLEnroll2Controller implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
             try {
-            Node aux = schedules.getNode(1);
+                Node aux = schedules.getNode(1);
 
-            while (aux != null) {
-                
-                TimeTable tem = (TimeTable) aux.data;
-                if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-                    tem.setIdEnrollment(1);
+                while (aux != null) {
+
+                    TimeTable tem = (TimeTable) aux.data;
+                    if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
+                        tem.setIdEnrollment(1);
+                    }
+
+                    aux = aux.next;
+
                 }
 
-                aux = aux.next;
-
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
-            this.enrollment.add(new Enrollment(student.getId(),this.dateToDay,student,temp,this.txf_Schedule.getText()));
+            this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText()));
             display();
 
         } else {
-           display();
+            display();
         }
     }
 
+    @FXML
+    private void btn_EndEnrollment(ActionEvent event) {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Ventana de Confirmación");
+        alert.setHeaderText("AVISO");
+        alert.setContentText("¿Está seguro de terminar el proceso de matrícula?");
+        ButtonType buttonTypeYes = new ButtonType("Sí");
+        ButtonType buttonTypeNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeYes) {
+            tV_EnrollCourse.setVisible(false);
+            txtMessage.setVisible(false);
+            ComboBox_Course.setVisible(false);
+            txtMessage2.setVisible(false);
+            txf_Schedule.setVisible(false);
+            btn_EnrollCourse.setVisible(false);
+            btn_EndEnrollment.setVisible(false);
+            loadPage("FXMLEnroll1");
+        }
+
+    }
+
+    private void loadPage(String page) {
+        Parent root = null;
+        try {
+
+            root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLMenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.bp.setCenter(root);
+
+    }
 }

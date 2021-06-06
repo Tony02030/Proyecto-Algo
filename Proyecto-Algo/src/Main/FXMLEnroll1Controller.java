@@ -67,7 +67,10 @@ public class FXMLEnroll1Controller implements Initializable {
     private BorderPane bp;
 
     ObservableList<String> students = FXCollections.observableArrayList();
-   
+    @FXML
+    private Text txtMessage;
+    @FXML
+    private Text txtMessage2;
 
     /**
      * Initializes the controller class.
@@ -75,6 +78,11 @@ public class FXMLEnroll1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         display();
+        txtMessage.setVisible(true);
+        tV_Student.setVisible(true);
+        txtMessage2.setVisible(true);
+        ComboBox_StudentID.setVisible(true);
+        btn_StartEnrollment.setVisible(true);
     }
 
     public void display() {
@@ -179,13 +187,16 @@ public class FXMLEnroll1Controller implements Initializable {
                     aux = aux.next;
 
                 }
-       
+
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-          
-//                loadPage("FXMLEnroll2");
+            txtMessage.setVisible(false);
+            tV_Student.setVisible(false);
+            txtMessage2.setVisible(false);
+            ComboBox_StudentID.setVisible(false);
+            btn_StartEnrollment.setVisible(false);
+            loadPage("FXMLEnroll2");
 
 //                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEnroll2.fxml"));
 //
