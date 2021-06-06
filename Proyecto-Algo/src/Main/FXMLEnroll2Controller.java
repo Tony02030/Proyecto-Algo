@@ -56,6 +56,7 @@ public class FXMLEnroll2Controller implements Initializable {
     private Student student = util.Utility.getTemporal();
     private SingleLinkedList students = util.Utility.getStudents();
     private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
+    
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
     private Enrollment enroll;
 
@@ -350,7 +351,7 @@ public class FXMLEnroll2Controller implements Initializable {
 
             } else {
                 this.student.setIdEnrollment(1);
-                this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText()));
+                this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(),0));
                 display();
                 this.ComboBox_Course.setValue("");
                 this.txf_Schedule.setText("");

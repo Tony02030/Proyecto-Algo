@@ -38,6 +38,12 @@ public class Utility {
     private static CircularDoublyLinkedList courses = new CircularDoublyLinkedList();
     private static SingleLinkedList schedules = new SingleLinkedList();
     private static CircularDoublyLinkedList enrollment = new CircularDoublyLinkedList();
+    private static CircularDoublyLinkedList deEnrollment = new CircularDoublyLinkedList();
+
+    public static CircularDoublyLinkedList getDeEnrollment() {
+        return deEnrollment;
+    }
+    
     private static Student temporal;
     
 

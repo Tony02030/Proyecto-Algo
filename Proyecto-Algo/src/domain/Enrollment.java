@@ -17,14 +17,26 @@ public class Enrollment {
    private Student studentID;
    private Course courseID;
    private String schedule;
+   private int idEnroll;
 
-    public Enrollment(int id, Date date, Student studentID, Course courseID, String schedule) {
+    public Enrollment(int id, Date date, Student studentID, Course courseID, String schedule,int idEnroll) {
         this.id = id;
         this.date = date;
         this.studentID = studentID;
         this.courseID = courseID;
         this.schedule = schedule;
+        this.idEnroll=idEnroll;
     }
+
+    public int getIdEnroll() {
+        return idEnroll;
+    }
+
+    public void setIdEnroll(int idEnroll) {
+        this.idEnroll = idEnroll;
+    }
+    
+    
 
     public int getId() {
         return id;

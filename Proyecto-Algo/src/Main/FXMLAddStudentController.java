@@ -62,10 +62,7 @@ public class FXMLAddStudentController implements Initializable {
     private Career temp;
     private Student st;
 
-    @FXML
-    private TextField txtAsunto;
-    @FXML
-    private TextArea txtMensaje;
+    
     @FXML
     private Text txtMessage1;
     @FXML
@@ -85,8 +82,7 @@ public class FXMLAddStudentController implements Initializable {
     @FXML
     private Text txtMessage9;
 
-    @FXML
-    private Button bEnviar;
+    
     @FXML
     private TextField txfID;
     @FXML
@@ -108,7 +104,6 @@ public class FXMLAddStudentController implements Initializable {
     @FXML
     private ComboBox<String> ComboBox;
     ObservableList<String> oL_ComboBox = FXCollections.observableArrayList();
-    @FXML
     private TextField txfRecibe;
 
     @Override
@@ -162,6 +157,58 @@ public class FXMLAddStudentController implements Initializable {
             }
             Student.add(st = new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp, 0));
 
+            Properties propiedad = new Properties();
+            propiedad.put("mail smtp host", "smtp gmail com");
+            propiedad.put("mail smtp port", "587");
+             propiedad.put("mail.smtp.auth", "true");
+            propiedad.put("mail.smtp.starttls.enable", "true");
+            propiedad.put("mail.smtp.user","anthony.rs02@gmail.com");
+            propiedad.put("mail.smtp.clave", "18702NACE");
+
+            Session sesion = Session.getDefaultInstance(propiedad);
+
+            String correoEnvia = "anthony.rs02@gmail.com";
+            String contraseña = "18702NACE";
+            String destinatario = txfEmail.getText();
+
+            MimeMessage mail = new MimeMessage(sesion);
+
+            try {
+//                mail.setFrom(new InternetAddress(correoEnvia));
+                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+
+                mail.setSubject(asunto());
+                Multipart multipart = new MimeMultipart();
+                
+                MimeBodyPart message1 = new MimeBodyPart();
+                String htmlText = "<img src=\"cid:image\">";
+                message1.setContent(htmlText, "text/html");
+                
+                
+                MimeBodyPart message2 = new MimeBodyPart();
+                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
+                message2.setDataHandler(new DataHandler(source));
+                message2.setHeader("Content-ID", "<image>");
+//                message1.setFileName(source.getName());
+
+
+                MimeBodyPart message3 = new MimeBodyPart();
+                message3.setText(mensaje());
+                
+                multipart.addBodyPart(message1);
+                multipart.addBodyPart(message2);
+                multipart.addBodyPart(message3);
+                mail.setContent(multipart);
+                Transport transporte = sesion.getTransport("smtp");
+                transporte.connect("smtp.gmail.com",correoEnvia, contraseña);
+                transporte.sendMessage(mail, mail.getAllRecipients());
+                transporte.close();
+
+            } catch (AddressException ex) {
+                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MessagingException ex) {
+                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");
             alert.setHeaderText("Informacion");
@@ -175,29 +222,8 @@ public class FXMLAddStudentController implements Initializable {
             txfPhoneNumber.setText("");
             txfEmail.setText("");
             txfAdress.setText("");
-            txtMessage1.setVisible(false);
-            txtMessage2.setVisible(false);
-            txtMessage3.setVisible(false);
-            txtMessage4.setVisible(false);
-            txtMessage5.setVisible(false);
-            txtMessage6.setVisible(false);
-            txtMessage7.setVisible(false);
-            txtMessage8.setVisible(false);
-            txtMessage9.setVisible(false);
-            dPBirthday.setVisible(false);
-            txfID.setVisible(false);
-            txfStudentID.setVisible(false);
-            txfLastname.setVisible(false);
-            txfName.setVisible(false);
-            txfPhoneNumber.setVisible(false);
-            txfAdress.setVisible(false);
-            txfEmail.setVisible(false);
-            ComboBox.setVisible(false);
-            btnAddS.setVisible(false);
-            txfRecibe.setVisible(true);
-            bEnviar.setVisible(true);
-            txtMensaje.setVisible(true);
-            txtAsunto.setVisible(true);
+
+           
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -209,56 +235,6 @@ public class FXMLAddStudentController implements Initializable {
 
     }
 
-    @FXML
-    private void bEnviar(ActionEvent event) {
-        Properties propiedad = new Properties();
-        propiedad.setProperty("mail smtp host", "smtp gmail com");
-        propiedad.setProperty("mail.smtp.starttls.enable", "true");
-        propiedad.setProperty("mail smtp port", "587");
-        propiedad.setProperty("mail.smtp.auth", "true");
-
-        Session sesion = Session.getDefaultInstance(propiedad);
-
-        String correoEnvia = "jpizarrog1@gmail.com";
-        String contraseña = "Jafeth2808*";
-        String destinatario = txfRecibe.getText();
-        String asunto = txtAsunto.getText();
-        String mensaje = txtMensaje.getText();
-
-        Message mail = new MimeMessage(sesion);
-
-        try {
-            mail.setFrom(new InternetAddress(correoEnvia));
-            mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-
-            mail.setSubject(asunto);
-            MimeBodyPart message1 = new MimeBodyPart();
-            DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\LogoUCR.jfif");
-            message1.setDataHandler(new DataHandler(source));
-            MimeBodyPart message2 = new MimeBodyPart();
-            message2.setText(mensaje());
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(message1);
-            multipart.addBodyPart(message2);
-            mail.setContent(multipart);
-            Transport transporte = sesion.getTransport("smtp");
-            transporte.connect(correoEnvia, contraseña);
-            transporte.sendMessage(mail, mail.getRecipients(Message.RecipientType.TO));
-            transporte.close();
-            
-
-        } catch (AddressException ex) {
-            Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        txfRecibe.setVisible(false);
-        bEnviar.setVisible(false);
-        txtMensaje.setVisible(false);
-        txtAsunto.setVisible(false);
-    }
-
     public String asunto() {
         String result = "Aceptación en la Universidad de Costa Rica";
         return result;
@@ -266,17 +242,18 @@ public class FXMLAddStudentController implements Initializable {
     }
 
     public String mensaje() {
-        String result = "Bienvenido " + st.getFirstname() + " " + st.getLastname();
-        result += "Estos fueron los datos que se ingresaron en la base de datos";
-        result += "Cédula: " + txfID.getText();
-        result += "Carnet: " + txfStudentID.getText();
-        result += "Apelidos " + txfLastname.getText();
-        result += "Nombre " + txfName.getText();
-        result += "Fecha de Nacimiento " + st.getDateBirth();
-        result += "Número de teléfono: " + txfPhoneNumber.getText();
-        result += "Email: " + txfEmail.getText();
-        result += "Dirección: " + txfAdress.getText();
-        result += "Carrera elegida: " + temp.getDescription();
+        String result="\n";
+        result += "Bienvenido " + st.getFirstname() + " " + st.getLastname()+"\n";
+        result += "Estos fueron los datos que se ingresaron en la base de datos\n";
+        result += "Cédula: " + txfID.getText()+"\n";
+        result += "Carnet: " + txfStudentID.getText()+"\n";
+        result += "Apelidos " + txfLastname.getText()+"\n";
+        result += "Nombre " + txfName.getText()+"\n";
+        result += "Fecha de Nacimiento " + st.getDateBirth()+"\n";
+        result += "Número de teléfono: " + txfPhoneNumber.getText()+"\n";
+        result += "Email: " + txfEmail.getText()+"\n";
+        result += "Dirección: " + txfAdress.getText()+"\n";
+        result += "Carrera elegida: " + temp.getDescription()+"\n";
 
         return result;
 
