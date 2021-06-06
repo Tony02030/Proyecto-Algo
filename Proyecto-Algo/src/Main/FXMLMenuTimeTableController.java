@@ -386,7 +386,7 @@ public class FXMLMenuTimeTableController implements Initializable {
 //Este if verifica que no se puedan hacer horarios antes de la 7am, despues de las 9pm, los domingos,que la hora que termine sea menor a la hora que empieza y que no se ingrese otras letras que no sean las abreviaturas de los dias de la semana
             if (day != day01 && day2 != day02 && o < p && n < q && o >= 07 && o <= 21 && n >= 07 && n <= 21 && p <= 21 && q <= 21 && day != 'D' && day01 != 'D' && day2 != 'D' && day02 != 'D' && ("LMKJVS").contains(day + "") && ("LMKJVS").contains(day01 + "") && ("LMKJVS").contains(day2 + "") && ("LMKJVS").contains(day02 + "")) {
                 temp.setIdentifier(1);
-                this.schedule.add(new TimeTable(temp, this.txtFPeriod.getText(), this.txtFieldSchedule1.getText(), this.txtFieldSchedule2.getText()));
+                this.schedule.add(new TimeTable(temp, this.txtFPeriod.getText(), this.txtFieldSchedule1.getText(), this.txtFieldSchedule2.getText(),0));
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Ventana de dialogo");
                 alert.setHeaderText("Informacion");

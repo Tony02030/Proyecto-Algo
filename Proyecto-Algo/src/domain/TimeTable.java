@@ -14,15 +14,26 @@ public class TimeTable {
    private String period;
    private String schedule1;
    private String schedule2;
+   private int idEnrollment;
    
 
-    public TimeTable(Course courseID, String period, String schedule1, String schedule2) {
+    public TimeTable(Course courseID, String period, String schedule1, String schedule2,int idEnrollment) {
         this.courseID = courseID;
         this.period = period;
         this.schedule1 = schedule1;
         this.schedule2 = schedule2;
+        this.idEnrollment=idEnrollment;
         
     }
+
+    public int getIdEnrollment() {
+        return idEnrollment;
+    }
+
+    public void setIdEnrollment(int idEnrollment) {
+        this.idEnrollment = idEnrollment;
+    }
+    
 
     public Course getCourseID() {
         return courseID;

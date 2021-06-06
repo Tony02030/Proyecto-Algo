@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +28,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -148,7 +151,17 @@ public class FXMLEnroll1Controller implements Initializable {
 
     @FXML
     private void btn_StartEnrollment(ActionEvent event) {
-         Node aux;
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Ventana de Confirmación");
+        alert.setHeaderText("AVISO");
+        alert.setContentText("¿Desea matricular este curso?");
+        ButtonType buttonTypeYes = new ButtonType("Sí");
+        ButtonType buttonTypeNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonTypeYes) {
+            Node aux;
 
         try {
             aux = student.getNode(1);
@@ -183,6 +196,10 @@ public class FXMLEnroll1Controller implements Initializable {
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+        }else{
+            display();
+        }
+         
     }
 
     private void loadPage(String page) {

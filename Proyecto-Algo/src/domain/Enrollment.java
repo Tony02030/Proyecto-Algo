@@ -14,11 +14,11 @@ import java.util.Date;
 public class Enrollment {
    private int id;
    private Date date;
-   private String studentID;
-   private String courseID;
+   private Student studentID;
+   private Course courseID;
    private String schedule;
 
-    public Enrollment(int id, Date date, String studentID, String courseID, String schedule) {
+    public Enrollment(int id, Date date, Student studentID, Course courseID, String schedule) {
         this.id = id;
         this.date = date;
         this.studentID = studentID;
@@ -42,21 +42,23 @@ public class Enrollment {
         this.date = date;
     }
 
-    public String getStudentID() {
+    public Student getStudentID() {
         return studentID;
     }
 
-    public void setStudentID(String studentID) {
+    public void setStudentID(Student studentID) {
         this.studentID = studentID;
     }
 
-    public String getCourseID() {
+    public Course getCourseID() {
         return courseID;
     }
 
-    public void setCourseID(String courseID) {
+    public void setCourseID(Course courseID) {
         this.courseID = courseID;
     }
+
+    
 
     public String getSchedule() {
         return schedule;
