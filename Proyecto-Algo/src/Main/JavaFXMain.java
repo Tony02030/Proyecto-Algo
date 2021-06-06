@@ -25,6 +25,7 @@ public class JavaFXMain extends Application {
         primaryStage.setTitle("Proyecto");
         primaryStage.setTitle("Inicio de Sesion");
         primaryStage.setScene(scene);
+        
         primaryStage.setResizable(false);
         primaryStage.show();
     }

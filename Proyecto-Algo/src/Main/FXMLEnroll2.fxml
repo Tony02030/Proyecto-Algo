@@ -21,7 +21,7 @@
             <TableColumn fx:id="tC_Career" prefWidth="152.0" text="Carrera" />
         </columns>
       </TableView>
-      <ComboBox fx:id="ComboBox_Course" layoutX="428.0" layoutY="357.0" prefWidth="150.0" />
+      <ComboBox fx:id="ComboBox_Course" layoutX="428.0" layoutY="357.0" prefHeight="26.0" prefWidth="182.0" />
       <Text fx:id="txtMessage" fill="WHITE" layoutX="118.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el curso que desea matricular:" wrappingWidth="310.13671875">
          <font>
             <Font name="Corbel" size="17.0" />
@@ -32,7 +32,7 @@
             <Font name="Corbel" size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="txf_Schedule" layoutX="429.0" layoutY="419.0" prefHeight="25.0" prefWidth="150.0" />
+      <TextField fx:id="txf_Schedule" layoutX="429.0" layoutY="419.0" prefHeight="26.0" prefWidth="181.0" />
       <Button fx:id="btn_EnrollCourse" layoutX="228.0" layoutY="466.0" mnemonicParsing="false" onAction="#btn_EnrollCourse" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: white;" text="Matricular Curso" />
       <Button fx:id="btn_EndEnrollment" layoutX="393.0" layoutY="466.0" mnemonicParsing="false" onAction="#btn_EndEnrollment" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: white;" text="Terminar Matrícula" />
    </children>

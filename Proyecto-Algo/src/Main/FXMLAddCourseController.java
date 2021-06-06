@@ -55,7 +55,7 @@ public class FXMLAddCourseController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        numericOnly(this.txfCredits);
+        util.Utility.numericOnly(this.txfCredits);
         Node aux;
         try {
             aux = carrer.getNode(1);
@@ -74,18 +74,7 @@ public class FXMLAddCourseController implements Initializable {
         // TODO
     }
 
-    public static void numericOnly(final TextField field) {
-        field.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                    ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    field.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-    }
+   
 
     @FXML
     private void btnAddCourse(ActionEvent event) throws ListException {

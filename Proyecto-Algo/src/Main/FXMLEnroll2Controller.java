@@ -57,6 +57,7 @@ public class FXMLEnroll2Controller implements Initializable {
     private SingleLinkedList students = util.Utility.getStudents();
     private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
+    private Enrollment enroll;
 
     @FXML
     private TableView<List<String>> tV_EnrollCourse;
@@ -93,14 +94,6 @@ public class FXMLEnroll2Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         display();
-        addTextLimiter(txf_Schedule, 17);
-        tV_EnrollCourse.setVisible(true);
-        txtMessage.setVisible(true);
-        ComboBox_Course.setVisible(true);
-        txtMessage2.setVisible(true);
-        txf_Schedule.setVisible(true);
-        btn_EnrollCourse.setVisible(true);
-        btn_EndEnrollment.setVisible(true);
 
     }
 
@@ -117,6 +110,16 @@ public class FXMLEnroll2Controller implements Initializable {
     }
 
     public void display() {
+        courses1.clear();
+        this.ComboBox_Course.setItems(courses1);
+        addTextLimiter(txf_Schedule, 17);
+        tV_EnrollCourse.setVisible(true);
+        txtMessage.setVisible(true);
+        ComboBox_Course.setVisible(true);
+        txtMessage2.setVisible(true);
+        txf_Schedule.setVisible(true);
+        btn_EnrollCourse.setVisible(true);
+        btn_EndEnrollment.setVisible(true);
         this.tC_Course.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
@@ -143,27 +146,27 @@ public class FXMLEnroll2Controller implements Initializable {
         });
         this.tV_EnrollCourse.setItems(getData());
 
-//        try {
-//            Node aux = schedules.getNode(1);
-//            //Node last = courses.getNode(courses.size());
-//            while (aux != null) {
-//
-//                TimeTable temp = (TimeTable) aux.data;
-//                if (!util.Utility.exist(temp.getIdEnrollment())) {
-//                    courses.add(String.valueOf(temp.getCourseID().getName()));
-//                }
-//
-//                aux = aux.next;
-//
-//            }
-//
-//        } catch (ListException ex) {
-//            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        for (int i = 0; i < getData().size(); i++) {
-            courses1.add(getData().get(i).get(0));
+        try {
+            Node aux = schedules.getNode(1);
+            //Node last = courses.getNode(courses.size());
+            while (aux != null) {
+
+                TimeTable temp = (TimeTable) aux.data;
+                if (!util.Utility.exist(temp.getIdEnrollment())) {
+                    courses1.add(String.valueOf(temp.getCourseID().getName()));
+                }
+
+                aux = aux.next;
+
+            }
+
+        } catch (ListException ex) {
+            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.ComboBox_Course.setItems(courses1);
+//        for (int i = 0; i < getData().size(); i++) {
+//            courses1.add(getData().get(i).get(0));
+//        }
+
     }
 
     public ObservableList<List<String>> getData() {
@@ -176,7 +179,7 @@ public class FXMLEnroll2Controller implements Initializable {
             while (aux != null) {
                 List<String> array = new ArrayList<>();
                 TimeTable temp = (TimeTable) aux.data;
-                if (util.Utility.equals(temp.getCourseID().getCareerID().getDescription(), student.getCareerID().getDescription())) {
+                if (util.Utility.equals(temp.getCourseID().getCareerID().getDescription(), student.getCareerID().getDescription()) && !util.Utility.exist(temp.getIdEnrollment())) {
                     array.add(temp.getCourseID().getName());
                     array.add(temp.getSchedule1());
                     array.add(temp.getSchedule2());
@@ -198,25 +201,8 @@ public class FXMLEnroll2Controller implements Initializable {
     @FXML
     private void btn_EnrollCourse(ActionEvent event) {
 
-//        try {
-//            Node aux = courses.getNode(1);
-//
-//            while (aux != courses.getNodeLast()) {
-//                
-//                if (util.Utility.equals(aux.data, this.ComboBox_Course.getValue())) {
-//                    temp = (Course) aux.data;
-//
-//                }
-//                aux = aux.next;
-//            }
-//            if (util.Utility.equals(aux.data, this.ComboBox_Course.getValue())) {
-//                temp = (Course) aux.data;
-//
-//            }
-//
-//        } catch (ListException ex) {
-//            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        int count = 0;
+        int count1 = 0;
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
         alert.setHeaderText("AVISO");
@@ -244,9 +230,131 @@ public class FXMLEnroll2Controller implements Initializable {
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            String temp1 = this.txf_Schedule.getText();
+            String temp3 = temp1.toUpperCase();
 
-            this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText()));
-            display();
+            if (this.txf_Schedule.getText().length() < 17 || this.ComboBox_Course.getValue() == "") {
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ventana de dialogo");
+                alert.setHeaderText("Informacion");
+                alert.setContentText("Los horarios que ingresó no son validos");
+                alert.showAndWait();
+                display();
+            }
+
+            char[] v = temp3.toCharArray();
+            char[] c = new char[v.length - 4];
+
+            int x = 0;
+            for (int i = 4; i < v.length; i++) {
+                c[x] = v[i];
+                x++;
+
+            }
+
+            String tem = String.valueOf(c);
+
+            String hor = tem.charAt(0) + "" + tem.charAt(1) + "";
+            String hor01 = tem.charAt(8) + "" + tem.charAt(9) + "";
+
+            //Dias de la semana
+            char day = temp3.charAt(0);
+            char day01 = temp3.charAt(2);
+
+            //Horas
+            int o = Integer.parseInt(hor);
+            int p = Integer.parseInt(hor01);
+
+            if (!enrollment.isEmpty()) {
+                try {
+                    Node aux = enrollment.getNode(1);
+
+                    while (aux != null) {
+
+                        if (util.Utility.equals(aux.data, this.txf_Schedule.getText())) {
+                            count1++;
+
+                        }
+
+                        aux = aux.next;
+                    }
+
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (!enrollment.isEmpty()) {
+                try {
+                    Node aux = enrollment.getNode(1);
+
+                    while (aux != enrollment.getNodeLast()) {
+                        Enrollment tempo1 = (Enrollment) aux.data;
+                        String tem1 = tempo1.getSchedule();
+                        String tem3 = tem1.toUpperCase();
+
+                        char[] l = tem3.toCharArray();
+                        char[] t = new char[v.length - 4];
+
+                        x = 0;
+                        for (int i = 4; i < l.length; i++) {
+                            t[x] = l[i];
+                            x++;
+
+                        }
+                        x = 0;
+
+                        String te = String.valueOf(t);
+
+                        String hor3 = te.charAt(0) + "" + te.charAt(1) + "";
+                        String hor03 = te.charAt(8) + "" + te.charAt(9) + "";
+
+                        //Dias de la semana
+                        char day3 = tem3.charAt(0);
+                        char day03 = tem3.charAt(2);
+
+                        //Horas
+                        int oo = Integer.parseInt(hor3);
+                        int pp = Integer.parseInt(hor03);
+
+                        if (tempo1.getStudentID().getId() == student.getId()) {
+                            if (((oo >= o && oo <= p) || (pp >= o && pp <= p))) {
+                                if (day == day3 || day01 == day03) {
+                                    count++;
+
+                                }
+                            }
+                        }
+
+                        aux = aux.next;
+                    }
+
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (count1 == 1) {
+                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ventana de dialogo");
+                alert.setHeaderText("Informacion");
+                alert.setContentText("Los horarios ya fueron ingresados");
+                alert.showAndWait();
+                display();
+
+            } else if (count == 1) {
+                Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ventana de dialogo");
+                alert.setHeaderText("Informacion");
+                alert.setContentText("Los horarios que ingresó no son validos");
+                alert.showAndWait();
+                display();
+
+            } else {
+                this.student.setIdEnrollment(1);
+                this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText()));
+                display();
+                this.ComboBox_Course.setValue("");
+                this.txf_Schedule.setText("");
+            }
 
         } else {
             display();
@@ -273,6 +381,21 @@ public class FXMLEnroll2Controller implements Initializable {
             txf_Schedule.setVisible(false);
             btn_EnrollCourse.setVisible(false);
             btn_EndEnrollment.setVisible(false);
+            try {
+                Node aux = schedules.getNode(1);
+
+                while (aux != null) {
+
+                    TimeTable tem = (TimeTable) aux.data;
+                    tem.setIdEnrollment(0);
+
+                    aux = aux.next;
+
+                }
+
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+            }
             loadPage("FXMLEnroll1");
         }
 

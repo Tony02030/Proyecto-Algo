@@ -43,20 +43,7 @@ public class FXMLMenuCarrersDeleteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-    }
-
-    public static void numericOnly(final TextField field) {
-        field.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                    ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    field.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
+        util.Utility.letterOnly(this.txtFieldSearch);
     }
 
     @FXML

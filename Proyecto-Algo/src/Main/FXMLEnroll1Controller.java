@@ -86,6 +86,7 @@ public class FXMLEnroll1Controller implements Initializable {
     }
 
     public void display() {
+        this.students.clear();
         this.tC_ID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {

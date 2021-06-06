@@ -97,7 +97,15 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void agregaCurso(ActionEvent event) {
-        loadPage("FXMLAddCourse");
+        if (this.career.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("No hay carreras agregadas");
+            alert.showAndWait();
+        } else {
+            loadPage("FXMLAddCourse");
+        }
 
     }
 
@@ -197,7 +205,22 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void matriculaEstudiante(ActionEvent event) {
-        loadPage("FXMLEnroll1");
+        if (this.student.isEmpty() && this.schedule.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("No hay estudiantes ni horarios agregados");
+            alert.showAndWait();
+        } else if (this.schedule.isEmpty()) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("No hay horarios agregados");
+            alert.showAndWait();
+        } else {
+            loadPage("FXMLEnroll1");
+        }
+
     }
 
     @FXML
@@ -206,6 +229,7 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void muestraEstudianteM(ActionEvent event) {
+        
     }
 
     @FXML

@@ -22,6 +22,9 @@ import domain.Security;
 import domain.Student;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TextField;
 
 /**
  *
@@ -107,6 +110,30 @@ public class Utility {
     public static String $format(double value) {
         return new DecimalFormat("###,###.##")
                 .format(value);
+    }
+     public static void letterOnly(final TextField field) {
+        field.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(
+                    ObservableValue<? extends String> observable,
+                    String oldValue, String newValue) {
+                if (!newValue.matches("[a-zA-Z]")) {
+                    field.setText(newValue.replaceAll("[\\d||\\p{Punct}]",""));
+                }
+            }
+        });
+    }
+     public static void numericOnly(final TextField field) {
+        field.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(
+                    ObservableValue<? extends String> observable,
+                    String oldValue, String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    field.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
     }
 
     public static String hhmmss(long start, long end) {

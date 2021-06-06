@@ -82,21 +82,14 @@ public class FXMLModifyStudentController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        numericOnly(txfID);
+        util.Utility.numericOnly(txfID);
+        util.Utility.letterOnly(txfName);
+        util.Utility.letterOnly(txfLastname);
+        util.Utility.numericOnly(txfPhoneNumber);
+        
     }
 
-    public static void numericOnly(final TextField field) {
-        field.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                    ObservableValue<? extends String> observable,
-                    String oldValue, String newValue) {
-                if (!newValue.matches("\\d*")) {
-                    field.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-    }
+    
 
     @FXML
     private void btnSearchS(ActionEvent event) {

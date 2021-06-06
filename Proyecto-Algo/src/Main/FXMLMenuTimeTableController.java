@@ -74,47 +74,7 @@ public class FXMLMenuTimeTableController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        this.colCourse.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
-//            @Override
-//            public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
-//                return new ReadOnlyStringWrapper(data.getValue().get(0));
-//            }
-//        });
-//        this.colCareer.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
-//            @Override
-//            public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
-//                return new ReadOnlyStringWrapper(data.getValue().get(1));
-//            }
-//        });
-//        addTextLimiter(this.txtFieldSchedule1, 17);
-//        addTextLimiter(this.txtFieldSchedule2, 17);
-//        this.tableCourse.setItems(getData());
-//        Node aux;
-//        Node last;
-//        try {
-//            aux = courses.getNode(1);
-//            //last = courses.getNode(courses.size()+1);
-//            int x = 0;
-//            while (aux != courses.getNodeLast()) {
-//                Course temp = (Course) aux.data;
-//                if (!util.Utility.exist(temp.getIdentifier())) {
-//                    String y = temp.getName();
-//                    course.add(x, y);
-//                    x = x + 1;
-//                }
-//                aux = aux.next;
-//
-//            }
-//            Course temp = (Course) aux.data;
-//            if (!util.Utility.exist(temp.getIdentifier())) {
-//                String y = temp.getName();
-//                course.add(x, y);
-//                x = x + 1;
-//            }
-//        } catch (ListException ex) {
-//            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        comboBox.setItems(course);
+//        
         display();
 
     }
@@ -285,7 +245,7 @@ public class FXMLMenuTimeTableController implements Initializable {
 
                 while (aux != null) {
 
-                    if (util.Utility.equals(aux.data, this.txtFieldSchedule1) && util.Utility.equals(aux.data, this.txtFieldSchedule2)) {
+                    if (util.Utility.equals(aux.data, this.txtFieldSchedule1.getText()) && util.Utility.equals(aux.data, this.txtFieldSchedule2.getText())) {
                         count1++;
 
                     }
@@ -343,8 +303,8 @@ public class FXMLMenuTimeTableController implements Initializable {
                     int nn = Integer.parseInt(hor4);
                     int qq = Integer.parseInt(hor04);
 
-                    sch = (TimeTable) aux.data;
-                    if (sch.getCourseID().getCareerID().getDescription().equals(temp.getCareerID().getDescription())) {
+                    
+                    if (tempo1.getCourseID().getCareerID().getDescription().equals(temp.getCareerID().getDescription())) {
                        
                         if (((oo >= o && oo <= p) || (pp >= o && pp <= p)) || ((nn >= n && nn <= q) || (qq >= n && qq <= q))) {
                             if (day == day3 || day2 == day4 || day01 == day03 || day02 == day04) {
