@@ -163,7 +163,7 @@ public class FXMLAddStudentController implements Initializable {
              propiedad.put("mail.smtp.auth", "true");
             propiedad.put("mail.smtp.starttls.enable", "true");
             propiedad.put("mail.smtp.user","anthony.rs02@gmail.com");
-            propiedad.put("mail.smtp.clave", "18702NACE");
+            propiedad.put("mail.smtp.clave", "");
 
             Session sesion = Session.getDefaultInstance(propiedad);
 

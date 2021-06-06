@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -25,7 +26,7 @@ public class JavaFXMain extends Application {
         primaryStage.setTitle("Proyecto");
         primaryStage.setTitle("Inicio de Sesion");
         primaryStage.setScene(scene);
-        
+        primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
