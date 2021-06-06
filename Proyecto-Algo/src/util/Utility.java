@@ -35,6 +35,8 @@ public class Utility {
     private static CircularDoublyLinkedList courses = new CircularDoublyLinkedList();
     private static SingleLinkedList schedules = new SingleLinkedList();
     private static CircularDoublyLinkedList enrollment = new CircularDoublyLinkedList();
+    private static Student temporal;
+    
 
     public static SingleLinkedList getStudents() {
         return students;
@@ -49,6 +51,14 @@ public class Utility {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
         }
         return security;
+    }
+
+    public static Student getTemporal() {
+        return temporal;
+    }
+
+    public static void setTemporal(Student temporal) {
+        Utility.temporal = temporal;
     }
 
     public static DoublyLinkedList getCareers() {

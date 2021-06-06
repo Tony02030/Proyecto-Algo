@@ -125,7 +125,7 @@ public class FXMLAddStudentController implements Initializable {
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp));
+            Student.add(new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp,0));
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");

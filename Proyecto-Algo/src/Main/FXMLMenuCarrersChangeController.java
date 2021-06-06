@@ -63,6 +63,7 @@ public class FXMLMenuCarrersChangeController implements Initializable {
 
         try {
             if (carrer.contains1(this.txtFieldSearch.getText())) {
+                
                 temp1=this.txtFieldSearch.getText();
                 this.btnBuscar.setVisible(false);
                 this.txtFieldSearch.setVisible(false);

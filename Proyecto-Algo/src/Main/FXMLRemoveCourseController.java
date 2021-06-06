@@ -65,6 +65,7 @@ public class FXMLRemoveCourseController implements Initializable {
 
     @FXML
     private void btnBorrarCurso(ActionEvent event) {
+        
           int value = Integer.parseInt(this.tfBorrarCurso.getText());
         try {
             if (course.contains1(value)) {

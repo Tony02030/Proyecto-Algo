@@ -24,9 +24,10 @@ public class Student {
     private String email;
     private String address;
     private Career careerID;
+    private int idEnrollment;
     private SimpleStringProperty dateBirth;
 
-    public Student(int id, String studentID, String lastname, String firstname, Date birthday, String phoneNumber, String email, String address, Career careerID) {
+    public Student(int id, String studentID, String lastname, String firstname, Date birthday, String phoneNumber, String email, String address, Career careerID, int idEnrollment) {
         this.id = id;
         this.studentID = studentID;
         this.lastname = lastname;
@@ -37,7 +38,17 @@ public class Student {
         this.address = address;
         this.careerID = careerID;
         this.dateBirth = new SimpleStringProperty(new SimpleDateFormat("dd/MM/yyyy").format(birthday));
+        this.idEnrollment=idEnrollment;
     }
+
+    public int getIdEnrollment() {
+        return idEnrollment;
+    }
+
+    public void setIdEnrollment(int idEnrollment) {
+        this.idEnrollment = idEnrollment;
+    }
+    
     
 
     public String getDateBirth() {
