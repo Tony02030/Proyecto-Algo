@@ -35,6 +35,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -66,6 +67,10 @@ public class FXMLEnroll1Controller implements Initializable {
     private BorderPane bp;
 
     ObservableList<String> students = FXCollections.observableArrayList();
+    @FXML
+    private Text txtMessage;
+    @FXML
+    private Text txtMessage2;
 
     /**
      * Initializes the controller class.
@@ -73,6 +78,11 @@ public class FXMLEnroll1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         display();
+        txtMessage.setVisible(true);
+        tV_Student.setVisible(true);
+        txtMessage2.setVisible(true);
+        ComboBox_StudentID.setVisible(true);
+        btn_StartEnrollment.setVisible(true);
     }
 
     public void display() {
@@ -177,11 +187,18 @@ public class FXMLEnroll1Controller implements Initializable {
                     aux = aux.next;
 
                 }
-
+       
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            try {
+
+             //txtMessage.setVisible(false);
+//                tV_Student.setVisible(false);
+//                txtMessage2.setVisible(false);
+//                ComboBox_StudentID.setVisible(false);
+//                btn_StartEnrollment.setVisible(false);
+//                loadPage("FXMLEnroll2");
+
 //                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEnroll2.fxml"));
 //
 //                    Parent root = loader.load();
@@ -193,16 +210,12 @@ public class FXMLEnroll1Controller implements Initializable {
 //                    stage.initModality(Modality.APPLICATION_MODAL);
 //                    stage.setScene(scene);
 //                    stage.showAndWait();
-                Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("FXMLEnroll2.fxml"));
-                Scene scene = new Scene(root);
-                stage = new Stage(StageStyle.DECORATED);
-                stage.setScene(scene);
-                stage.show();
-
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//                Stage stage = new Stage();
+//                Parent root = FXMLLoader.load(getClass().getResource("FXMLEnroll2.fxml"));
+//                Scene scene = new Scene(root);
+//                stage = new Stage(StageStyle.DECORATED);
+//                stage.setScene(scene);
+//                stage.show();
         } else {
             display();
         }
