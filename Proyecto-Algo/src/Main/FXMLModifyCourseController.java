@@ -73,8 +73,7 @@ public class FXMLModifyCourseController implements Initializable {
         numericOnly(tfCursoID);
         numericOnly(txfNewID);
         // TODO
-
-        Node aux;
+         Node aux;
         try {
             aux = career.getNode(1);
             int x = 0;
@@ -89,6 +88,8 @@ public class FXMLModifyCourseController implements Initializable {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
         ComboBox.setItems(oL_ComboBox);
+    
+
     }
 
     @FXML
@@ -115,11 +116,68 @@ public class FXMLModifyCourseController implements Initializable {
         }
 
     }
-
+    
     @FXML
-    private void btnCambiarCurso(ActionEvent event) {
+    private void btnCambiarCurso(ActionEvent event) throws ListException {
+        
+        try{
+            Career CareerID = null;
+            Node aux = course.getNode(1);
+            int ID = Integer.parseInt(tfCursoID.getText());
+                    while(aux!=null){
+                    
+                    if (util.Utility.equals(aux.data, ID)) {
+                    Course temp=(Course) aux.data;
+                    temp.setId(txfNewID.getText());
+                    temp.setName(txfNewName.getText());
+                    temp.setCredits(Integer.parseInt(txfNewCredits.getText()));
+                    temp.setCareerID(CareerID);
+                    
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ventana de dialogo");
+                    alert.setHeaderText("Información");
+                    alert.setContentText("Curso modificado correctamente");
+                    alert.showAndWait();
+                    
+                     }
+                    aux=aux.next;
+                    }
+                    
+                    }catch (ListException ex) {
+            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+                    
+                    }  
+        
+        
+               
+    
+                txtMessage1.setVisible(false);
+                txtMessage2.setVisible(false);
+                txtMessage3.setVisible(false);
+                txtMessage4.setVisible(false);
+        
+                txfNewID.setText("");
+                txfNewName.setText("");
+                txfNewCredits.setText("");
+                ComboBox.setVisible(false);
+                btnCambiarCurso.setText("");
+                
+                
+                
+                
+                
+                
+                txfNewID.setVisible(false);
+                txfNewName.setVisible(false);
+                txfNewCredits.setVisible(false);
+                btnCambiarCurso.setVisible(false);
+                        
+                
+                
+                
+               
+        
     }
-
     public static void numericOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
             @Override

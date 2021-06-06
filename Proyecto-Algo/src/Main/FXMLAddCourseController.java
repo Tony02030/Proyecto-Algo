@@ -90,7 +90,7 @@ public class FXMLAddCourseController implements Initializable {
     @FXML
     private void btnAddCourse(ActionEvent event) throws ListException {
         
-        if(!course.contains(this.txfID.getText().toUpperCase())){
+        if(!course.contains1(Integer.parseInt(txfID.getText()))){
              int temp1 = Integer.parseInt(this.txfCredits.getText());
         Node aux;
         try {
