@@ -32,6 +32,14 @@ import javafx.scene.control.TextField;
  */
 public class Utility {
 
+    private static int StudentCounter;
+    private static int SecurityCounter;
+    private static int CareersCounter;
+    private static int CoursesCounter;
+    private static int SchedulesCounter;
+    private static int EnrollmentCounter;
+    private static int deEnrollmentCounter;
+
     private static SingleLinkedList students = new SingleLinkedList();
     private static CircularLinkedList security = new CircularLinkedList();
     private static DoublyLinkedList careers = new DoublyLinkedList();
@@ -40,6 +48,66 @@ public class Utility {
     private static CircularDoublyLinkedList enrollment = new CircularDoublyLinkedList();
     private static CircularDoublyLinkedList deEnrollment = new CircularDoublyLinkedList();
 
+    public static int getStudentCounter() {
+        return StudentCounter;
+    }
+
+    public static void setStudentCounter(int StudentCounter) {
+        Utility.StudentCounter = StudentCounter;
+    }
+
+    public static int getSecurityCounter() {
+        return SecurityCounter;
+    }
+
+    public static void setSecurityCounter(int SecurityCounter) {
+        Utility.SecurityCounter = SecurityCounter;
+    }
+
+    public static int getCareersCounter() {
+        return CareersCounter;
+    }
+
+    public static void setCareersCounter(int CareersCounter) {
+        Utility.CareersCounter = CareersCounter;
+    }
+
+    public static int getCoursesCounter() {
+        return CoursesCounter;
+    }
+
+    public static void setCoursesCounter(int CoursesCounter) {
+        Utility.CoursesCounter = CoursesCounter;
+    }
+
+    public static int getSchedulesCounter() {
+        return SchedulesCounter;
+    }
+
+    public static void setSchedulesCounter(int SchedulesCounter) {
+        Utility.SchedulesCounter = SchedulesCounter;
+    }
+
+    public static int getEnrollmentCounter() {
+        return EnrollmentCounter;
+    }
+
+    public static void setEnrollmentCounter(int EnrollmentCounter) {
+        Utility.EnrollmentCounter = EnrollmentCounter;
+    }
+
+    public static int getDeEnrollmentCounter() {
+        return deEnrollmentCounter;
+    }
+
+    public static void setDeEnrollmentCounter(int deEnrollmentCounter) {
+        Utility.deEnrollmentCounter = deEnrollmentCounter;
+    }
+
+    
+    
+    
+    
     public static CircularDoublyLinkedList getDeEnrollment() {
         return deEnrollment;
     }

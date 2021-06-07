@@ -162,12 +162,6 @@ public class FXMLAddStudentController implements Initializable {
             
             Student.add(st = new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp, 0));
 
-            //Escribe los estudiantes en el archivo txt
-            FileOutputStream fos = new FileOutputStream("StudentsReport.txt");
-            ObjectOutputStream oos;
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(Student);
-            
             
             Properties propiedad = new Properties();
             propiedad.put("mail smtp host", "smtp gmail com");

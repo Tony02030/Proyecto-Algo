@@ -6,9 +6,19 @@
 package Main;
 
 import domain.CircularDoublyLinkedList;
+import domain.CircularLinkedList;
 import domain.DoublyLinkedList;
+import domain.ListException;
+import domain.Node;
+import domain.Security;
 import domain.SingleLinkedList;
+import domain.Student;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,6 +32,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -62,10 +73,13 @@ public class FXMLMenuController implements Initializable {
     private MenuItem agregaAdministrador;
 
     private SingleLinkedList student = util.Utility.getStudents();
-    private SingleLinkedList schedule = util.Utility.getSchedules();
-    private CircularDoublyLinkedList course = util.Utility.getCourses();
-    private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
+    private CircularLinkedList security = util.Utility.getSecurity();
     private DoublyLinkedList career = util.Utility.getCareers();
+    private CircularDoublyLinkedList course = util.Utility.getCourses();
+    private SingleLinkedList schedule = util.Utility.getSchedules();
+    private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
+    private CircularDoublyLinkedList deEnrollment = util.Utility.getDeEnrollment();
+
     @FXML
     private MenuItem agregaCarrera;
     @FXML
@@ -330,8 +344,43 @@ public class FXMLMenuController implements Initializable {
     }
 
     @FXML
-    private void Exit(ActionEvent event) {
-       System.exit(0);
+    private void Exit(ActionEvent event) throws IOException, ClassNotFoundException, ListException {
+        System.exit(0);
+
+        try {
+
+            //Escribe los estudiantes en el archivo txt
+            FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");
+            ObjectOutputStream oosStudent  = new ObjectOutputStream(fosStudent);
+  
+            Node auxStudent = student.getNode(1);
+
+            while (auxStudent != null) {
+                Student stud = (Student) auxStudent.data;
+                oosStudent.writeObject(stud);
+                auxStudent = auxStudent.next;
+            }
+
+            //Archivo Estudiante
+            FileInputStream fisStudent = new FileInputStream("StudentsReport.txt");
+            ObjectInputStream oisStudent = new ObjectInputStream(fisStudent);
+
+            //Archivo Seguridad
+            FileInputStream fisSecurity = new FileInputStream("SecurityReport.txt");
+            ObjectInputStream oisSecurtity = new ObjectInputStream(fisSecurity);
+
+            while (oisStudent.readLine() != null) {
+                Student students = (Student) oisStudent.readObject();
+                //student = (SingleLinkedList) ois.readObject();
+            }
+
+            while (oisSecurtity.readLine() != null) {
+                Security security = (Security) oisSecurtity.readObject();
+            }
+
+        } catch (FileNotFoundException fnfe) {
+            JOptionPane.showMessageDialog(null, "Problemas con el archivo: " + fnfe);
+        }//End catch
 
     }
 
