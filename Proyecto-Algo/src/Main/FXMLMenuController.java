@@ -503,6 +503,11 @@ public class FXMLMenuController implements Initializable {
             alert.showAndWait();
 
         } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Se generó el reporte");
+            alert.showAndWait();
             generaEstudiante();
         }
     }
@@ -517,6 +522,11 @@ public class FXMLMenuController implements Initializable {
             alert.showAndWait();
 
         } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Se generó el reporte");
+            alert.showAndWait();
             generaCurso();
         }
 
@@ -532,13 +542,24 @@ public class FXMLMenuController implements Initializable {
             alert.showAndWait();
 
         } else {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Informacion");
+            alert.setContentText("Se generó el reporte");
+            alert.showAndWait();
             generaMatricula();
         }
 
     }
 
     @FXML
-    private void pdfRetiros(ActionEvent event) {
+    private void pdfRetiros(ActionEvent event) throws DocumentException, ListException, BadElementException, IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Ventana de dialogo");
+        alert.setHeaderText("Informacion");
+        alert.setContentText("Se generó el reporte");
+        alert.showAndWait();
+        generaRetiroMatricula();
     }
 
     public void generaEstudiante() throws FileNotFoundException, DocumentException, ListException, BadElementException, IOException {

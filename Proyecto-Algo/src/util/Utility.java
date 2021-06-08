@@ -17,6 +17,7 @@ import domain.CircularLinkedList;
 import domain.DoublyLinkedList;
 import domain.CircularDoublyLinkedList;
 import domain.Course;
+import domain.Enrollment;
 import domain.ListException;
 import domain.Security;
 import domain.Student;
@@ -104,16 +105,19 @@ public class Utility {
         Utility.deEnrollmentCounter = deEnrollmentCounter;
     }
 
-    
-    
-    
-    
     public static CircularDoublyLinkedList getDeEnrollment() {
         return deEnrollment;
     }
-    
+    private static Student consulta;
     private static Student temporal;
-    
+
+    public static Student getConsulta() {
+        return consulta;
+    }
+
+    public static void setConsulta(Student consulta) {
+        Utility.consulta = consulta;
+    }
 
     public static SingleLinkedList getStudents() {
         return students;
@@ -143,14 +147,14 @@ public class Utility {
     }
 
     public static CircularDoublyLinkedList getCourses() {
-         try {
+        try {
             if (!careers.contains1("info")) {
                 careers.add(new Career("info"));
             }
         } catch (ListException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return courses;
     }
 
@@ -185,19 +189,21 @@ public class Utility {
         return new DecimalFormat("###,###.##")
                 .format(value);
     }
-     public static void letterOnly(final TextField field) {
+
+    public static void letterOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(
                     ObservableValue<? extends String> observable,
                     String oldValue, String newValue) {
                 if (!newValue.matches("[a-zA-Z]")) {
-                    field.setText(newValue.replaceAll("[\\d||\\p{Punct}]",""));
+                    field.setText(newValue.replaceAll("[\\d||\\p{Punct}]", ""));
                 }
             }
         });
     }
-     public static void numericOnly(final TextField field) {
+
+    public static void numericOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(
@@ -248,6 +254,14 @@ public class Utility {
                 Course co1 = (Course) data;
                 String co2 = (String) element;
                 return co1.getName().equals(co2);
+            case "enroll":
+                Enrollment e1 = (Enrollment) data;
+                Integer e2 = (Integer) element;
+                return e1.getId()==e2;
+             case "enroll1":
+                Enrollment e3 = (Enrollment) data;
+                String e4 = (String) element;
+                return e3.getStudentID().getStudentID().equals(e4);
         }
         return false;
     }
@@ -305,6 +319,12 @@ public class Utility {
 
         if (data instanceof Course && element instanceof String) {
             return "course";
+        }
+        if (data instanceof Enrollment && element instanceof Integer) {
+            return "enroll";
+        }
+        if (data instanceof Enrollment && element instanceof String) {
+            return "enroll1";
         }
 //         if (data instanceof Student && element instanceof Student) {
 //            return "student";

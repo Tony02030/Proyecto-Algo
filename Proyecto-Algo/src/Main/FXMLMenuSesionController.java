@@ -70,7 +70,7 @@ public class FXMLMenuSesionController implements Initializable {
 
     @FXML
     private void openStudent(ActionEvent event) {
-         loadPage("FXMLMenuStudent");
+         loadPage("FXMLMenuConsu");
     }
 
     

@@ -98,15 +98,15 @@ public class FXMLMenuAdmiController implements Initializable {
                     stage.setScene(scene);
                     stage.showAndWait();
 
-                    //Escribe el usuario y contraseña en el archivo txt
-                    FileOutputStream fos = new FileOutputStream("SecurityReport.txt");
-                    ObjectOutputStream oos;
-                    oos = new ObjectOutputStream(fos);
-                    oos.writeObject(security);
-
-                    //Contador
-                    int i = 0;
-                    util.Utility.setSecurityCounter(i++);
+//                    //Escribe el usuario y contraseña en el archivo txt
+//                    FileOutputStream fos = new FileOutputStream("SecurityReport.txt");
+//                    ObjectOutputStream oos;
+//                    oos = new ObjectOutputStream(fos);
+//                    oos.writeObject(security);
+//
+//                    //Contador
+//                    int i = 0;
+//                    util.Utility.setSecurityCounter(i++);
 
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
