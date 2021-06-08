@@ -101,13 +101,13 @@ public class FXMLMenuTimeTableController implements Initializable {
         try {
             aux = courses.getNode(1);
             //last = courses.getNode(courses.size()+1);
-            
+
             while (aux != courses.getNodeLast()) {
                 Course temp = (Course) aux.data;
                 if (!util.Utility.exist(temp.getIdentifier())) {
                     String y = temp.getName();
                     course.add(y);
-                    
+
                 }
                 aux = aux.next;
 
@@ -171,7 +171,7 @@ public class FXMLMenuTimeTableController implements Initializable {
 
     @FXML
     private void btnAdd(ActionEvent event) {
-        int count1=0;
+        int count1 = 0;
         int count = 0;
         try {
             Node aux = courses.getNode(1);
@@ -191,7 +191,7 @@ public class FXMLMenuTimeTableController implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         String temp1 = this.txtFieldSchedule1.getText();
         String temp2 = this.txtFieldSchedule2.getText();
         String temp3 = temp1.toUpperCase();
@@ -204,6 +204,10 @@ public class FXMLMenuTimeTableController implements Initializable {
             alert.showAndWait();
             display();
         }
+
+        //Contador
+        int counter = 0;
+        util.Utility.setCoursesCounter((counter++)+(counter++));
 
         char[] v = temp3.toCharArray();
         char[] b = temp4.toCharArray();
@@ -303,9 +307,8 @@ public class FXMLMenuTimeTableController implements Initializable {
                     int nn = Integer.parseInt(hor4);
                     int qq = Integer.parseInt(hor04);
 
-                    
                     if (tempo1.getCourseID().getCareerID().getDescription().equals(temp.getCareerID().getDescription())) {
-                       
+
                         if (((oo >= o && oo <= p) || (pp >= o && pp <= p)) || ((nn >= n && nn <= q) || (qq >= n && qq <= q))) {
                             if (day == day3 || day2 == day4 || day01 == day03 || day02 == day04) {
                                 count++;
@@ -340,13 +343,13 @@ public class FXMLMenuTimeTableController implements Initializable {
             display();
 
         }
-         
-        if (count == 0 && count1==0) {
+
+        if (count == 0 && count1 == 0) {
 
 //Este if verifica que no se puedan hacer horarios antes de la 7am, despues de las 9pm, los domingos,que la hora que termine sea menor a la hora que empieza y que no se ingrese otras letras que no sean las abreviaturas de los dias de la semana
             if (day != day01 && day2 != day02 && o < p && n < q && o >= 07 && o <= 21 && n >= 07 && n <= 21 && p <= 21 && q <= 21 && day != 'D' && day01 != 'D' && day2 != 'D' && day02 != 'D' && ("LMKJVS").contains(day + "") && ("LMKJVS").contains(day01 + "") && ("LMKJVS").contains(day2 + "") && ("LMKJVS").contains(day02 + "")) {
                 temp.setIdentifier(1);
-                this.schedule.add(new TimeTable(temp, this.txtFPeriod.getText(), this.txtFieldSchedule1.getText(), this.txtFieldSchedule2.getText(),0));
+                this.schedule.add(new TimeTable(temp, this.txtFPeriod.getText(), this.txtFieldSchedule1.getText(), this.txtFieldSchedule2.getText(), 0));
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Ventana de dialogo");
                 alert.setHeaderText("Informacion");

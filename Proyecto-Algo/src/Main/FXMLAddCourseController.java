@@ -114,6 +114,10 @@ public class FXMLAddCourseController implements Initializable {
             ObjectOutputStream oos;
             oos = new ObjectOutputStream(fos);
             oos.writeObject(course);
+            
+            //Contador
+            int i = 0;
+            util.Utility.setCoursesCounter(i++);
       
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

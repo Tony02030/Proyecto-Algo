@@ -366,9 +366,14 @@ public class FXMLEnroll2Controller implements Initializable {
                 this.txf_Schedule.setText("");
             }
 
+            //Contador
+            int i = 0;
+            util.Utility.setEnrollmentCounter(i++);
+
         } else {
             display();
         }
+
     }
 
     @FXML

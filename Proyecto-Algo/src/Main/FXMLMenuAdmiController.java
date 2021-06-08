@@ -104,6 +104,10 @@ public class FXMLMenuAdmiController implements Initializable {
                     oos = new ObjectOutputStream(fos);
                     oos.writeObject(security);
 
+                    //Contador
+                    int i = 0;
+                    util.Utility.setSecurityCounter(i++);
+
                 } catch (IOException ex) {
                     Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
                 }

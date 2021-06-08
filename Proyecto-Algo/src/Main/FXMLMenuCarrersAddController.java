@@ -69,6 +69,10 @@ public class FXMLMenuCarrersAddController implements Initializable {
             oos = new ObjectOutputStream(fos);
             oos.writeObject(career);
             
+             //Contador
+            int i = 0;
+            util.Utility.setCareersCounter(i++);
+            
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");

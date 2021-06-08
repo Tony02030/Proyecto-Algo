@@ -61,7 +61,6 @@ public class FXMLDeEnroll2Controller implements Initializable {
     private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
     private Enrollment enroll;
-    
 
     @FXML
     private TableColumn<List<String>, String> tC_Course;
@@ -278,7 +277,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
                     Enrollment tem = (Enrollment) aux.data;
                     if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
                         temp = tem.getCourseID();
-                        enroll=tem;
+                        enroll = tem;
                     }
 
                     aux = aux.next;
@@ -294,13 +293,17 @@ public class FXMLDeEnroll2Controller implements Initializable {
             }
 
             enroll.setIdEnroll(1);
-            this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp,enroll.getSchedule(), textAMotivo.getText()));
+            this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp, enroll.getSchedule(), textAMotivo.getText()));
             display();
             this.ComboBox_Course.setValue("");
             this.textAMotivo.setText("");
 
+            //Contador
+            int i = 0;
+            util.Utility.setDeEnrollmentCounter(i++);
         } else {
             display();
         }
+
     }
 }
