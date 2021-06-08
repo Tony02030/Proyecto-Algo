@@ -23,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +48,19 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+import javax.activation.DataHandler;
+import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  * FXML Controller class
@@ -225,14 +239,12 @@ public class FXMLEnroll2Controller implements Initializable {
                     TimeTable tem = (TimeTable) aux.data;
                     if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
                         tem.setIdEnrollment(1);
-                        temp=tem.getCourseID();
+                        temp = tem.getCourseID();
                     }
 
                     aux = aux.next;
 
                 }
-
-                
 
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
@@ -374,7 +386,7 @@ public class FXMLEnroll2Controller implements Initializable {
     }
 
     @FXML
-    private void btn_EndEnrollment(ActionEvent event) {
+    private void btn_EndEnrollment(ActionEvent event) throws ListException {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
@@ -386,6 +398,57 @@ public class FXMLEnroll2Controller implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
+            Properties propiedad = new Properties();
+            propiedad.put("mail smtp host", "smtp gmail com");
+            propiedad.put("mail smtp port", "587");
+            propiedad.put("mail.smtp.auth", "true");
+            propiedad.put("mail.smtp.starttls.enable", "true");
+            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
+            propiedad.put("mail.smtp.clave", "");
+
+            Session sesion = Session.getDefaultInstance(propiedad);
+
+            String correoEnvia = "anthony.rs02@gmail.com";
+            String contraseña = "18702NACE";
+            String destinatario = this.student.getEmail();
+
+            MimeMessage mail = new MimeMessage(sesion);
+
+            try {
+//                mail.setFrom(new InternetAddress(correoEnvia));
+                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+
+                mail.setSubject(asunto());
+                Multipart multipart = new MimeMultipart();
+
+                MimeBodyPart message1 = new MimeBodyPart();
+                String htmlText = "<img src=\"cid:image\">";
+                message1.setContent(htmlText, "text/html");
+
+                MimeBodyPart message2 = new MimeBodyPart();
+                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
+                message2.setDataHandler(new DataHandler(source));
+                message2.setHeader("Content-ID", "<image>");
+//                message1.setFileName(source.getName());
+
+                MimeBodyPart message3 = new MimeBodyPart();
+                message3.setText(mensaje());
+
+                multipart.addBodyPart(message1);
+                multipart.addBodyPart(message2);
+                multipart.addBodyPart(message3);
+                mail.setContent(multipart);
+                Transport transporte = sesion.getTransport("smtp");
+                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
+                transporte.sendMessage(mail, mail.getAllRecipients());
+                transporte.close();
+
+            } catch (AddressException ex) {
+                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MessagingException ex) {
+                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             tV_EnrollCourse.setVisible(false);
             txtMessage.setVisible(false);
             ComboBox_Course.setVisible(false);
@@ -422,6 +485,36 @@ public class FXMLEnroll2Controller implements Initializable {
             Logger.getLogger(FXMLMenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.bp.setCenter(root);
+
+    }
+
+    private String asunto() {
+        String result = "Matricula del estudiante";
+        return result;
+    }
+
+    private String mensaje() throws ListException {
+        String result = "Nombre: " + this.student.getFirstname() + this.student.getLastname();
+        result += "Carnet: " + this.student.getStudentID();
+        result += "Cursos Matriculados\n";
+        int count = 0;
+        Node aux = this.enrollment.getNode(1);
+        while (aux != this.enrollment.getNodeLast()) {
+            Enrollment tem = (Enrollment) aux.data;
+            if (util.Utility.equals(this.student.getId(), tem.getId())) {
+                result += "Curso: " + tem.getCourseID().getName() + " Horario: " + tem.getSchedule() + " Carrera: " + tem.getCourseID().getCareerID().getDescription() + "\n";
+                count = count + tem.getCourseID().getCredits();
+            }
+
+            aux = aux.next;
+        }
+        Enrollment tem = (Enrollment) aux.data;
+        if (util.Utility.equals(this.student.getId(), tem.getId())) {
+            result += "Curso: " + tem.getCourseID().getName() + " Horario: " + tem.getSchedule() + " Carrera: " + tem.getCourseID().getCareerID().getDescription() + "\n";
+            count = count + tem.getCourseID().getCredits();
+        }
+        result += "Carga Academica: " + count;
+        return result;
 
     }
 }
