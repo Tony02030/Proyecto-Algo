@@ -225,17 +225,14 @@ public class FXMLEnroll2Controller implements Initializable {
                     TimeTable tem = (TimeTable) aux.data;
                     if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
                         tem.setIdEnrollment(1);
+                        temp=tem.getCourseID();
                     }
 
                     aux = aux.next;
 
                 }
 
-                //Escribe los _________ en el archivo txt
-                FileOutputStream fos = new FileOutputStream("StudentsReport.txt");
-                ObjectOutputStream oos;
-                oos = new ObjectOutputStream(fos);
-                oos.writeObject(enrollment);
+                
 
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class Security implements Serializable{
+public class Security {
 
     private String user;
     private String password;

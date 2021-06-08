@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author User
  */
-public class Enrollment implements Serializable{
+public class Enrollment{
    private int id;
    private Date date;
    private Student studentID;

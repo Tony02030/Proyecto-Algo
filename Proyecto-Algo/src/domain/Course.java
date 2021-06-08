@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class Course implements Serializable{
+public class Course {
     private String id;
     private String name;
     private int credits;

@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class Career implements Serializable{
+public class Career{
     private int id;
     private String description;
     private static int idCount;

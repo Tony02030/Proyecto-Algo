@@ -286,6 +286,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
                 Enrollment tem = (Enrollment) aux.data;
                 if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
                     temp = tem.getCourseID();
+                    enroll=tem;
                 }
 
             } catch (ListException ex) {
