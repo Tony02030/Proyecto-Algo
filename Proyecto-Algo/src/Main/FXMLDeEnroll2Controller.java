@@ -269,45 +269,52 @@ public class FXMLDeEnroll2Controller implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
-            try {
-                Node aux = enrollment.getNode(1);
-               
+            if (this.ComboBox_Course.getValue() == "") {
+                Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ventana de dialogo");
+                alert.setHeaderText("Informacion");
+                alert.setContentText("Debe seleccionar la carrera que desea eliminar");
+                alert.showAndWait();
+            } else {
+                try {
+                    Node aux = enrollment.getNode(1);
 
-                while (aux != enrollment.getNodeLast()) {
+                    while (aux != enrollment.getNodeLast()) {
 
+                        Enrollment tem = (Enrollment) aux.data;
+                        if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
+                            temp = tem.getCourseID();
+                            enroll = tem;
+                        }
+
+                        aux = aux.next;
+
+                    }
                     Enrollment tem = (Enrollment) aux.data;
                     if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
                         temp = tem.getCourseID();
                         enroll = tem;
                     }
 
-                    aux = aux.next;
+                    //Contador
+                    int contador = 0;
+                    util.Utility.setDeEnrollmentCounter(contador++);
 
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                Enrollment tem = (Enrollment) aux.data;
-                if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-                    temp = tem.getCourseID();
-                    enroll=tem;
-                }
-                
-                 //Contador
-                 
-                 int contador = 0;
-                 util.Utility.setDeEnrollmentCounter(contador++);
 
-            } catch (ListException ex) {
-                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                enroll.setIdEnroll(1);
+                this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp, enroll.getSchedule(), textAMotivo.getText()));
+                display();
+                this.ComboBox_Course.setValue("");
+                this.textAMotivo.setText("");
+
+                //Contador
+                int i = 0;
+                util.Utility.setDeEnrollmentCounter(i++);
             }
 
-            enroll.setIdEnroll(1);
-            this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp, enroll.getSchedule(), textAMotivo.getText()));
-            display();
-            this.ComboBox_Course.setValue("");
-            this.textAMotivo.setText("");
-
-            //Contador
-            int i = 0;
-            util.Utility.setDeEnrollmentCounter(i++);
         } else {
             display();
         }
