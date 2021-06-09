@@ -13,8 +13,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,98 +27,98 @@ import javafx.scene.text.Text;
  * @author User
  */
 public class FXMLMenuCarrersChangeController implements Initializable {
-
+    
     private DoublyLinkedList carrer = util.Utility.getCareers();
-    private String temp1;
-    @FXML
-    private Text txtInfo;
+    private String careerName;
     @FXML
     private TextField txtFieldSearch;
     @FXML
     private Button btnBuscar;
     @FXML
-    private Text txtInfo1;
-    private TextField txtFieldChange;
-    @FXML
     private Button btnCambiar;
     @FXML
     private TextField txtFieldChangeName;
-    private Text txtInfo2;
-    private TextField txtFieldChangeId;
     @FXML
-    private Text txtInfo3;
+    private Text txtError;
+    @FXML
+    private Text txtTitle1;
+    @FXML
+    private Text txtTitle2;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
-
+    
     @FXML
-    private void btnBuscar(ActionEvent event) {
+    private void btnBuscar(ActionEvent event) throws ListException {
 
-        try {
-            if (carrer.contains1(this.txtFieldSearch.getText())) {
-                
-                temp1=this.txtFieldSearch.getText();
-                this.btnBuscar.setVisible(false);
-                this.txtFieldSearch.setVisible(false);
-                this.txtInfo.setVisible(false);
-                this.btnCambiar.setVisible(true);
-                this.txtFieldChangeName.setVisible(true);
-                this.txtInfo1.setVisible(true);
-                this.txtFieldSearch.setText("");
-                this.txtInfo3.setVisible(false);
-            }
-        } catch (ListException ex) {
-            this.txtInfo3.setVisible(true);
+        //Buscamos en la lista si contiene la carrera buscada por el usuario
+        if (carrer.contains1(this.txtFieldSearch.getText())) {
+            
+            careerName = this.txtFieldSearch.getText();
+            this.txtTitle1.setVisible(false);
+            this.txtFieldSearch.setVisible(false);
+            this.btnBuscar.setVisible(false);
+            
+            this.txtFieldSearch.setText("");
+            this.txtTitle2.setVisible(true);
+            this.txtFieldChangeName.setVisible(true);
+            this.btnCambiar.setVisible(true);
+            txtError.setVisible(false);
+            
+        } else {
+            this.txtError.setVisible(true);
         }
+        
     }
-
+    
     @FXML
     private void btnCambiar(ActionEvent event) {
-
+        
         try {
             Node aux = carrer.getNode(1);
             
-            int count=0;
+            int count = 0;
             while (aux != null) {
-                if (util.Utility.equals(aux.data, temp1)) {
-                    Career temp = (Career) aux.data;
-                    temp.setDescription(txtFieldChangeName.getText());
-                    aux.data = temp;
+                if (util.Utility.equals(aux.data, careerName)) {
+                    Career newCareerName = (Career) aux.data;
+                    newCareerName.setDescription(txtFieldChangeName.getText());
+                    aux.data = newCareerName;
                     count++;
-                } 
+                }
                 aux = aux.next;
             }
-            if(count==1){
+            if (count == 1) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Informacion");
-                    alert.setContentText("Se cambió la carrera");
-                    alert.showAndWait();
-            }else{
-               Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Informacion");
-                    alert.setContentText("No se pudó cambiar la carrera");
-                    alert.showAndWait(); 
+                alert.setTitle("Ventana de Diálogo");
+                alert.setHeaderText("Información");
+                alert.setContentText("Se cambió el nombre de la carrera");
+                alert.showAndWait();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ventana de Diálogo");
+                alert.setHeaderText("Información");
+                alert.setContentText("No se pudo cambiar el nombre de la carrera");
+                alert.showAndWait();
             }
-            this.btnBuscar.setVisible(true);
+            this.txtTitle1.setVisible(true);
             this.txtFieldSearch.setVisible(true);
-            this.txtInfo.setVisible(true);
-            this.btnCambiar.setVisible(false);
+            this.btnBuscar.setVisible(true);
+            this.txtFieldSearch.setText("");
+            this.txtTitle2.setVisible(false);
             this.txtFieldChangeName.setVisible(false);
-            this.txtInfo1.setVisible(false);
             this.txtFieldChangeName.setText("");
+            this.btnCambiar.setVisible(false);
             
-
+            
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
     }
-
+    
 }
