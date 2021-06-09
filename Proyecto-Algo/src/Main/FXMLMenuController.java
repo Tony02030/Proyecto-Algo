@@ -28,6 +28,7 @@ import domain.Node;
 import domain.Security;
 import domain.SingleLinkedList;
 import domain.Student;
+import domain.TimeTable;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -55,6 +56,11 @@ import javax.swing.JOptionPane;
  * @author Fabio
  */
 public class FXMLMenuController implements Initializable {
+
+//    Contador
+//    int i = 0;
+//
+//    util.Utility.setSecurityCounter(i++);
 
     @FXML
     private BorderPane bp;
@@ -377,8 +383,8 @@ public class FXMLMenuController implements Initializable {
         Node auxStudent = student.getNode(1);
 
         while (auxStudent != null) {
-            Student stud = (Student) auxStudent.data;
-            oosStudent.writeObject(stud);
+            Student studentW = (Student) auxStudent.data;
+            oosStudent.writeObject(studentW);
             auxStudent = auxStudent.next;
         }
 
@@ -386,41 +392,62 @@ public class FXMLMenuController implements Initializable {
         FileInputStream fisStudent = new FileInputStream("StudentsReport.txt");
         ObjectInputStream oisStudent = new ObjectInputStream(fisStudent);
 
-//            while (oisStudent.readLine() != null) {
-//                Student students = (Student) oisStudent.readObject();
-//                //student = (SingleLinkedList) ois.readObject();
-//            }
-        // Archivo Seguridad
-        FileOutputStream fosSecurity = new FileOutputStream("SecurityReport.txt");
-        ObjectOutputStream oosSecurity = new ObjectOutputStream(fosSecurity);
+        for (int i = 0; i < util.Utility.getStudentCounter(); i++) {
 
-        Node auxSecurity = security.getNode(1);
+            Student studentR = (Student) oisStudent.readObject();
+            student.add(studentR);
 
-        while (auxSecurity != security.getLast()) {  //getNodeLast()
-            Security security = (Security) auxSecurity.data;
-            oosSecurity.writeObject(security);
-            auxSecurity = auxSecurity.next;
         }
 
-//        Security temp = (Security) auxSecurity.data;
-//        if (util.Utility.exist(temp.getIdEnroll())) {
-//            students.add(String.valueOf(temp.getId()));
+        // Archivo Seguridad
+//        FileOutputStream fosSecurity = new FileOutputStream("SecurityReport.txt");
+//        ObjectOutputStream oosSecurity = new ObjectOutputStream(fosSecurity);
+//
+//        Node auxSecurity = security.getNode(1);
+//
+//        while (auxSecurity != security.getNode(security.size())) {  //getNodeLast()
+//
+//            Security securityW = (Security) auxSecurity.data;
+//            oosSecurity.writeObject(securityW);
+//            auxSecurity = auxSecurity.next;
 //        }
-        //Lee Archivo seguridad
-//            
+//        Security securityW = (Security) auxSecurity.data;
+//        oosSecurity.writeObject(securityW);
+//
+//        //Leer Archivo seguridad
+        
+//          FileInputStream fisSecurity = new FileInputStream("SecurityReport.txt");
+//        ObjectInputStream oisSecurity = new ObjectInputStream(fisSecurity);
+//        
+//          for (int i = 0; i < util.Utility.getSecurityCounter(); i++) {
+//            Security securityR = (Security) oisSecurity.readObject();
+//            this.security.add(securityR);
+//
+//        }
+        
+        
         //Archivo Carreras
         FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
         ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
 
-        Node auxCareer = student.getNode(1);
+        Node auxCareer = career.getNode(1);
 
         while (auxCareer != null) {
-            Career career = (Career) auxCareer.data;
-            oosCareer.writeObject(career);
+            Career careerW = (Career) auxCareer.data;
+            oosCareer.writeObject(careerW);
             auxCareer = auxCareer.next;
         }
 
         //Leer Archivo de Carrera
+        
+          FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
+        ObjectInputStream oisCareer = new ObjectInputStream(fisCareer);
+        for (int i = 0; i < util.Utility.getCareersCounter(); i++) {
+            Career careerR = (Career) oisCareer.readObject();
+            career.add(careerR);
+        }
+        
+        
         // Escribir Archivo Curso
         FileOutputStream fosCourse = new FileOutputStream("CourseReport.txt");
         ObjectOutputStream oosCourse = new ObjectOutputStream(fosCourse);
@@ -428,18 +455,24 @@ public class FXMLMenuController implements Initializable {
         Node auxCourse = course.getNode(1);
 
         while (auxCourse != course.getNodeLast()) {  //getNodeLast()
-            Course course = (Course) auxCourse.data;
-            oosCourse.writeObject(course);
+            Course courseW = (Course) auxCourse.data;
+            oosCourse.writeObject(courseW);
             auxCourse = auxCourse.next;
         }
-        Course course = (Course) auxCourse.data;
-        oosCourse.writeObject(course);
-
-//        Course temp = (Course) auxCourse.data;
-//        if (util.Utility.exist(temp.getIdEnroll())) {
-//            students.add(String.valueOf(temp.getId()));
-//        }
+        Course courseW = (Course) auxCourse.data;
+        oosCourse.writeObject(courseW);
+        
         //Leer Archivo de Cursos
+        
+          FileInputStream fisCourse = new FileInputStream("CourseReport.txt");
+        ObjectInputStream oisCourse = new ObjectInputStream(fisCourse);
+        
+        for (int i = 0; i < util.Utility.getCoursesCounter(); i++) {
+            Course courseR = (Course) oisCourse.readObject();
+            course.add(courseR);
+        }
+        
+        
         //Escribir Archivo de Horarios
         FileOutputStream fosSchedule = new FileOutputStream("SchedulesReport.txt");
         ObjectOutputStream oosSchedule = new ObjectOutputStream(fosSchedule);
@@ -447,50 +480,69 @@ public class FXMLMenuController implements Initializable {
         Node auxSchedule = schedule.getNode(1);
 
         while (auxSchedule != null) {
-            Career career = (Career) auxCareer.data; //Aquí irían los getSchedule?
-            oosSchedule.writeObject(career);
+            TimeTable timeTableW = (TimeTable) auxSchedule.data; 
+            oosSchedule.writeObject(timeTableW);
             auxSchedule = auxSchedule.next;
         }
 
         //Leer Archivo de Horarios
+         FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
+        ObjectInputStream oisSchedule = new ObjectInputStream(fisSchedule);
+        
+        for (int i = 0; i < util.Utility.getSchedulesCounter(); i++) {
+            TimeTable timeTableR = (TimeTable) oisSchedule.readObject();
+            schedule.add(timeTableR);
+        }
+        
+        
         //Escribir Archivo Enrollment
         FileOutputStream fosEnrollment = new FileOutputStream("EnrollmentReport.txt");
         ObjectOutputStream oosEnrollment = new ObjectOutputStream(fosEnrollment);
 
         Node auxEnrollment = enrollment.getNode(1);
 
-        while (auxEnrollment != enrollment.getLast()) {  //getNodeLast()
-            Enrollment enrollment = (Enrollment) auxEnrollment.data;
-            oosEnrollment.writeObject(enrollment);
+        while (auxEnrollment != enrollment.getNodeLast()) {  //getNodeLast()
+            Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
+            oosEnrollment.writeObject(enrollmentW);
             auxEnrollment = auxEnrollment.next;
         }
-        Enrollment enrollment = (Enrollment) auxEnrollment.data;
-        oosEnrollment.writeObject(enrollment);
+        Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
+        oosEnrollment.writeObject(enrollmentW);
 
-//        Security temp = (Security) auxSecurity.data;
-//        if (util.Utility.exist(temp.getIdEnroll())) {
-//            students.add(String.valueOf(temp.getId()));
-//        }
         //Leer Archivo Enrollment
+        
+         FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
+        ObjectInputStream oisEnrollment = new ObjectInputStream(fisEnrollment);
+        
+        for (int i = 0; i < util.Utility.getEnrollmentCounter(); i++) {
+            Enrollment enrollmentR = (Enrollment) oisEnrollment.readObject();
+            enrollment.add(enrollmentR);
+        }
+        
         //Escribir Archivo deEnrollment
+        
         FileOutputStream fosDeEnrollment = new FileOutputStream("deEnrollmentReport.txt");
         ObjectOutputStream oosDeEnrollment = new ObjectOutputStream(fosDeEnrollment);
 
         Node auxDeEnrollment = deEnrollment.getNode(1);
 
-        while (auxDeEnrollment != deEnrollment.getLast()) {  //getNodeLast()
-            DeEnrollment deEnrollment = (DeEnrollment) auxDeEnrollment.data;
-            oosDeEnrollment.writeObject(deEnrollment);
+        while (auxDeEnrollment != deEnrollment.getNodeLast()) {  //getNodeLast()
+            DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
+            oosDeEnrollment.writeObject(deEnrollmentW);
+            
             auxDeEnrollment = auxDeEnrollment.next;
         }
-        DeEnrollment deEnrollment = (DeEnrollment) auxDeEnrollment.data;
-        oosDeEnrollment.writeObject(deEnrollment);
-
-//        DeEnrollment temp = (DeEnrollment) auxSecurity.data;
-//        if (util.Utility.exist(temp.getIdEnroll())) {
-//            students.add(String.valueOf(temp.getId()));
-//        }
+        DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
+        oosDeEnrollment.writeObject(deEnrollmentW);
+        
         //Leer Archivo deEnrollment
+         FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
+        ObjectInputStream oisDeEnrollment = new ObjectInputStream(fisDeEnrollment);
+        
+        for (int i = 0; i < util.Utility.getDeEnrollmentCounter(); i++) {
+            DeEnrollment DeEnrollmentR = (DeEnrollment) oisDeEnrollment.readObject();
+            enrollment.add(DeEnrollmentR);
+        }
     }
 
     @FXML

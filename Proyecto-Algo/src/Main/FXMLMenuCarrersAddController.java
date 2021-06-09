@@ -63,12 +63,6 @@ public class FXMLMenuCarrersAddController implements Initializable {
         alert.showAndWait();
         this.textFieldCareer.setText("");
         
-         //Escribe las carreras en el archivo txt
-            FileOutputStream fos = new FileOutputStream("CareersReport.txt");
-            ObjectOutputStream oos;
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(career);
-            
              //Contador
             int i = 0;
             util.Utility.setCareersCounter(i++);

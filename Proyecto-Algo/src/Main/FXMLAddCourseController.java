@@ -109,11 +109,6 @@ public class FXMLAddCourseController implements Initializable {
             this.txfCredits.setText("");
             temp = null;
 
-            //Escribe los cursos en el archivo txt
-            FileOutputStream fos = new FileOutputStream("CourseReport.txt");
-            ObjectOutputStream oos;
-            oos = new ObjectOutputStream(fos);
-            oos.writeObject(course);
             
             //Contador
             int i = 0;

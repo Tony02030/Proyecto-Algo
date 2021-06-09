@@ -271,6 +271,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
         if (result.get() == buttonTypeYes) {
             try {
                 Node aux = enrollment.getNode(1);
+               
 
                 while (aux != null) {
 
@@ -288,6 +289,11 @@ public class FXMLDeEnroll2Controller implements Initializable {
                     temp = tem.getCourseID();
                     enroll=tem;
                 }
+                
+                 //Contador
+                 
+                 int contador = 0;
+                 util.Utility.setDeEnrollmentCounter(contador++);
 
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
