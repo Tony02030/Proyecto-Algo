@@ -231,27 +231,6 @@ public class FXMLEnroll2Controller implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
-            try {
-                Node aux = schedules.getNode(1);
-
-                while (aux != null) {
-
-                    TimeTable tem = (TimeTable) aux.data;
-                    if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-                        tem.setIdEnrollment(1);
-                        temp = tem.getCourseID();
-                    }
-
-                    aux = aux.next;
-
-                }
-
-            } catch (ListException ex) {
-                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            String temp1 = this.txf_Schedule.getText();
-            String temp3 = temp1.toUpperCase();
-
             if (this.txf_Schedule.getText().length() < 17 || this.ComboBox_Course.getValue() == "") {
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Ventana de dialogo");
@@ -259,125 +238,170 @@ public class FXMLEnroll2Controller implements Initializable {
                 alert.setContentText("Los horarios que ingresó no son validos");
                 alert.showAndWait();
                 display();
-            }
-
-            char[] v = temp3.toCharArray();
-            char[] c = new char[v.length - 4];
-
-            int x = 0;
-            for (int i = 4; i < v.length; i++) {
-                c[x] = v[i];
-                x++;
-
-            }
-
-            String tem = String.valueOf(c);
-
-            String hor = tem.charAt(0) + "" + tem.charAt(1) + "";
-            String hor01 = tem.charAt(8) + "" + tem.charAt(9) + "";
-
-            //Dias de la semana
-            char day = temp3.charAt(0);
-            char day01 = temp3.charAt(2);
-
-            //Horas
-            int o = Integer.parseInt(hor);
-            int p = Integer.parseInt(hor01);
-
-            if (!enrollment.isEmpty()) {
+            } else {
                 try {
-                    Node aux = enrollment.getNode(1);
+                    Node aux = schedules.getNode(1);
 
                     while (aux != null) {
 
+                        TimeTable tem = (TimeTable) aux.data;
+                        if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
+                            tem.setIdEnrollment(1);
+                            temp = tem.getCourseID();
+                        }
+
+                        aux = aux.next;
+
+                    }
+
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String temp1 = this.txf_Schedule.getText();
+                String temp3 = temp1.toUpperCase();
+
+                char[] v = temp3.toCharArray();
+                char[] c = new char[v.length - 4];
+
+                int x = 0;
+                for (int i = 4; i < v.length; i++) {
+                    c[x] = v[i];
+                    x++;
+
+                }
+
+                String tem = String.valueOf(c);
+
+                String hor = tem.charAt(0) + "" + tem.charAt(1) + "";
+                String hor01 = tem.charAt(8) + "" + tem.charAt(9) + "";
+
+                //Dias de la semana
+                char day = temp3.charAt(0);
+                char day01 = temp3.charAt(2);
+
+                //Horas
+                int o = Integer.parseInt(hor);
+                int p = Integer.parseInt(hor01);
+                if (!enrollment.isEmpty()) {
+                    try {
+                        Node aux = schedules.getNode(1);
+
+                        while (aux != null) {
+
+                            TimeTable tempo = (TimeTable) aux.data;
+                            if (!util.Utility.equals(tempo, this.ComboBox_Course.getValue()) && !util.Utility.equals(tempo.getSchedule1(), this.txf_Schedule) && !util.Utility.equals(tempo.getSchedule2(), this.txf_Schedule)) {
+                                count++;
+                            }
+
+                            aux = aux.next;
+
+                        }
+
+                    } catch (ListException ex) {
+                        Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                if (!enrollment.isEmpty()) {
+                    try {
+                        Node aux = enrollment.getNode(1);
+
+                        while (aux != enrollment.getNodeLast()) {
+
+                            Enrollment tempor = (Enrollment) aux.data;
+                            if (this.student.getId() == tempor.getId() && util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
+                                count1++;
+
+                            }
+
+                            aux = aux.next;
+                        }
                         if (util.Utility.equals(aux.data, this.txf_Schedule.getText())) {
                             count1++;
 
                         }
 
-                        aux = aux.next;
+                    } catch (ListException ex) {
+                        Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-                } catch (ListException ex) {
-                    Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            if (!enrollment.isEmpty()) {
-                try {
-                    Node aux = enrollment.getNode(1);
+                if (!enrollment.isEmpty()) {
+                    try {
+                        Node aux = enrollment.getNode(1);
 
-                    while (aux != enrollment.getNodeLast()) {
-                        Enrollment tempo1 = (Enrollment) aux.data;
-                        String tem1 = tempo1.getSchedule();
-                        String tem3 = tem1.toUpperCase();
+                        while (aux != enrollment.getNodeLast()) {
+                            Enrollment tempo1 = (Enrollment) aux.data;
+                            String tem1 = tempo1.getSchedule();
+                            String tem3 = tem1.toUpperCase();
 
-                        char[] l = tem3.toCharArray();
-                        char[] t = new char[v.length - 4];
+                            char[] l = tem3.toCharArray();
+                            char[] t = new char[v.length - 4];
 
-                        x = 0;
-                        for (int i = 4; i < l.length; i++) {
-                            t[x] = l[i];
-                            x++;
+                            x = 0;
+                            for (int i = 4; i < l.length; i++) {
+                                t[x] = l[i];
+                                x++;
 
-                        }
-                        x = 0;
+                            }
+                            x = 0;
 
-                        String te = String.valueOf(t);
+                            String te = String.valueOf(t);
 
-                        String hor3 = te.charAt(0) + "" + te.charAt(1) + "";
-                        String hor03 = te.charAt(8) + "" + te.charAt(9) + "";
+                            String hor3 = te.charAt(0) + "" + te.charAt(1) + "";
+                            String hor03 = te.charAt(8) + "" + te.charAt(9) + "";
 
-                        //Dias de la semana
-                        char day3 = tem3.charAt(0);
-                        char day03 = tem3.charAt(2);
+                            //Dias de la semana
+                            char day3 = tem3.charAt(0);
+                            char day03 = tem3.charAt(2);
 
-                        //Horas
-                        int oo = Integer.parseInt(hor3);
-                        int pp = Integer.parseInt(hor03);
+                            //Horas
+                            int oo = Integer.parseInt(hor3);
+                            int pp = Integer.parseInt(hor03);
 
-                        if (tempo1.getStudentID().getId() == student.getId()) {
-                            if (((oo >= o && oo <= p) || (pp >= o && pp <= p))) {
-                                if (day == day3 || day01 == day03) {
-                                    count++;
+                            if (tempo1.getStudentID().getId() == student.getId()) {
+                                if (((oo >= o && oo <= p) || (pp >= o && pp <= p))) {
+                                    if (day == day3 || day01 == day03) {
+                                        count++;
 
+                                    }
                                 }
                             }
+
+                            aux = aux.next;
                         }
 
-                        aux = aux.next;
+                    } catch (ListException ex) {
+                        Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-                } catch (ListException ex) {
-                    Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                if (count1 == 1) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ventana de dialogo");
+                    alert.setHeaderText("Informacion");
+                    alert.setContentText("Los horarios ya fueron ingresados");
+                    alert.showAndWait();
+                    display();
+
+                } else if (count == 1) {
+                    Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ventana de dialogo");
+                    alert.setHeaderText("Informacion");
+                    alert.setContentText("Los horarios que ingresó no son validos");
+                    alert.showAndWait();
+                    display();
+
+                } else {
+                    this.student.setIdEnrollment(1);
+                    this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(), 0));
+                    display();
+                    this.ComboBox_Course.setValue("");
+                    this.txf_Schedule.setText("");
+                }
+
+                //Contador
+                int i = 0;
+                util.Utility.setEnrollmentCounter(i++);
             }
-            if (count1 == 1) {
-                Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ventana de dialogo");
-                alert.setHeaderText("Informacion");
-                alert.setContentText("Los horarios ya fueron ingresados");
-                alert.showAndWait();
-                display();
-
-            } else if (count == 1) {
-                Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ventana de dialogo");
-                alert.setHeaderText("Informacion");
-                alert.setContentText("Los horarios que ingresó no son validos");
-                alert.showAndWait();
-                display();
-
-            } else {
-                this.student.setIdEnrollment(1);
-                this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(), 0));
-                display();
-                this.ComboBox_Course.setValue("");
-                this.txf_Schedule.setText("");
-            }
-
-            //Contador
-            int i = 0;
-            util.Utility.setEnrollmentCounter(i++);
 
         } else {
             display();
@@ -494,8 +518,9 @@ public class FXMLEnroll2Controller implements Initializable {
     }
 
     private String mensaje() throws ListException {
-        String result = "Nombre: " + this.student.getFirstname() + this.student.getLastname();
-        result += "Carnet: " + this.student.getStudentID();
+        String result = "\n";
+        result += "Nombre: " + this.student.getFirstname() + this.student.getLastname() + "\n";
+        result += "Carnet: " + this.student.getStudentID() + "\n";
         result += "Cursos Matriculados\n";
         int count = 0;
         Node aux = this.enrollment.getNode(1);

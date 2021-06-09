@@ -273,7 +273,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
                 Node aux = enrollment.getNode(1);
                
 
-                while (aux != null) {
+                while (aux != enrollment.getNodeLast()) {
 
                     Enrollment tem = (Enrollment) aux.data;
                     if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {

@@ -148,12 +148,13 @@ public class FXMLDeEnroll1Controller implements Initializable {
             //Node last = courses.getNode(courses.size());
             while (aux != enrollment.getNodeLast()) {
                 List<String> array = new ArrayList<>();
-                Student temp = (Student) aux.data;
-                if (!util.Utility.exist(temp.getIdEnrollment())) {
+
+                Enrollment temp = (Enrollment) aux.data;
+                if (!util.Utility.exist(temp.getIdEnroll())) {
                     array.add(String.valueOf(temp.getId()));
-                    array.add(temp.getFirstname());
-                    array.add(temp.getLastname());
-                    array.add(temp.getCareerID().getDescription());
+                    array.add(temp.getStudentID().getFirstname());
+                    array.add(temp.getStudentID().getLastname());
+                    array.add(temp.getStudentID().getCareerID().getDescription());
                     data.add(array);
                 }
 
