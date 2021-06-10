@@ -11,8 +11,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,43 +27,42 @@ import javafx.scene.text.Text;
 public class FXMLMenuCarrersDeleteController implements Initializable {
 
     private DoublyLinkedList carrer = util.Utility.getCareers();
+
     @FXML
-    private Text txtInfo;
+    private TextField txfSearch;
     @FXML
-    private TextField txtFieldSearch;
+    private Button btnSearch;
     @FXML
-    private Button btnBuscar;
-    @FXML
-    private Text txtInfo2;
+    private Text txtError;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        util.Utility.letterOnly(this.txtFieldSearch);
+        util.Utility.letterOnly(this.txfSearch);
     }
 
     @FXML
-    private void btnBuscar(ActionEvent event) {
-       
+    private void btnSearch(ActionEvent event) {
+        
+        //Busca en la lista la carrera que se quiere eliminar
         try {
-            if (carrer.contains1(this.txtFieldSearch.getText())) {
-                carrer.remove(this.txtFieldSearch.getText());
+            if (carrer.contains1(this.txfSearch.getText())) {
+                carrer.remove(this.txfSearch.getText());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ventana de dialogo");
-                alert.setHeaderText("Informacion");
-                alert.setContentText("Se eliminó la carrera");
+                alert.setTitle("Ventana de Diálogo");
+                alert.setHeaderText("Información");
+                alert.setContentText("Carrera Eliminada Correctamente");
                 alert.showAndWait();
-                this.txtFieldSearch.setText("");
-                this.txtInfo2.setVisible(false);
+                this.txfSearch.setText("");
+                this.txtError.setVisible(false);
             } else {
-                this.txtInfo2.setVisible(true);
+                this.txtError.setVisible(true);
 
             }
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersDeleteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
