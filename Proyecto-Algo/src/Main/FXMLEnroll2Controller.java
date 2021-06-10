@@ -14,16 +14,13 @@ import domain.SingleLinkedList;
 import domain.Student;
 import domain.TimeTable;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,19 +45,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 /**
  * FXML Controller class
@@ -105,6 +89,8 @@ public class FXMLEnroll2Controller implements Initializable {
     private Text txtMessage2;
     @FXML
     private BorderPane bp;
+    @FXML
+    private Text txtMessage1;
 
     /**
      * Initializes the controller class.
@@ -127,6 +113,7 @@ public class FXMLEnroll2Controller implements Initializable {
         });
     }
 
+    //Muestra los cursos y horarios disponibles para matricular
     public void display() {
         courses1.clear();
 
@@ -182,12 +169,10 @@ public class FXMLEnroll2Controller implements Initializable {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.ComboBox_Course.setItems(courses1);
-//        for (int i = 0; i < getData().size(); i++) {
-//            courses1.add(getData().get(i).get(0));
-//        }
 
     }
 
+    //Inserta los horarios en el ObservableList
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;
@@ -217,6 +202,7 @@ public class FXMLEnroll2Controller implements Initializable {
         return data;
     }
 
+    //Matricula el curso y hace las verificaciones correspondientes
     @FXML
     private void btn_EnrollCourse(ActionEvent event) throws FileNotFoundException, IOException {
 
@@ -232,9 +218,9 @@ public class FXMLEnroll2Controller implements Initializable {
         if (result.get() == buttonTypeYes) {
             if (this.txf_Schedule.getText().length() < 17 || this.ComboBox_Course.getValue() == "") {
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert1.setTitle("Ventana de dialogo");
-                alert1.setHeaderText("Informacion");
-                alert1.setContentText("Los horarios que ingresó no son validos1");
+                alert1.setTitle("Ventana de Diálogo");
+                alert1.setHeaderText("Información");
+                alert1.setContentText("El horario que ingresó no es válido");
                 alert1.showAndWait();
                 display();
             } else {
@@ -381,26 +367,26 @@ public class FXMLEnroll2Controller implements Initializable {
                 }
                 if (count1> 0) {
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                    alert2.setTitle("Ventana de dialogo");
-                    alert2.setHeaderText("Informacion");
-                    alert2.setContentText("Los horarios ya fueron ingresados");
+                    alert2.setTitle("Ventana de Diálogo");
+                    alert2.setHeaderText("Información");
+                    alert2.setContentText("El horario ya fue ingresado");
                     alert2.showAndWait();
 
                     display();
 
                 } else if (count > 0) {
                     Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
-                    alert3.setTitle("Ventana de dialogo");
-                    alert3.setHeaderText("Informacion");
-                    alert3.setContentText("Los horarios que ingresó no son validos2");
+                    alert3.setTitle("Ventana de Diálogo");
+                    alert3.setHeaderText("Información");
+                    alert3.setContentText("El horario que ingresó no es válido");
                     alert3.showAndWait();
 
                     display();
 
                 }else if (count2 > 0) {
                     Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
-                    alert3.setTitle("Ventana de dialogo");
-                    alert3.setHeaderText("Informacion");
+                    alert3.setTitle("Ventana de Diálogo");
+                    alert3.setHeaderText("Información");
                     alert3.setContentText("Debe ingresar el mismo horario del curso que eligió");
                     alert3.showAndWait();
 
@@ -446,6 +432,8 @@ public class FXMLEnroll2Controller implements Initializable {
 
     }
 
+    
+    //Finaliza el proceso de Matrícula
     @FXML
     private void btn_EndEnrollment(ActionEvent event) throws ListException {
 
@@ -519,6 +507,7 @@ public class FXMLEnroll2Controller implements Initializable {
             txf_Schedule.setVisible(false);
             btn_EnrollCourse.setVisible(false);
             btn_EndEnrollment.setVisible(false);
+            txtMessage1.setVisible(false);
             try {
                 Node aux = schedules.getNode(1);
 
@@ -577,7 +566,7 @@ public class FXMLEnroll2Controller implements Initializable {
             result += "Curso: " + tem.getCourseID().getName() + " Horario: " + tem.getSchedule() + " Carrera: " + tem.getCourseID().getCareerID().getDescription() + "\n";
             count = count + tem.getCourseID().getCredits();
         }
-        result += "Carga Academica: " + count;
+        result += "Carga Académica: " + count;
         return result;
 
     }

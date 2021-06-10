@@ -10,10 +10,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="743.0" style="-fx-background-color: #0073ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLEnroll2Controller">
+<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="743.0" style="-fx-background-color: #0073ff; -fx-min-width: 878; -fx-min-height: 624;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLEnroll2Controller">
    <children>
-      <BorderPane fx:id="bp" prefHeight="514.0" prefWidth="744.0" />
-      <TableView fx:id="tV_EnrollCourse" layoutX="118.0" layoutY="32.0" prefHeight="297.0" prefWidth="507.0">
+      <BorderPane fx:id="bp" prefHeight="624.0" prefWidth="878.0" />
+      <TableView fx:id="tV_EnrollCourse" layoutX="186.0" layoutY="97.0" prefHeight="297.0" prefWidth="507.0">
         <columns>
           <TableColumn fx:id="tC_Course" prefWidth="109.0" text="Curso" />
           <TableColumn fx:id="tC_Schedule1" prefWidth="127.0" text="Horario 1" />
@@ -21,19 +21,24 @@
             <TableColumn fx:id="tC_Career" prefWidth="152.0" text="Carrera" />
         </columns>
       </TableView>
-      <ComboBox fx:id="ComboBox_Course" layoutX="428.0" layoutY="357.0" prefHeight="26.0" prefWidth="182.0" />
-      <Text fx:id="txtMessage" fill="WHITE" layoutX="118.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el curso que desea matricular:" wrappingWidth="310.13671875">
+      <ComboBox fx:id="ComboBox_Course" layoutX="496.0" layoutY="422.0" prefHeight="26.0" prefWidth="182.0" />
+      <Text fx:id="txtMessage" fill="WHITE" layoutX="186.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el curso que desea matricular:" wrappingWidth="310.13671875">
          <font>
             <Font name="Corbel" size="17.0" />
          </font>
       </Text>
-      <Text fx:id="txtMessage2" fill="WHITE" layoutX="118.0" layoutY="436.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite el horario que desea matricular:" wrappingWidth="310.13671875">
+      <Text fx:id="txtMessage2" fill="WHITE" layoutX="186.0" layoutY="501.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite el horario que desea matricular:" wrappingWidth="310.13671875">
          <font>
             <Font name="Corbel" size="17.0" />
          </font>
       </Text>
-      <TextField fx:id="txf_Schedule" layoutX="429.0" layoutY="419.0" prefHeight="26.0" prefWidth="181.0" />
-      <Button fx:id="btn_EnrollCourse" layoutX="228.0" layoutY="466.0" mnemonicParsing="false" onAction="#btn_EnrollCourse" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: white;" text="Matricular Curso" />
-      <Button fx:id="btn_EndEnrollment" layoutX="393.0" layoutY="466.0" mnemonicParsing="false" onAction="#btn_EndEnrollment" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: white;" text="Terminar Matrícula" />
+      <TextField fx:id="txf_Schedule" layoutX="497.0" layoutY="484.0" prefHeight="26.0" prefWidth="181.0" />
+      <Button fx:id="btn_EnrollCourse" layoutX="329.0" layoutY="549.0" mnemonicParsing="false" onAction="#btn_EnrollCourse" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: white;" text="Matricular Curso" />
+      <Button fx:id="btn_EndEnrollment" layoutX="478.0" layoutY="549.0" mnemonicParsing="false" onAction="#btn_EndEnrollment" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: white;" text="Terminar Matrícula" />
+      <Text fx:id="txtMessage1" fill="WHITE" layoutX="210.0" layoutY="52.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Matrícula de Cursos" textAlignment="CENTER" wrappingWidth="458.13671875">
+         <font>
+            <Font name="Corbel" size="26.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

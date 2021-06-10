@@ -7,15 +7,11 @@ package Main;
 
 import domain.CircularLinkedList;
 import domain.ListException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -28,7 +24,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * FXML Controller class
@@ -74,7 +69,7 @@ public class FXMLMenuAdmiController implements Initializable {
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Proyecto");
-        primaryStage.setTitle("Inicio de Sesion");
+        primaryStage.setTitle("Inicio de Sesión");
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();

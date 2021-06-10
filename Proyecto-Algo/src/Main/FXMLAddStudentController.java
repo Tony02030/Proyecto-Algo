@@ -247,16 +247,17 @@ public class FXMLAddStudentController implements Initializable {
         //Cuerpo del mensaje con la información del estudiante
         String result = "\n";
         result += "Bienvenido " + st.getFirstname() + " " + st.getLastname() + "\n";
-        result += "Estos fueron los datos que se ingresaron en la base de datos\n";
+        result += "Estos fueron los datos que se ingresaron en la base de datos:\n";
         result += "Cédula: " + txfID.getText() + "\n";
         result += "Carnet: " + txfStudentID.getText() + "\n";
-        result += "Apelidos " + txfLastname.getText() + "\n";
-        result += "Nombre " + txfName.getText() + "\n";
-        result += "Fecha de Nacimiento " + st.getDateBirth() + "\n";
+        result += "Apelidos: " + txfLastname.getText() + "\n";
+        result += "Nombre: " + txfName.getText() + "\n";
+        result += "Fecha de Nacimiento: " + st.getDateBirth() + "\n";
         result += "Número de teléfono: " + txfPhoneNumber.getText() + "\n";
         result += "Email: " + txfEmail.getText() + "\n";
         result += "Dirección: " + txfAdress.getText() + "\n";
         result += "Carrera elegida: " + temp.getDescription() + "\n";
+        result += "Saludos cordiales.";
 
         return result;
 

@@ -167,9 +167,6 @@ public class FXMLDeEnroll2Controller implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        for (int i = 0; i < getData().size(); i++) {
-//            courses1.add(getData().get(i).get(0));
-//        }
 
     }
 
@@ -218,8 +215,10 @@ public class FXMLDeEnroll2Controller implements Initializable {
 
     }
 
+    //Botón para finalizar el proceso de matrícula
     @FXML
     private void btn_EndDeEnrollment(ActionEvent event) {
+        
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
         alert.setHeaderText("AVISO");
@@ -256,6 +255,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
         }
     }
 
+    //Botón para hacer el proceso de retirar curso
     @FXML
     private void btn_DeEnrollCourse(ActionEvent event) {
 
@@ -271,8 +271,8 @@ public class FXMLDeEnroll2Controller implements Initializable {
         if (result.get() == buttonTypeYes) {
             if (this.ComboBox_Course.getValue() == "") {
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ventana de dialogo");
-                alert.setHeaderText("Informacion");
+                alert.setTitle("Ventana de Diálogo");
+                alert.setHeaderText("Información");
                 alert.setContentText("Debe seleccionar la carrera que desea eliminar");
                 alert.showAndWait();
             } else {
@@ -299,14 +299,15 @@ public class FXMLDeEnroll2Controller implements Initializable {
 
                 if (count > 0) {
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                    alert2.setTitle("Ventana de dialogo");
-                    alert2.setHeaderText("Informacion");
+                    alert2.setTitle("Ventana de Diálogo");
+                    alert2.setHeaderText("Información");
                     alert2.setContentText("Los horarios ya fueron ingresados");
                     alert2.showAndWait();
 
                     display();
 
                 }
+                //Verificaciones
                 if (count == 0) {
                     try {
                         Node aux = enrollment.getNode(1);
@@ -329,7 +330,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
                             enroll = tem;
                         }
 
-                        //Contador
+                       
                     } catch (ListException ex) {
                         Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
                     }

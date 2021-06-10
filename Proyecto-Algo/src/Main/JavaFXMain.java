@@ -24,7 +24,7 @@ public class JavaFXMain extends Application {
 
         Scene scene = new Scene(root);
         primaryStage.setTitle("Proyecto");
-        primaryStage.setTitle("Inicio de Sesion");
+        primaryStage.setTitle("Inicio de Sesión");
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UNDECORATED);
         primaryStage.setResizable(false);

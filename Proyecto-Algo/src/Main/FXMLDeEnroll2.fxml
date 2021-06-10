@@ -10,28 +10,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="743.0" style="-fx-background-color: #0073ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLDeEnroll2Controller">
+<AnchorPane id="AnchorPane" prefHeight="514.0" prefWidth="743.0" style="-fx-background-color: #0073ff; -fx-min-width: 878; -fx-min-height: 624;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLDeEnroll2Controller">
    <children>
-      <BorderPane fx:id="bp" prefHeight="514.0" prefWidth="744.0" visible="false" />
-      <TableView fx:id="tV_DeEnrollCourse" layoutX="109.0" layoutY="14.0" prefHeight="297.0" prefWidth="507.0">
+      <BorderPane fx:id="bp" prefHeight="514.0" prefWidth="69.0" visible="false" />
+      <TableView fx:id="tV_DeEnrollCourse" layoutX="181.0" layoutY="61.0" prefHeight="297.0" prefWidth="507.0">
         <columns>
           <TableColumn fx:id="tC_Course" prefWidth="165.60003662109375" text=" Cursos Matriculados" />
           <TableColumn fx:id="tC_Schedule" prefWidth="175.199951171875" text="Horario " />
             <TableColumn fx:id="tC_Career" prefWidth="168.00006103515625" text="Carrera" />
         </columns>
       </TableView>
-      <ComboBox fx:id="ComboBox_Course" layoutX="381.0" layoutY="322.0" prefHeight="26.0" prefWidth="195.0" />
-      <Text fx:id="txtMessage" fill="WHITE" layoutX="109.0" layoutY="341.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el curso que desea retirar:" wrappingWidth="310.13671875">
+      <ComboBox fx:id="ComboBox_Course" layoutX="453.0" layoutY="369.0" prefHeight="26.0" prefWidth="195.0" />
+      <Text fx:id="txtMessage" fill="WHITE" layoutX="181.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el curso que desea retirar:" wrappingWidth="310.13671875">
          <font>
             <Font name="Corbel" size="17.0" />
          </font>
       </Text>
-      <Button fx:id="btn_EndDeEnrollment" layoutX="363.0" layoutY="474.0" mnemonicParsing="false" onAction="#btn_EndDeEnrollment" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: white;" text="Terminar Retiros" />
-      <Button fx:id="btn_DeEnrollCourse" layoutX="209.0" layoutY="474.0" mnemonicParsing="false" onAction="#btn_DeEnrollCourse" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: white;" text="Retirar Curso" />
-      <TextArea fx:id="textAMotivo" layoutX="372.0" layoutY="366.0" prefHeight="88.0" prefWidth="243.0" />
-      <Text fx:id="txtMessage2" fill="WHITE" layoutX="109.0" layoutY="382.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el motivo del retiro del curso:" wrappingWidth="310.13671875">
+      <Button fx:id="btn_EndDeEnrollment" layoutX="466.0" layoutY="570.0" mnemonicParsing="false" onAction="#btn_EndDeEnrollment" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: white;" text="Terminar Retiros" />
+      <Button fx:id="btn_DeEnrollCourse" layoutX="307.0" layoutY="570.0" mnemonicParsing="false" onAction="#btn_DeEnrollCourse" prefHeight="34.0" prefWidth="110.0" style="-fx-background-color: white;" text="Retirar Curso" />
+      <TextArea fx:id="textAMotivo" layoutX="447.0" layoutY="437.0" prefHeight="97.0" prefWidth="250.0" />
+      <Text fx:id="txtMessage2" fill="WHITE" layoutX="181.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingrese el motivo del retiro del curso:" wrappingWidth="310.13671875">
          <font>
             <Font name="Corbel" size="17.0" />
+         </font>
+      </Text>
+      <Text fx:id="txtMessage1" fill="WHITE" layoutX="279.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Retiro De Curso" textAlignment="CENTER" wrappingWidth="310.13671875">
+         <font>
+            <Font name="Corbel" size="25.0" />
          </font>
       </Text>
    </children>

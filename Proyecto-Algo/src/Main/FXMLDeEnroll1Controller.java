@@ -6,12 +6,9 @@
 package Main;
 
 import domain.CircularDoublyLinkedList;
-import domain.Course;
 import domain.Enrollment;
 import domain.ListException;
 import domain.Node;
-import domain.SingleLinkedList;
-import domain.Student;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,7 +26,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -38,9 +34,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 /**
@@ -88,6 +81,8 @@ public class FXMLDeEnroll1Controller implements Initializable {
     }
 
     public void display() {
+        //Insertar los datos a las TableColumn
+        
         this.students.clear();
         this.tC_ID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
@@ -139,13 +134,13 @@ public class FXMLDeEnroll1Controller implements Initializable {
         this.ComboBox_StudentID.setItems(students);
     }
 
+    //ObservableList para poder insertar los datos del estudiante a la TableView
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;
 
         try {
             aux = enrollment.getNode(1);
-            //Node last = courses.getNode(courses.size());
             while (aux != enrollment.getNodeLast()) {
                 List<String> array = new ArrayList<>();
 
@@ -179,6 +174,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
 
     @FXML
     private void btn_StartEnrollment(ActionEvent event) {
+        //Retiro de curso
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
         alert.setHeaderText("AVISO");

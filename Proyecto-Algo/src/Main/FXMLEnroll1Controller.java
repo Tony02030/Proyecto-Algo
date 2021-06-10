@@ -5,7 +5,6 @@
  */
 package Main;
 
-import domain.Course;
 import domain.ListException;
 import domain.Node;
 import domain.SingleLinkedList;
@@ -27,7 +26,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -36,9 +34,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
 /**
@@ -85,6 +80,7 @@ public class FXMLEnroll1Controller implements Initializable {
         btn_StartEnrollment.setVisible(true);
     }
 
+    //Inserta los datos del estudiante a las TableColumn
     public void display() {
         this.students.clear();
         this.tC_ID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
@@ -133,6 +129,7 @@ public class FXMLEnroll1Controller implements Initializable {
         this.ComboBox_StudentID.setItems(students);
     }
 
+    //ObservableList para ingresar los datos del Estudiante a la TableView
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;
@@ -161,6 +158,7 @@ public class FXMLEnroll1Controller implements Initializable {
         return data;
     }
 
+    //Inicio de la matrícula con el estudiante elegido
     @FXML
     private void btn_StartEnrollment(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -177,7 +175,6 @@ public class FXMLEnroll1Controller implements Initializable {
 
             try {
                 aux = student.getNode(1);
-                //Node last = courses.getNode(courses.size());
                 while (aux != null) {
 
                     Student temp = (Student) aux.data;
@@ -192,30 +189,13 @@ public class FXMLEnroll1Controller implements Initializable {
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            txtMessage.setVisible(false);
+            txtMessage.setVisible(false);         
             tV_Student.setVisible(false);
             txtMessage2.setVisible(false);
             ComboBox_StudentID.setVisible(false);
             btn_StartEnrollment.setVisible(false);
             loadPage("FXMLEnroll2");
 
-//                    FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLEnroll2.fxml"));
-//
-//                    Parent root = loader.load();
-//
-//                    FXMLMenuController controlador = loader.getController();
-//
-//                    Scene scene = new Scene(root);
-//                    Stage stage = new Stage();
-//                    stage.initModality(Modality.APPLICATION_MODAL);
-//                    stage.setScene(scene);
-//                    stage.showAndWait();
-//                Stage stage = new Stage();
-//                Parent root = FXMLLoader.load(getClass().getResource("FXMLEnroll2.fxml"));
-//                Scene scene = new Scene(root);
-//                stage = new Stage(StageStyle.DECORATED);
-//                stage.setScene(scene);
-//                stage.show();
         } else {
             display();
         }
