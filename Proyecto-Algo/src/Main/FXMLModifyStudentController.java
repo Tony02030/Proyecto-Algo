@@ -5,7 +5,6 @@
  */
 package Main;
 
-import domain.Career;
 import domain.DoublyLinkedList;
 import domain.ListException;
 import domain.Node;
@@ -18,16 +17,11 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -40,7 +34,7 @@ import javafx.scene.text.Text;
 public class FXMLModifyStudentController implements Initializable {
 
     private SingleLinkedList student = util.Utility.getStudents();
-    private DoublyLinkedList career = util.Utility.getCareers();
+  
     @FXML
     private TextField txfID;
     @FXML
@@ -93,6 +87,9 @@ public class FXMLModifyStudentController implements Initializable {
 
     @FXML
     private void btnSearchS(ActionEvent event) {
+        
+        //Busca el estudiante en la lista
+        
         int temp = Integer.parseInt(txfID.getText());
         try {
             if (student.contains1(temp)) {
@@ -150,6 +147,8 @@ public class FXMLModifyStudentController implements Initializable {
 
     @FXML
     private void btnModifyS(ActionEvent event) {
+        
+        //Se realiza el cambio de datos correspondiente
 
         try {
 
@@ -174,7 +173,7 @@ public class FXMLModifyStudentController implements Initializable {
                     temp.setAddress(txfAdress.getText());
 
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
+                    alert.setTitle("Ventana de Diálogo");
                     alert.setHeaderText("Información");
                     alert.setContentText("Estudiante modificado correctamente");
                     alert.showAndWait();

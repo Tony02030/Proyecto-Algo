@@ -9,8 +9,6 @@ import domain.ListException;
 import domain.SingleLinkedList;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -59,6 +57,7 @@ public class FXMLRemoveStudentController implements Initializable {
 
     @FXML
     private void btnRemove(ActionEvent event) throws ListException {
+        //Removemos el estudiante buscado de la lista
          int temp = Integer.parseInt(txfID.getText());
         if (Student.contains(temp)) {
             Student.remove(temp);

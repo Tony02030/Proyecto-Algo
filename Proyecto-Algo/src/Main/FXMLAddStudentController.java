@@ -12,9 +12,7 @@ import domain.Node;
 import domain.SingleLinkedList;
 import domain.Student;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -23,8 +21,6 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -34,9 +30,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javax.activation.DataHandler;
@@ -52,7 +45,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -66,7 +58,6 @@ public class FXMLAddStudentController implements Initializable {
     private Career temp;
     private Student st;
 
-    
     @FXML
     private Text txtMessage1;
     @FXML
@@ -86,7 +77,6 @@ public class FXMLAddStudentController implements Initializable {
     @FXML
     private Text txtMessage9;
 
-    
     @FXML
     private TextField txfID;
     @FXML
@@ -137,6 +127,8 @@ public class FXMLAddStudentController implements Initializable {
 
     @FXML
     private void btnAddS(ActionEvent event) throws ListException, FileNotFoundException, IOException {
+
+        //Se agregan los estudiantes a la lista
         if (!Student.contains1(Integer.parseInt(txfID.getText()))) {
             int id = 0;
             ZoneId defaultZoneId = ZoneId.systemDefault();
@@ -159,19 +151,20 @@ public class FXMLAddStudentController implements Initializable {
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             Student.add(st = new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp, 0));
 
-             //Contador
+            //Contador para archivos
             int i = 0;
             util.Utility.setStudentCounter(i++);
             
+            //Claves para enviar correos por "gmail" al estudiante
             Properties propiedad = new Properties();
             propiedad.put("mail smtp host", "smtp gmail com");
             propiedad.put("mail smtp port", "587");
-             propiedad.put("mail.smtp.auth", "true");
+            propiedad.put("mail.smtp.auth", "true");
             propiedad.put("mail.smtp.starttls.enable", "true");
-            propiedad.put("mail.smtp.user","anthony.rs02@gmail.com");
+            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
             propiedad.put("mail.smtp.clave", "");
 
             Session sesion = Session.getDefaultInstance(propiedad);
@@ -183,33 +176,33 @@ public class FXMLAddStudentController implements Initializable {
             MimeMessage mail = new MimeMessage(sesion);
 
             try {
-//                mail.setFrom(new InternetAddress(correoEnvia));
+                
+                //Creación del cuerpo y asunto del correo
+                
                 mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
 
                 mail.setSubject(asunto());
                 Multipart multipart = new MimeMultipart();
-                
+
                 MimeBodyPart message1 = new MimeBodyPart();
                 String htmlText = "<img src=\"cid:image\">";
                 message1.setContent(htmlText, "text/html");
-                
-                
+
                 MimeBodyPart message2 = new MimeBodyPart();
                 DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
                 message2.setDataHandler(new DataHandler(source));
                 message2.setHeader("Content-ID", "<image>");
-//                message1.setFileName(source.getName());
 
 
                 MimeBodyPart message3 = new MimeBodyPart();
                 message3.setText(mensaje());
-                
+
                 multipart.addBodyPart(message1);
                 multipart.addBodyPart(message2);
                 multipart.addBodyPart(message3);
                 mail.setContent(multipart);
                 Transport transporte = sesion.getTransport("smtp");
-                transporte.connect("smtp.gmail.com",correoEnvia, contraseña);
+                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
                 transporte.sendMessage(mail, mail.getAllRecipients());
                 transporte.close();
 
@@ -232,37 +225,38 @@ public class FXMLAddStudentController implements Initializable {
             txfEmail.setText("");
             txfAdress.setText("");
 
-           
-
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
-            alert.setContentText("Ya existe ese estudiante");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("Este estudiante ya se encuentra en la Lista");
             alert.showAndWait();
         }
 
     }
 
     public String asunto() {
+        //Asunto del correo enviado
+        
         String result = "Aceptación en la Universidad de Costa Rica";
         return result;
 
     }
 
     public String mensaje() {
-        String result="\n";
-        result += "Bienvenido " + st.getFirstname() + " " + st.getLastname()+"\n";
+        //Cuerpo del mensaje con la información del estudiante
+        String result = "\n";
+        result += "Bienvenido " + st.getFirstname() + " " + st.getLastname() + "\n";
         result += "Estos fueron los datos que se ingresaron en la base de datos\n";
-        result += "Cédula: " + txfID.getText()+"\n";
-        result += "Carnet: " + txfStudentID.getText()+"\n";
-        result += "Apelidos " + txfLastname.getText()+"\n";
-        result += "Nombre " + txfName.getText()+"\n";
-        result += "Fecha de Nacimiento " + st.getDateBirth()+"\n";
-        result += "Número de teléfono: " + txfPhoneNumber.getText()+"\n";
-        result += "Email: " + txfEmail.getText()+"\n";
-        result += "Dirección: " + txfAdress.getText()+"\n";
-        result += "Carrera elegida: " + temp.getDescription()+"\n";
+        result += "Cédula: " + txfID.getText() + "\n";
+        result += "Carnet: " + txfStudentID.getText() + "\n";
+        result += "Apelidos " + txfLastname.getText() + "\n";
+        result += "Nombre " + txfName.getText() + "\n";
+        result += "Fecha de Nacimiento " + st.getDateBirth() + "\n";
+        result += "Número de teléfono: " + txfPhoneNumber.getText() + "\n";
+        result += "Email: " + txfEmail.getText() + "\n";
+        result += "Dirección: " + txfAdress.getText() + "\n";
+        result += "Carrera elegida: " + temp.getDescription() + "\n";
 
         return result;
 

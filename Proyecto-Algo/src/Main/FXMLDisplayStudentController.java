@@ -5,14 +5,12 @@
  */
 package Main;
 
-import domain.Career;
 import domain.ListException;
 import domain.Node;
 import domain.SingleLinkedList;
 import domain.Student;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -26,7 +24,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 /**
@@ -64,9 +61,7 @@ public class FXMLDisplayStudentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-//        Node aux;
-//        t
+       //Le asigna los datos a las Table Column
         this.tC_ID.setCellValueFactory(new Callback<CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(CellDataFeatures<List<String>, String> data) {
@@ -125,6 +120,7 @@ public class FXMLDisplayStudentController implements Initializable {
 
     }
 
+    //ObservableList para ingresar los datos a la TableView
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;

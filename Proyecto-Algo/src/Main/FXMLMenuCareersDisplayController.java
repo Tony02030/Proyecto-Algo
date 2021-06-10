@@ -41,6 +41,7 @@ public class FXMLMenuCareersDisplayController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Se ponen las carreras agregadas en la lista a la tabla
             Node aux;
         try {
             aux = carrer.getNode(1);

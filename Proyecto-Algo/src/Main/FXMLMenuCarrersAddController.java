@@ -9,24 +9,15 @@ import domain.Career;
 import domain.DoublyLinkedList;
 import domain.ListException;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -54,12 +45,14 @@ public class FXMLMenuCarrersAddController implements Initializable {
 
     @FXML
     private void btnAdd(ActionEvent event) throws ListException, FileNotFoundException, IOException {
+        //Agregar carrera a la lista
+        
         if(!career.contains1(this.textFieldCareer.getText())){
             career.add(new Career(this.textFieldCareer.getText()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de dialogo");
-        alert.setHeaderText("Informacion");
-        alert.setContentText("Se agregó la carrera");
+        alert.setTitle("Ventana de Diálogo");
+        alert.setHeaderText("Información");
+        alert.setContentText("Se agregó la carrera correctamente");
         alert.showAndWait();
         this.textFieldCareer.setText("");
         
@@ -69,9 +62,9 @@ public class FXMLMenuCarrersAddController implements Initializable {
             
         }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de dialogo");
-        alert.setHeaderText("Informacion");
-        alert.setContentText("Ya existe esa carrera");
+        alert.setTitle("Ventana de Diálogo");
+        alert.setHeaderText("Información");
+        alert.setContentText("Ya existe esta carrera en la Lista");
         alert.showAndWait();
         }
        

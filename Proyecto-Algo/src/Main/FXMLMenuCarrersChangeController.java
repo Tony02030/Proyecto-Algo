@@ -27,7 +27,7 @@ import javafx.scene.text.Text;
  * @author User
  */
 public class FXMLMenuCarrersChangeController implements Initializable {
-    
+
     private DoublyLinkedList carrer = util.Utility.getCareers();
     private String careerName;
     @FXML
@@ -50,38 +50,39 @@ public class FXMLMenuCarrersChangeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        util.Utility.letterOnly(txtFieldSearch);
     }
-    
+
     @FXML
     private void btnBuscar(ActionEvent event) throws ListException {
 
         //Buscamos en la lista si contiene la carrera buscada por el usuario
         if (carrer.contains1(this.txtFieldSearch.getText())) {
-            
+
             careerName = this.txtFieldSearch.getText();
             this.txtTitle1.setVisible(false);
             this.txtFieldSearch.setVisible(false);
             this.btnBuscar.setVisible(false);
-            
+
             this.txtFieldSearch.setText("");
             this.txtTitle2.setVisible(true);
             this.txtFieldChangeName.setVisible(true);
             this.btnCambiar.setVisible(true);
             txtError.setVisible(false);
-            
+
         } else {
             this.txtError.setVisible(true);
         }
-        
+
     }
-    
+
     @FXML
     private void btnCambiar(ActionEvent event) {
-        
+
+        //Se le cambia el nombre a la carrera elegida
         try {
             Node aux = carrer.getNode(1);
-            
+
             int count = 0;
             while (aux != null) {
                 if (util.Utility.equals(aux.data, careerName)) {
@@ -113,12 +114,11 @@ public class FXMLMenuCarrersChangeController implements Initializable {
             this.txtFieldChangeName.setVisible(false);
             this.txtFieldChangeName.setText("");
             this.btnCambiar.setVisible(false);
-            
-            
+
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }
