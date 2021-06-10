@@ -121,7 +121,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
             while (aux != enrollment.getNodeLast()) {
 
                 Enrollment temp = (Enrollment) aux.data;
-                if (util.Utility.exist(temp.getIdEnroll())) {
+                if (temp.getIdEnroll()==0) {
                     students.add(String.valueOf(temp.getId()));
                 }
 
@@ -129,7 +129,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
 
             }
             Enrollment temp = (Enrollment) aux.data;
-            if (util.Utility.exist(temp.getIdEnroll())) {
+            if (temp.getIdEnroll()==0) {
                 students.add(String.valueOf(temp.getId()));
             }
 
@@ -197,7 +197,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
                 while (aux != enrollment.getNodeLast()) {
 
                     Enrollment temp = (Enrollment) aux.data;
-                    if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && !util.Utility.exist(temp.getIdEnroll())) {
+                    if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && temp.getIdEnroll()==0) {
                         util.Utility.setTemporal(temp.getStudentID());
                     }
 
@@ -205,7 +205,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
 
                 }
                 Enrollment temp = (Enrollment) aux.data;
-                if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && !util.Utility.exist(temp.getIdEnroll())) {
+                if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && temp.getIdEnroll()==0) {
                     util.Utility.setTemporal(temp.getStudentID());
                 }
 

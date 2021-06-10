@@ -252,7 +252,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            loadPage("FXMLEnroll1");
+            loadPage("FXMLDeEnroll1");
         }
     }
 
@@ -276,43 +276,92 @@ public class FXMLDeEnroll2Controller implements Initializable {
                 alert.setContentText("Debe seleccionar la carrera que desea eliminar");
                 alert.showAndWait();
             } else {
+                int count = 0;
                 try {
-                    Node aux = enrollment.getNode(1);
+                    Node aux = schedules.getNode(1);
 
-                    while (aux != enrollment.getNodeLast()) {
+                    while (aux != null) {
 
+                        TimeTable tem = (TimeTable) aux.data;
+                        if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
+                            if (!tem.getSchedule1().equals(this.txf_Schedule.getText()) && !tem.getSchedule2().equals(this.txf_Schedule.getText())) {
+                                count++;
+                            }
+                        }
+
+                        aux = aux.next;
+
+                    }
+
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                if (count > 0) {
+                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
+                    alert2.setTitle("Ventana de dialogo");
+                    alert2.setHeaderText("Informacion");
+                    alert2.setContentText("Los horarios ya fueron ingresados");
+                    alert2.showAndWait();
+
+                    display();
+
+                }
+                if (count == 0) {
+                    try {
+                        Node aux = enrollment.getNode(1);
+
+                        while (aux != enrollment.getNodeLast()) {
+
+                            Enrollment tem = (Enrollment) aux.data;
+                            if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
+
+                                temp = tem.getCourseID();
+                                enroll = tem;
+                            }
+
+                            aux = aux.next;
+
+                        }
                         Enrollment tem = (Enrollment) aux.data;
                         if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
                             temp = tem.getCourseID();
                             enroll = tem;
                         }
 
-                        aux = aux.next;
+                        //Contador
+                    } catch (ListException ex) {
+                        Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    try {
+                        Node aux1 = schedules.getNode(1);
 
+                        while (aux1 != null) {
+
+                            TimeTable te = (TimeTable) aux1.data;
+                            if (util.Utility.equals(this.ComboBox_Course.getValue(), te.getCourseID().getName())) {
+                                te.setIdEnrollment(1);
+
+                            }
+
+                            aux1 = aux1.next;
+
+                        }
+
+                    } catch (ListException ex) {
+                        Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    Enrollment tem = (Enrollment) aux.data;
-                    if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-                        temp = tem.getCourseID();
-                        enroll = tem;
-                    }
+                    enroll.setIdEnroll(1);
+                    this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp, enroll.getSchedule(), textAMotivo.getText()));
+                    display();
+                    this.ComboBox_Course.setValue("");
+                    this.textAMotivo.setText("");
 
                     //Contador
-                    int contador = 0;
-                    util.Utility.setDeEnrollmentCounter(contador++);
-
-                } catch (ListException ex) {
-                    Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                    int i = 0;
+                    util.Utility.setDeEnrollmentCounter(i++);
                 }
 
-                enroll.setIdEnroll(1);
-                this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp, enroll.getSchedule(), textAMotivo.getText()));
-                display();
-                this.ComboBox_Course.setValue("");
-                this.textAMotivo.setText("");
-
-                //Contador
-                int i = 0;
-                util.Utility.setDeEnrollmentCounter(i++);
             }
 
         } else {

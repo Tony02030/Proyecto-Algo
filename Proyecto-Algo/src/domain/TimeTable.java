@@ -5,11 +5,13 @@
  */
 package domain;
 
+import java.io.Serializable;
+
 /**
  *
  * @author User
  */
-public class TimeTable {
+public class TimeTable implements Serializable{
    private Course courseID;
    private String period;
    private String schedule1;

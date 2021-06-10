@@ -61,7 +61,6 @@ public class FXMLMenuController implements Initializable {
 //    int i = 0;
 //
 //    util.Utility.setSecurityCounter(i++);
-
     @FXML
     private BorderPane bp;
     @FXML
@@ -270,6 +269,7 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void retiroCurso(ActionEvent event) {
+        loadPage("FXMLDeEnroll1");
     }
 
     @FXML
@@ -376,6 +376,25 @@ public class FXMLMenuController implements Initializable {
     private void Exit(ActionEvent event) throws IOException, ClassNotFoundException, ListException {
         System.exit(0);
 
+        //Archivo Carreras
+        FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
+        ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
+
+        Node auxCareer = career.getNode(1);
+
+        while (auxCareer != null) {
+            Career careerW = (Career) auxCareer.data;
+            oosCareer.writeObject(careerW);
+            auxCareer = auxCareer.next;
+        }
+
+        //Leer Archivo de Carrera
+        FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
+        ObjectInputStream oisCareer = new ObjectInputStream(fisCareer);
+        for (int i = 0; i < util.Utility.getCareersCounter(); i++) {
+            Career careerR = (Career) oisCareer.readObject();
+            career.add(careerR);
+        }
         //Escribe los estudiantes en el archivo txt
         FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");
         ObjectOutputStream oosStudent = new ObjectOutputStream(fosStudent);
@@ -415,7 +434,6 @@ public class FXMLMenuController implements Initializable {
 //        oosSecurity.writeObject(securityW);
 //
 //        //Leer Archivo seguridad
-        
 //          FileInputStream fisSecurity = new FileInputStream("SecurityReport.txt");
 //        ObjectInputStream oisSecurity = new ObjectInputStream(fisSecurity);
 //        
@@ -424,30 +442,6 @@ public class FXMLMenuController implements Initializable {
 //            this.security.add(securityR);
 //
 //        }
-        
-        
-        //Archivo Carreras
-        FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
-        ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
-
-        Node auxCareer = career.getNode(1);
-
-        while (auxCareer != null) {
-            Career careerW = (Career) auxCareer.data;
-            oosCareer.writeObject(careerW);
-            auxCareer = auxCareer.next;
-        }
-
-        //Leer Archivo de Carrera
-        
-          FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
-        ObjectInputStream oisCareer = new ObjectInputStream(fisCareer);
-        for (int i = 0; i < util.Utility.getCareersCounter(); i++) {
-            Career careerR = (Career) oisCareer.readObject();
-            career.add(careerR);
-        }
-        
-        
         // Escribir Archivo Curso
         FileOutputStream fosCourse = new FileOutputStream("CourseReport.txt");
         ObjectOutputStream oosCourse = new ObjectOutputStream(fosCourse);
@@ -461,18 +455,16 @@ public class FXMLMenuController implements Initializable {
         }
         Course courseW = (Course) auxCourse.data;
         oosCourse.writeObject(courseW);
-        
+
         //Leer Archivo de Cursos
-        
-          FileInputStream fisCourse = new FileInputStream("CourseReport.txt");
+        FileInputStream fisCourse = new FileInputStream("CourseReport.txt");
         ObjectInputStream oisCourse = new ObjectInputStream(fisCourse);
-        
+
         for (int i = 0; i < util.Utility.getCoursesCounter(); i++) {
             Course courseR = (Course) oisCourse.readObject();
             course.add(courseR);
         }
-        
-        
+
         //Escribir Archivo de Horarios
         FileOutputStream fosSchedule = new FileOutputStream("SchedulesReport.txt");
         ObjectOutputStream oosSchedule = new ObjectOutputStream(fosSchedule);
@@ -480,21 +472,20 @@ public class FXMLMenuController implements Initializable {
         Node auxSchedule = schedule.getNode(1);
 
         while (auxSchedule != null) {
-            TimeTable timeTableW = (TimeTable) auxSchedule.data; 
+            TimeTable timeTableW = (TimeTable) auxSchedule.data;
             oosSchedule.writeObject(timeTableW);
             auxSchedule = auxSchedule.next;
         }
 
         //Leer Archivo de Horarios
-         FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
+        FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
         ObjectInputStream oisSchedule = new ObjectInputStream(fisSchedule);
-        
+
         for (int i = 0; i < util.Utility.getSchedulesCounter(); i++) {
             TimeTable timeTableR = (TimeTable) oisSchedule.readObject();
             schedule.add(timeTableR);
         }
-        
-        
+
         //Escribir Archivo Enrollment
         FileOutputStream fosEnrollment = new FileOutputStream("EnrollmentReport.txt");
         ObjectOutputStream oosEnrollment = new ObjectOutputStream(fosEnrollment);
@@ -510,17 +501,15 @@ public class FXMLMenuController implements Initializable {
         oosEnrollment.writeObject(enrollmentW);
 
         //Leer Archivo Enrollment
-        
-         FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
+        FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
         ObjectInputStream oisEnrollment = new ObjectInputStream(fisEnrollment);
-        
+
         for (int i = 0; i < util.Utility.getEnrollmentCounter(); i++) {
             Enrollment enrollmentR = (Enrollment) oisEnrollment.readObject();
             enrollment.add(enrollmentR);
         }
-        
+
         //Escribir Archivo deEnrollment
-        
         FileOutputStream fosDeEnrollment = new FileOutputStream("deEnrollmentReport.txt");
         ObjectOutputStream oosDeEnrollment = new ObjectOutputStream(fosDeEnrollment);
 
@@ -529,16 +518,16 @@ public class FXMLMenuController implements Initializable {
         while (auxDeEnrollment != deEnrollment.getNodeLast()) {  //getNodeLast()
             DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
             oosDeEnrollment.writeObject(deEnrollmentW);
-            
+
             auxDeEnrollment = auxDeEnrollment.next;
         }
         DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
         oosDeEnrollment.writeObject(deEnrollmentW);
-        
+
         //Leer Archivo deEnrollment
-         FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
+        FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
         ObjectInputStream oisDeEnrollment = new ObjectInputStream(fisDeEnrollment);
-        
+
         for (int i = 0; i < util.Utility.getDeEnrollmentCounter(); i++) {
             DeEnrollment DeEnrollmentR = (DeEnrollment) oisDeEnrollment.readObject();
             enrollment.add(DeEnrollmentR);
@@ -622,7 +611,7 @@ public class FXMLMenuController implements Initializable {
         PdfWriter.getInstance(docu, archivo);
         docu.open();
 
-        Paragraph title = new Paragraph("Lista de estudiantes", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
+        Paragraph title = new Paragraph("Lista de estudiantes\n\n", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
 
         title.setAlignment(Paragraph.ALIGN_CENTER);
 
@@ -664,7 +653,7 @@ public class FXMLMenuController implements Initializable {
         PdfWriter.getInstance(docu, archivo);
         docu.open();
 
-        Paragraph title = new Paragraph("Lista de Cursos", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
+        Paragraph title = new Paragraph("Lista de Cursos\n\n", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
         title.setAlignment(Paragraph.ALIGN_CENTER);
 
         Image img = Image.getInstance("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
@@ -699,7 +688,6 @@ public class FXMLMenuController implements Initializable {
         table.addCell(String.valueOf(temp.getCredits()));
         table.addCell(temp.getCareerID().getDescription());
         docu.add(table);
-        docu.add(table);
 
         docu.close();
 
@@ -713,7 +701,7 @@ public class FXMLMenuController implements Initializable {
         PdfWriter.getInstance(docu, archivo);
         docu.open();
 
-        Paragraph title = new Paragraph("Lista de Matriculados", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
+        Paragraph title = new Paragraph("Lista de Matriculados\n\n", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
         title.setAlignment(Paragraph.ALIGN_CENTER);
 
         Image img = Image.getInstance("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
@@ -734,6 +722,7 @@ public class FXMLMenuController implements Initializable {
             if (enrollment.contains1(temp.getId())) {
                 Paragraph estudiante = new Paragraph(temp.getFirstname() + " " + temp.getLastname() + "\n\n", FontFactory.getFont("arial", 18, Font.NORMAL, BaseColor.BLACK));
                 estudiante.setAlignment(Paragraph.ALIGN_CENTER);
+                docu.add(estudiante);
 
                 PdfPTable table1 = new PdfPTable(3);
                 table1.addCell("Cursos");
@@ -779,7 +768,7 @@ public class FXMLMenuController implements Initializable {
         PdfWriter.getInstance(docu, archivo);
         docu.open();
 
-        Paragraph title = new Paragraph("Lista de estudiantes con cursos matriculados", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
+        Paragraph title = new Paragraph("Lista de estudiantes con cursos matriculados\n\n", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
         title.setAlignment(Paragraph.ALIGN_CENTER);
 
         Image img = Image.getInstance("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
@@ -799,6 +788,8 @@ public class FXMLMenuController implements Initializable {
             Student temp = (Student) aux.data;
             if (deEnrollment.contains1(temp.getId())) {
                 Paragraph estudiante = new Paragraph(temp.getFirstname() + " " + temp.getLastname() + "\n\n", FontFactory.getFont("arial", 18, Font.NORMAL, BaseColor.BLACK));
+                 estudiante.setAlignment(Paragraph.ALIGN_CENTER);
+                docu.add(estudiante);
                 estudiante.setAlignment(Paragraph.ALIGN_CENTER);
 
                 PdfPTable table1 = new PdfPTable(3);
@@ -818,7 +809,7 @@ public class FXMLMenuController implements Initializable {
                 }
                 DeEnrollment tem = (DeEnrollment) enr1.data;
                 if (util.Utility.equals(tem.getStudentID().getId(), temp.getId())) {
-
+                    
                     table1.addCell(tem.getCourseID().getName());
                     table1.addCell(tem.getSchedule());
                     table1.addCell(tem.getStudentID().getCareerID().getDescription());

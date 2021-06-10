@@ -129,7 +129,7 @@ public class FXMLEnroll2Controller implements Initializable {
 
     public void display() {
         courses1.clear();
-        this.ComboBox_Course.setItems(courses1);
+
         addTextLimiter(txf_Schedule, 17);
         tV_EnrollCourse.setVisible(true);
         txtMessage.setVisible(true);
@@ -170,8 +170,8 @@ public class FXMLEnroll2Controller implements Initializable {
             while (aux != null) {
 
                 TimeTable temp = (TimeTable) aux.data;
-                if (!util.Utility.exist(temp.getIdEnrollment())) {
-                    courses1.add(String.valueOf(temp.getCourseID().getName()));
+                if (!util.Utility.exist(temp.getIdEnrollment()) && util.Utility.equals(temp.getCourseID().getCareerID().getDescription(), student.getCareerID().getDescription())) {
+                    courses1.add(temp.getCourseID().getName());
                 }
 
                 aux = aux.next;
@@ -181,6 +181,7 @@ public class FXMLEnroll2Controller implements Initializable {
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        this.ComboBox_Course.setItems(courses1);
 //        for (int i = 0; i < getData().size(); i++) {
 //            courses1.add(getData().get(i).get(0));
 //        }
@@ -219,8 +220,6 @@ public class FXMLEnroll2Controller implements Initializable {
     @FXML
     private void btn_EnrollCourse(ActionEvent event) throws FileNotFoundException, IOException {
 
-        int count = 0;
-        int count1 = 0;
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
         alert.setHeaderText("AVISO");
@@ -233,12 +232,15 @@ public class FXMLEnroll2Controller implements Initializable {
         if (result.get() == buttonTypeYes) {
             if (this.txf_Schedule.getText().length() < 17 || this.ComboBox_Course.getValue() == "") {
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Ventana de dialogo");
-                alert.setHeaderText("Informacion");
-                alert.setContentText("Los horarios que ingresó no son validos");
-                alert.showAndWait();
+                alert1.setTitle("Ventana de dialogo");
+                alert1.setHeaderText("Informacion");
+                alert1.setContentText("Los horarios que ingresó no son validos1");
+                alert1.showAndWait();
                 display();
             } else {
+                int count = 0;
+                int count1 = 0;
+                int count2=0;
                 try {
                     Node aux = schedules.getNode(1);
 
@@ -246,8 +248,9 @@ public class FXMLEnroll2Controller implements Initializable {
 
                         TimeTable tem = (TimeTable) aux.data;
                         if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-                            tem.setIdEnrollment(1);
-                            temp = tem.getCourseID();
+                            if (!tem.getSchedule1().equals(this.txf_Schedule.getText()) && !tem.getSchedule2().equals(this.txf_Schedule.getText())) {
+                                count2++;
+                            }
                         }
 
                         aux = aux.next;
@@ -257,6 +260,7 @@ public class FXMLEnroll2Controller implements Initializable {
                 } catch (ListException ex) {
                     Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
                 String temp1 = this.txf_Schedule.getText();
                 String temp3 = temp1.toUpperCase();
 
@@ -289,8 +293,8 @@ public class FXMLEnroll2Controller implements Initializable {
                         while (aux != null) {
 
                             TimeTable tempo = (TimeTable) aux.data;
-                            if (!util.Utility.equals(tempo, this.ComboBox_Course.getValue()) && !util.Utility.equals(tempo.getSchedule1(), this.txf_Schedule) && !util.Utility.equals(tempo.getSchedule2(), this.txf_Schedule)) {
-                                count++;
+                            if (!util.Utility.equals(tempo.getCourseID().getName(), this.ComboBox_Course.getValue()) && !util.Utility.equals(tempo.getSchedule1(), this.txf_Schedule) && !util.Utility.equals(tempo.getSchedule2(), this.txf_Schedule)) {
+                                count1++;
                             }
 
                             aux = aux.next;
@@ -309,14 +313,15 @@ public class FXMLEnroll2Controller implements Initializable {
                         while (aux != enrollment.getNodeLast()) {
 
                             Enrollment tempor = (Enrollment) aux.data;
-                            if (this.student.getId() == tempor.getId() && util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
+                            if (this.student.getId() != tempor.getId() || !util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
                                 count1++;
 
                             }
 
                             aux = aux.next;
                         }
-                        if (util.Utility.equals(aux.data, this.txf_Schedule.getText())) {
+                        Enrollment tempor = (Enrollment) aux.data;
+                        if (this.student.getId() != tempor.getId() || !util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
                             count1++;
 
                         }
@@ -361,7 +366,7 @@ public class FXMLEnroll2Controller implements Initializable {
                             if (tempo1.getStudentID().getId() == student.getId()) {
                                 if (((oo >= o && oo <= p) || (pp >= o && pp <= p))) {
                                     if (day == day3 || day01 == day03) {
-                                        count++;
+                                        count1++;
 
                                     }
                                 }
@@ -374,33 +379,65 @@ public class FXMLEnroll2Controller implements Initializable {
                         Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                if (count1 == 1) {
+                if (count1> 0) {
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Informacion");
-                    alert.setContentText("Los horarios ya fueron ingresados");
-                    alert.showAndWait();
+                    alert2.setTitle("Ventana de dialogo");
+                    alert2.setHeaderText("Informacion");
+                    alert2.setContentText("Los horarios ya fueron ingresados");
+                    alert2.showAndWait();
+
                     display();
 
-                } else if (count == 1) {
+                } else if (count > 0) {
                     Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Informacion");
-                    alert.setContentText("Los horarios que ingresó no son validos");
-                    alert.showAndWait();
+                    alert3.setTitle("Ventana de dialogo");
+                    alert3.setHeaderText("Informacion");
+                    alert3.setContentText("Los horarios que ingresó no son validos2");
+                    alert3.showAndWait();
+
                     display();
 
-                } else {
-                    this.student.setIdEnrollment(1);
+                }else if (count2 > 0) {
+                    Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
+                    alert3.setTitle("Ventana de dialogo");
+                    alert3.setHeaderText("Informacion");
+                    alert3.setContentText("Debe ingresar el mismo horario del curso que eligió");
+                    alert3.showAndWait();
+
+                    display();
+
+                }
+                if (count == 0 && count1 == 0 && count2==0) {
+                    try {
+                        Node aux = schedules.getNode(1);
+
+                        while (aux != null) {
+
+                            TimeTable te = (TimeTable) aux.data;
+                            if (util.Utility.equals(this.ComboBox_Course.getValue(), te.getCourseID().getName())) {
+                                te.setIdEnrollment(1);
+                                temp = te.getCourseID();
+                            }
+
+                            aux = aux.next;
+
+                        }
+
+                    } catch (ListException ex) {
+                        Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(), 0));
                     display();
                     this.ComboBox_Course.setValue("");
                     this.txf_Schedule.setText("");
+                    //Contador
+                    int i = 0;
+                    util.Utility.setEnrollmentCounter(i++);
                 }
+                count = 0;
+                count1 = 0;
+                count2=0;
 
-                //Contador
-                int i = 0;
-                util.Utility.setEnrollmentCounter(i++);
             }
 
         } else {
@@ -422,57 +459,59 @@ public class FXMLEnroll2Controller implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
-            Properties propiedad = new Properties();
-            propiedad.put("mail smtp host", "smtp gmail com");
-            propiedad.put("mail smtp port", "587");
-            propiedad.put("mail.smtp.auth", "true");
-            propiedad.put("mail.smtp.starttls.enable", "true");
-            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
-            propiedad.put("mail.smtp.clave", "");
+//            Properties propiedad = new Properties();
+//            propiedad.put("mail smtp host", "smtp gmail com");
+//            propiedad.put("mail smtp port", "587");
+//            propiedad.put("mail.smtp.auth", "true");
+//            propiedad.put("mail.smtp.starttls.enable", "true");
+//            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
+//            propiedad.put("mail.smtp.clave", "");
+//
+//            Session sesion = Session.getDefaultInstance(propiedad);
+//
+//            String correoEnvia = "anthony.rs02@gmail.com";
+//            String contraseña = "18702NACE";
+//            String destinatario = this.student.getEmail();
+//
+//            MimeMessage mail = new MimeMessage(sesion);
+//
+//            try {
+////                mail.setFrom(new InternetAddress(correoEnvia));
+//                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+//
+//                mail.setSubject(asunto());
+//                Multipart multipart = new MimeMultipart();
+//
+//                MimeBodyPart message1 = new MimeBodyPart();
+//                String htmlText = "<img src=\"cid:image\">";
+//                message1.setContent(htmlText, "text/html");
+//
+//                MimeBodyPart message2 = new MimeBodyPart();
+//                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
+//                message2.setDataHandler(new DataHandler(source));
+//                message2.setHeader("Content-ID", "<image>");
+////                message1.setFileName(source.getName());
+//
+//                MimeBodyPart message3 = new MimeBodyPart();
+//                message3.setText(mensaje());
+//
+//                multipart.addBodyPart(message1);
+//                multipart.addBodyPart(message2);
+//                multipart.addBodyPart(message3);
+//                mail.setContent(multipart);
+//                Transport transporte = sesion.getTransport("smtp");
+//                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
+//                transporte.sendMessage(mail, mail.getAllRecipients());
+//                transporte.close();
+//
+//            } catch (AddressException ex) {
+//                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (MessagingException ex) {
+//                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
 
-            Session sesion = Session.getDefaultInstance(propiedad);
-
-            String correoEnvia = "anthony.rs02@gmail.com";
-            String contraseña = "18702NACE";
-            String destinatario = this.student.getEmail();
-
-            MimeMessage mail = new MimeMessage(sesion);
-
-            try {
-//                mail.setFrom(new InternetAddress(correoEnvia));
-                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-
-                mail.setSubject(asunto());
-                Multipart multipart = new MimeMultipart();
-
-                MimeBodyPart message1 = new MimeBodyPart();
-                String htmlText = "<img src=\"cid:image\">";
-                message1.setContent(htmlText, "text/html");
-
-                MimeBodyPart message2 = new MimeBodyPart();
-                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
-                message2.setDataHandler(new DataHandler(source));
-                message2.setHeader("Content-ID", "<image>");
-//                message1.setFileName(source.getName());
-
-                MimeBodyPart message3 = new MimeBodyPart();
-                message3.setText(mensaje());
-
-                multipart.addBodyPart(message1);
-                multipart.addBodyPart(message2);
-                multipart.addBodyPart(message3);
-                mail.setContent(multipart);
-                Transport transporte = sesion.getTransport("smtp");
-                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
-                transporte.sendMessage(mail, mail.getAllRecipients());
-                transporte.close();
-
-            } catch (AddressException ex) {
-                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (MessagingException ex) {
-                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
+            util.Utility.setTemporal(null);
+            this.student.setIdEnrollment(1);
             tV_EnrollCourse.setVisible(false);
             txtMessage.setVisible(false);
             ComboBox_Course.setVisible(false);
@@ -519,9 +558,9 @@ public class FXMLEnroll2Controller implements Initializable {
 
     private String mensaje() throws ListException {
         String result = "\n";
-        result += "Nombre: " + this.student.getFirstname() + this.student.getLastname() + "\n";
+        result += "Nombre: " + this.student.getFirstname() + " " + this.student.getLastname() + "\n";
         result += "Carnet: " + this.student.getStudentID() + "\n";
-        result += "Cursos Matriculados\n";
+        result += "Cursos Matriculados:\n";
         int count = 0;
         Node aux = this.enrollment.getNode(1);
         while (aux != this.enrollment.getNodeLast()) {
