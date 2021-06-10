@@ -14,7 +14,7 @@ import javafx.beans.property.SimpleStringProperty;
  *
  * @author User
  */
-public class Student implements Serializable{
+public class Student implements java.io.Serializable{
 
     private int id;
     private String studentID;

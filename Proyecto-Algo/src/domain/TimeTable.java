@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author User
  */
-public class TimeTable implements Serializable{
+public class TimeTable implements java.io.Serializable{
    private Course courseID;
    private String period;
    private String schedule1;

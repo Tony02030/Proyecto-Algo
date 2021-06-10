@@ -152,7 +152,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
             while (aux != enrollment.getNodeLast()) {
 
                 Enrollment temp = (Enrollment) aux.data;
-                if (!util.Utility.exist(temp.getIdEnroll())) {
+                if (util.Utility.exist(temp.getIdEnroll())) {
                     courses1.add(String.valueOf(temp.getCourseID().getName()));
                 }
 
@@ -160,7 +160,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
 
             }
             Enrollment temp = (Enrollment) aux.data;
-            if (!util.Utility.exist(temp.getIdEnroll())) {
+            if (util.Utility.exist(temp.getIdEnroll())) {
                 courses1.add(String.valueOf(temp.getCourseID().getName()));
             }
 

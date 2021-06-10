@@ -374,48 +374,87 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void Exit(ActionEvent event) throws IOException, ClassNotFoundException, ListException {
-        System.exit(0);
+//        System.exit(0);
 
         //Archivo Carreras
-        FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
-        ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
+        if (!career.isEmpty()) {
+            FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
+            ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
 
-        Node auxCareer = career.getNode(1);
+            Node auxCareer = career.getNode(1);
 
-        while (auxCareer != null) {
-            Career careerW = (Career) auxCareer.data;
-            oosCareer.writeObject(careerW);
-            auxCareer = auxCareer.next;
+            while (auxCareer != null) {
+                Career careerW = (Career) auxCareer.data;
+                oosCareer.writeObject(careerW);
+                auxCareer = auxCareer.next;
+            }
         }
+        if (!student.isEmpty()) {
+            FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");
+            ObjectOutputStream oosStudent = new ObjectOutputStream(fosStudent);
 
-        //Leer Archivo de Carrera
-        FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
-        ObjectInputStream oisCareer = new ObjectInputStream(fisCareer);
-        for (int i = 0; i < util.Utility.getCareersCounter(); i++) {
-            Career careerR = (Career) oisCareer.readObject();
-            career.add(careerR);
+            Node auxStudent = student.getNode(1);
+
+            while (auxStudent != null) {
+                Student studentW = (Student) auxStudent.data;
+                oosStudent.writeObject(studentW);
+                auxStudent = auxStudent.next;
+            }
         }
-        //Escribe los estudiantes en el archivo txt
-        FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");
-        ObjectOutputStream oosStudent = new ObjectOutputStream(fosStudent);
+        if (!course.isEmpty()) {
+            FileOutputStream fosCourse = new FileOutputStream("CourseReport.txt");
+            ObjectOutputStream oosCourse = new ObjectOutputStream(fosCourse);
 
-        Node auxStudent = student.getNode(1);
+            Node auxCourse = course.getNode(1);
 
-        while (auxStudent != null) {
-            Student studentW = (Student) auxStudent.data;
-            oosStudent.writeObject(studentW);
-            auxStudent = auxStudent.next;
+            while (auxCourse != course.getNodeLast()) {  //getNodeLast()
+                Course courseW = (Course) auxCourse.data;
+                oosCourse.writeObject(courseW);
+                auxCourse = auxCourse.next;
+            }
+            Course courseW = (Course) auxCourse.data;
+            oosCourse.writeObject(courseW);
         }
+        if (!schedule.isEmpty()) {
+            FileOutputStream fosSchedule = new FileOutputStream("SchedulesReport.txt");
+            ObjectOutputStream oosSchedule = new ObjectOutputStream(fosSchedule);
 
-        // Leer Archivo Estudiante
-        FileInputStream fisStudent = new FileInputStream("StudentsReport.txt");
-        ObjectInputStream oisStudent = new ObjectInputStream(fisStudent);
+            Node auxSchedule = schedule.getNode(1);
 
-        for (int i = 0; i < util.Utility.getStudentCounter(); i++) {
+            while (auxSchedule != null) {
+                TimeTable timeTableW = (TimeTable) auxSchedule.data;
+                oosSchedule.writeObject(timeTableW);
+                auxSchedule = auxSchedule.next;
+            }
+        }
+        if (!enrollment.isEmpty()) {
+            FileOutputStream fosEnrollment = new FileOutputStream("EnrollmentReport.txt");
+            ObjectOutputStream oosEnrollment = new ObjectOutputStream(fosEnrollment);
 
-            Student studentR = (Student) oisStudent.readObject();
-            student.add(studentR);
+            Node auxEnrollment = enrollment.getNode(1);
 
+            while (auxEnrollment != enrollment.getNodeLast()) {  //getNodeLast()
+                Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
+                oosEnrollment.writeObject(enrollmentW);
+                auxEnrollment = auxEnrollment.next;
+            }
+            Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
+            oosEnrollment.writeObject(enrollmentW);
+        }
+        if (!deEnrollment.isEmpty()) {
+            FileOutputStream fosDeEnrollment = new FileOutputStream("deEnrollmentReport.txt");
+            ObjectOutputStream oosDeEnrollment = new ObjectOutputStream(fosDeEnrollment);
+
+            Node auxDeEnrollment = deEnrollment.getNode(1);
+
+            while (auxDeEnrollment != deEnrollment.getNodeLast()) {  //getNodeLast()
+                DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
+                oosDeEnrollment.writeObject(deEnrollmentW);
+
+                auxDeEnrollment = auxDeEnrollment.next;
+            }
+            DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
+            oosDeEnrollment.writeObject(deEnrollmentW);
         }
 
         // Archivo Seguridad
@@ -442,96 +481,7 @@ public class FXMLMenuController implements Initializable {
 //            this.security.add(securityR);
 //
 //        }
-        // Escribir Archivo Curso
-        FileOutputStream fosCourse = new FileOutputStream("CourseReport.txt");
-        ObjectOutputStream oosCourse = new ObjectOutputStream(fosCourse);
-
-        Node auxCourse = course.getNode(1);
-
-        while (auxCourse != course.getNodeLast()) {  //getNodeLast()
-            Course courseW = (Course) auxCourse.data;
-            oosCourse.writeObject(courseW);
-            auxCourse = auxCourse.next;
-        }
-        Course courseW = (Course) auxCourse.data;
-        oosCourse.writeObject(courseW);
-
-        //Leer Archivo de Cursos
-        FileInputStream fisCourse = new FileInputStream("CourseReport.txt");
-        ObjectInputStream oisCourse = new ObjectInputStream(fisCourse);
-
-        for (int i = 0; i < util.Utility.getCoursesCounter(); i++) {
-            Course courseR = (Course) oisCourse.readObject();
-            course.add(courseR);
-        }
-
-        //Escribir Archivo de Horarios
-        FileOutputStream fosSchedule = new FileOutputStream("SchedulesReport.txt");
-        ObjectOutputStream oosSchedule = new ObjectOutputStream(fosSchedule);
-
-        Node auxSchedule = schedule.getNode(1);
-
-        while (auxSchedule != null) {
-            TimeTable timeTableW = (TimeTable) auxSchedule.data;
-            oosSchedule.writeObject(timeTableW);
-            auxSchedule = auxSchedule.next;
-        }
-
-        //Leer Archivo de Horarios
-        FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
-        ObjectInputStream oisSchedule = new ObjectInputStream(fisSchedule);
-
-        for (int i = 0; i < util.Utility.getSchedulesCounter(); i++) {
-            TimeTable timeTableR = (TimeTable) oisSchedule.readObject();
-            schedule.add(timeTableR);
-        }
-
-        //Escribir Archivo Enrollment
-        FileOutputStream fosEnrollment = new FileOutputStream("EnrollmentReport.txt");
-        ObjectOutputStream oosEnrollment = new ObjectOutputStream(fosEnrollment);
-
-        Node auxEnrollment = enrollment.getNode(1);
-
-        while (auxEnrollment != enrollment.getNodeLast()) {  //getNodeLast()
-            Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
-            oosEnrollment.writeObject(enrollmentW);
-            auxEnrollment = auxEnrollment.next;
-        }
-        Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
-        oosEnrollment.writeObject(enrollmentW);
-
-        //Leer Archivo Enrollment
-        FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
-        ObjectInputStream oisEnrollment = new ObjectInputStream(fisEnrollment);
-
-        for (int i = 0; i < util.Utility.getEnrollmentCounter(); i++) {
-            Enrollment enrollmentR = (Enrollment) oisEnrollment.readObject();
-            enrollment.add(enrollmentR);
-        }
-
-        //Escribir Archivo deEnrollment
-        FileOutputStream fosDeEnrollment = new FileOutputStream("deEnrollmentReport.txt");
-        ObjectOutputStream oosDeEnrollment = new ObjectOutputStream(fosDeEnrollment);
-
-        Node auxDeEnrollment = deEnrollment.getNode(1);
-
-        while (auxDeEnrollment != deEnrollment.getNodeLast()) {  //getNodeLast()
-            DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
-            oosDeEnrollment.writeObject(deEnrollmentW);
-
-            auxDeEnrollment = auxDeEnrollment.next;
-        }
-        DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
-        oosDeEnrollment.writeObject(deEnrollmentW);
-
-        //Leer Archivo deEnrollment
-        FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
-        ObjectInputStream oisDeEnrollment = new ObjectInputStream(fisDeEnrollment);
-
-        for (int i = 0; i < util.Utility.getDeEnrollmentCounter(); i++) {
-            DeEnrollment DeEnrollmentR = (DeEnrollment) oisDeEnrollment.readObject();
-            enrollment.add(DeEnrollmentR);
-        }
+        System.exit(0);
     }
 
     @FXML
@@ -788,7 +738,7 @@ public class FXMLMenuController implements Initializable {
             Student temp = (Student) aux.data;
             if (deEnrollment.contains1(temp.getId())) {
                 Paragraph estudiante = new Paragraph(temp.getFirstname() + " " + temp.getLastname() + "\n\n", FontFactory.getFont("arial", 18, Font.NORMAL, BaseColor.BLACK));
-                 estudiante.setAlignment(Paragraph.ALIGN_CENTER);
+                estudiante.setAlignment(Paragraph.ALIGN_CENTER);
                 docu.add(estudiante);
                 estudiante.setAlignment(Paragraph.ALIGN_CENTER);
 
@@ -809,7 +759,7 @@ public class FXMLMenuController implements Initializable {
                 }
                 DeEnrollment tem = (DeEnrollment) enr1.data;
                 if (util.Utility.equals(tem.getStudentID().getId(), temp.getId())) {
-                    
+
                     table1.addCell(tem.getCourseID().getName());
                     table1.addCell(tem.getSchedule());
                     table1.addCell(tem.getStudentID().getCareerID().getDescription());

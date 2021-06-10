@@ -299,7 +299,7 @@ public class FXMLEnroll2Controller implements Initializable {
                         while (aux != enrollment.getNodeLast()) {
 
                             Enrollment tempor = (Enrollment) aux.data;
-                            if (this.student.getId() != tempor.getId() || !util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
+                            if (this.student.getId() == tempor.getId() && util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
                                 count1++;
 
                             }
@@ -307,7 +307,7 @@ public class FXMLEnroll2Controller implements Initializable {
                             aux = aux.next;
                         }
                         Enrollment tempor = (Enrollment) aux.data;
-                        if (this.student.getId() != tempor.getId() || !util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
+                        if (this.student.getId() == tempor.getId() && util.Utility.equals(tempor.getSchedule(), this.txf_Schedule.getText())) {
                             count1++;
 
                         }

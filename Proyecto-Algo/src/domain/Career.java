@@ -5,13 +5,11 @@
  */
 package domain;
 
-import java.io.Serializable;
-
 /**
  *
  * @author User
  */
-public class Career implements Serializable{
+public class Career implements java.io.Serializable{
     private int id;
     private String description;
     private static int idCount;
