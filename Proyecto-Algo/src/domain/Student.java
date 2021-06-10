@@ -26,7 +26,7 @@ public class Student implements java.io.Serializable{
     private String address;
     private Career careerID;
     private int idEnrollment;
-    private SimpleStringProperty dateBirth;
+    private String dateBirth;
 
     public Student(int id, String studentID, String lastname, String firstname, Date birthday, String phoneNumber, String email, String address, Career careerID, int idEnrollment) {
         this.id = id;
@@ -38,7 +38,7 @@ public class Student implements java.io.Serializable{
         this.email = email;
         this.address = address;
         this.careerID = careerID;
-        this.dateBirth = new SimpleStringProperty(new SimpleDateFormat("dd/MM/yyyy").format(birthday));
+        this.dateBirth = new SimpleDateFormat("dd/MM/yyyy").format(birthday);
         this.idEnrollment=idEnrollment;
     }
 
@@ -49,17 +49,15 @@ public class Student implements java.io.Serializable{
     public void setIdEnrollment(int idEnrollment) {
         this.idEnrollment = idEnrollment;
     }
-    
-    
 
     public String getDateBirth() {
-        return dateBirth.getValue();
+        return dateBirth;
     }
 
-    public void setDateBirth(SimpleStringProperty dateBirth) {
+    public void setDateBirth(String dateBirth) {
         this.dateBirth = dateBirth;
     }
-
+    
     public int getId() {
         return id;
     }

@@ -377,18 +377,18 @@ public class FXMLMenuController implements Initializable {
 //        System.exit(0);
 
         //Archivo Carreras
-        if (!career.isEmpty()) {
-            FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
-            ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
-
-            Node auxCareer = career.getNode(1);
-
-            while (auxCareer != null) {
-                Career careerW = (Career) auxCareer.data;
-                oosCareer.writeObject(careerW);
-                auxCareer = auxCareer.next;
-            }
-        }
+//        if (!career.isEmpty()) {
+//            FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
+//            ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
+//
+//            Node auxCareer = career.getNode(1);
+//
+//            while (auxCareer != null) {
+//                Career careerW = (Career) auxCareer.data;
+//                oosCareer.writeObject(careerW);
+//                auxCareer = auxCareer.next;
+//            }
+//        }
         if (!student.isEmpty()) {
             FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");
             ObjectOutputStream oosStudent = new ObjectOutputStream(fosStudent);
