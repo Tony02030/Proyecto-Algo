@@ -36,6 +36,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -384,6 +385,8 @@ public class FXMLMenuController implements Initializable {
         ps.println(String.valueOf(schedulesC));
         ps.println(String.valueOf(enrollmentC));
         ps.println(String.valueOf(deEnrollmentC));
+        PrintWriter writer = new PrintWriter("Counters.txt");
+        writer.print("");
 
         if (!career.isEmpty()) {
             FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
@@ -397,6 +400,8 @@ public class FXMLMenuController implements Initializable {
                 auxCareer = auxCareer.next;
             }
         }
+        PrintWriter writer1 = new PrintWriter("CareersReport.txt");
+        writer1.print("");
         //Archivo de Estudiante
         if (!student.isEmpty()) {
             FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");
@@ -410,6 +415,8 @@ public class FXMLMenuController implements Initializable {
                 auxStudent = auxStudent.next;
             }
         }
+        PrintWriter writer2 = new PrintWriter("StudentsReport.txt");
+        writer2.print("");
         if (!course.isEmpty()) {
             FileOutputStream fosCourse = new FileOutputStream("CourseReport.txt");
             ObjectOutputStream oosCourse = new ObjectOutputStream(fosCourse);
@@ -424,6 +431,8 @@ public class FXMLMenuController implements Initializable {
             Course courseW = (Course) auxCourse.data;
             oosCourse.writeObject(courseW);
         }
+        PrintWriter writer3 = new PrintWriter("CourseReport.txt");
+        writer3.print("");
         if (!schedule.isEmpty()) {
             FileOutputStream fosSchedule = new FileOutputStream("SchedulesReport.txt");
             ObjectOutputStream oosSchedule = new ObjectOutputStream(fosSchedule);
@@ -436,6 +445,9 @@ public class FXMLMenuController implements Initializable {
                 auxSchedule = auxSchedule.next;
             }
         }
+
+        PrintWriter writer4 = new PrintWriter("SchedulesReport.txt");
+        writer4.print("");
         if (!enrollment.isEmpty()) {
             FileOutputStream fosEnrollment = new FileOutputStream("EnrollmentReport.txt");
             ObjectOutputStream oosEnrollment = new ObjectOutputStream(fosEnrollment);
@@ -450,6 +462,8 @@ public class FXMLMenuController implements Initializable {
             Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
             oosEnrollment.writeObject(enrollmentW);
         }
+        PrintWriter writer5 = new PrintWriter("EnrollmentReport.txt");
+        writer5.print("");
         if (!deEnrollment.isEmpty()) {
             FileOutputStream fosDeEnrollment = new FileOutputStream("deEnrollmentReport.txt");
             ObjectOutputStream oosDeEnrollment = new ObjectOutputStream(fosDeEnrollment);
@@ -465,6 +479,8 @@ public class FXMLMenuController implements Initializable {
             DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
             oosDeEnrollment.writeObject(deEnrollmentW);
         }
+        PrintWriter writer6 = new PrintWriter("deEnrollmentReport.txt");
+        writer6.print("");
 
         // Archivo Seguridad
         FileOutputStream fosSecurity = new FileOutputStream("SecurityReport.txt");
@@ -480,16 +496,10 @@ public class FXMLMenuController implements Initializable {
         }
         Security securityW = (Security) auxSecurity.data;
         oosSecurity.writeObject(securityW);
+        PrintWriter writer7 = new PrintWriter("SecurityReport.txt");
+        writer7.print("");
 
-        //Leer Archivo seguridad
-        FileInputStream fisSecurity = new FileInputStream("SecurityReport.txt");
-        ObjectInputStream oisSecurity = new ObjectInputStream(fisSecurity);
-
-        for (int i = 0; i < util.Utility.getSecurityCounter(); i++) {
-            Security securityR = (Security) oisSecurity.readObject();
-            this.security.add(securityR);
-
-        }
+        
 
         System.exit(0);
     }

@@ -191,7 +191,7 @@ public class FXMLModifyCourseController implements Initializable {
         }
         if (i > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de Diálogo");
+            alert.setTitle("Ventana de dialogo");
             alert.setHeaderText("Información");
             alert.setContentText("No se puede modificar el curso");
             alert.showAndWait();
