@@ -226,7 +226,7 @@ public class FXMLEnroll2Controller implements Initializable {
             } else {
                 int count = 0;
                 int count1 = 0;
-                int count2=0;
+                int count2 = 0;
                 try {
                     Node aux = schedules.getNode(1);
 
@@ -272,7 +272,6 @@ public class FXMLEnroll2Controller implements Initializable {
                 //Horas
                 int o = Integer.parseInt(hor);
                 int p = Integer.parseInt(hor01);
-                
 
                 if (!enrollment.isEmpty()) {
                     try {
@@ -347,7 +346,7 @@ public class FXMLEnroll2Controller implements Initializable {
                         Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                if (count1> 0) {
+                if (count1 > 0) {
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                     alert2.setTitle("Ventana de Diálogo");
                     alert2.setHeaderText("Información");
@@ -365,7 +364,7 @@ public class FXMLEnroll2Controller implements Initializable {
 
                     display();
 
-                }else if (count2 > 0) {
+                } else if (count2 > 0) {
                     Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
                     alert3.setTitle("Ventana de Diálogo");
                     alert3.setHeaderText("Información");
@@ -375,7 +374,33 @@ public class FXMLEnroll2Controller implements Initializable {
                     display();
 
                 }
-                if (count == 0 && count1 == 0 && count2==0) {
+                if (count == 0 && count1 == 0 && count2 == 0) {
+                    int contador = 1;
+                    if (!enrollment.isEmpty()) {
+                        try {
+                            Node aux = enrollment.getNode(1);
+
+                            while (aux != enrollment.getNodeLast()) {
+
+                                Enrollment tempor = (Enrollment) aux.data;
+                                if (this.student.getId() == tempor.getId() && tempor.getIdentifier() == 1) {
+                                    contador = 0;
+
+                                }
+
+                                aux = aux.next;
+                            }
+                            Enrollment tempor = (Enrollment) aux.data;
+                            if (this.student.getId() == tempor.getId() && tempor.getIdentifier() == 1) {
+                                contador = 0;
+
+                            }
+
+                        } catch (ListException ex) {
+                            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
                     try {
                         Node aux = schedules.getNode(1);
 
@@ -394,17 +419,17 @@ public class FXMLEnroll2Controller implements Initializable {
                     } catch (ListException ex) {
                         Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(), 0));
+                    this.enrollment.add(new Enrollment(student.getId(), this.dateToDay, student, temp, this.txf_Schedule.getText(), 0, contador));
                     display();
                     this.ComboBox_Course.setValue("");
                     this.txf_Schedule.setText("");
                     //Contador
                     int i = 1;
-                    util.Utility.setEnrollmentCounter(util.Utility.getEnrollmentCounter()+i);
+                    util.Utility.setEnrollmentCounter(util.Utility.getEnrollmentCounter() + i);
                 }
                 count = 0;
                 count1 = 0;
-                count2=0;
+                count2 = 0;
 
             }
 
@@ -414,7 +439,6 @@ public class FXMLEnroll2Controller implements Initializable {
 
     }
 
-    
     //Finaliza el proceso de Matrícula
     @FXML
     private void btn_EndEnrollment(ActionEvent event) throws ListException {

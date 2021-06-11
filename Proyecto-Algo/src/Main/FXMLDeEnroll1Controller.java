@@ -73,16 +73,17 @@ public class FXMLDeEnroll1Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         display();
+
+    }
+
+    public void display() {
         txtMessage.setVisible(true);
         tV_Student.setVisible(true);
         txtMessage2.setVisible(true);
         ComboBox_StudentID.setVisible(true);
         btn_StartEnrollment.setVisible(true);
-    }
-
-    public void display() {
         //Insertar los datos a las TableColumn
-        
+
         this.students.clear();
         this.tC_ID.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
@@ -116,7 +117,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
             while (aux != enrollment.getNodeLast()) {
 
                 Enrollment temp = (Enrollment) aux.data;
-                if (temp.getIdEnroll()==0) {
+                if (temp.getIdEnroll() == 0 && temp.getIdentifier() == 1) {
                     students.add(String.valueOf(temp.getId()));
                 }
 
@@ -124,7 +125,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
 
             }
             Enrollment temp = (Enrollment) aux.data;
-            if (temp.getIdEnroll()==0) {
+            if (temp.getIdEnroll() == 0 && temp.getIdentifier() == 1) {
                 students.add(String.valueOf(temp.getId()));
             }
 
@@ -145,7 +146,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
                 List<String> array = new ArrayList<>();
 
                 Enrollment temp = (Enrollment) aux.data;
-                if (!util.Utility.exist(temp.getIdEnroll())) {
+                if (temp.getIdEnroll() == 0 && temp.getIdentifier() == 1) {
                     array.add(String.valueOf(temp.getId()));
                     array.add(temp.getStudentID().getFirstname());
                     array.add(temp.getStudentID().getLastname());
@@ -158,7 +159,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
             }
             List<String> array = new ArrayList<>();
             Enrollment temp = (Enrollment) aux.data;
-            if (!util.Utility.exist(temp.getIdEnroll())) {
+            if (temp.getIdEnroll() == 0 && temp.getIdentifier() == 1) {
                 array.add(String.valueOf(temp.getId()));
                 array.add(temp.getStudentID().getFirstname());
                 array.add(temp.getStudentID().getLastname());
@@ -193,7 +194,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
                 while (aux != enrollment.getNodeLast()) {
 
                     Enrollment temp = (Enrollment) aux.data;
-                    if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && temp.getIdEnroll()==0) {
+                    if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && temp.getIdEnroll() == 0) {
                         util.Utility.setTemporal(temp.getStudentID());
                     }
 
@@ -201,7 +202,7 @@ public class FXMLDeEnroll1Controller implements Initializable {
 
                 }
                 Enrollment temp = (Enrollment) aux.data;
-                if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && temp.getIdEnroll()==0) {
+                if (util.Utility.equals(this.ComboBox_StudentID.getValue(), String.valueOf(temp.getId())) && temp.getIdEnroll() == 0) {
                     util.Utility.setTemporal(temp.getStudentID());
                 }
 

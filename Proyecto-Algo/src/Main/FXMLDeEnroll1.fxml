@@ -26,7 +26,7 @@
          </font>
       </Text>
       <ComboBox fx:id="ComboBox_StudentID" layoutX="635.0" layoutY="442.0" prefWidth="150.0" />
-      <Text fx:id="txtMessage2" fill="WHITE" layoutX="96.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el carné del estudiante con el cual desea matricular un curso:">
+      <Text fx:id="txtMessage2" fill="WHITE" layoutX="96.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione el carné del estudiante con el cual desea retirar un curso:">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>

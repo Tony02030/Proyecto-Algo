@@ -83,13 +83,12 @@ public class FXMLDeEnroll2Controller implements Initializable {
     private TableColumn<List<String>, String> tC_Career;
     @FXML
     private ComboBox<String> ComboBox_Course;
-    private TextField txf_Schedule;
-    private Button btn_EnrollCourse;
+
     ObservableList<String> courses1 = FXCollections.observableArrayList();
 
     private Date dateToDay = Calendar.getInstance().getTime();
     private Course temp;
-    private Button btn_EndEnrollment;
+
     @FXML
     private Text txtMessage;
     @FXML
@@ -106,6 +105,8 @@ public class FXMLDeEnroll2Controller implements Initializable {
     private Button btn_DeEnrollCourse;
     @FXML
     private TextArea textAMotivo;
+    @FXML
+    private Text txtMessage1;
 
     /**
      * Initializes the controller class.
@@ -129,6 +130,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
     }
 
     public void display() {
+        
         courses1.clear();
         this.ComboBox_Course.setItems(courses1);
 
@@ -136,9 +138,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
         txtMessage.setVisible(true);
         ComboBox_Course.setVisible(true);
         txtMessage2.setVisible(true);
-        txf_Schedule.setVisible(true);
-        btn_EnrollCourse.setVisible(true);
-        btn_EndEnrollment.setVisible(true);
+
         this.tC_Course.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
@@ -155,7 +155,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
         this.tC_Career.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
-                return new ReadOnlyStringWrapper(data.getValue().get(3));
+                return new ReadOnlyStringWrapper(data.getValue().get(2));
             }
         });
         this.tV_DeEnrollCourse.setItems(getData());
@@ -206,9 +206,14 @@ public class FXMLDeEnroll2Controller implements Initializable {
                 aux = aux.next;
 
             }
+            List<String> array = new ArrayList<>();
             Enrollment temp = (Enrollment) aux.data;
-            if (!util.Utility.exist(temp.getIdEnroll())) {
-                courses1.add(String.valueOf(temp.getCourseID().getName()));
+            if (util.Utility.equals(temp.getCourseID().getCareerID().getDescription(), student.getCareerID().getDescription())) {
+                array.add(temp.getCourseID().getName());
+                array.add(temp.getSchedule());
+                array.add(temp.getCourseID().getCareerID().getDescription());
+                data.add(array);
+
             }
 
         } catch (ListException ex) {
@@ -232,7 +237,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
     //Botón para finalizar el proceso de matrícula
     @FXML
     private void btn_EndDeEnrollment(ActionEvent event) throws ListException {
-        
+
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Ventana de Confirmación");
         alert.setHeaderText("AVISO");
@@ -298,8 +303,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
             ComboBox_Course.setVisible(false);
             txtMessage2.setVisible(false);
             textAMotivo.setVisible(false);
-            btn_EnrollCourse.setVisible(false);
-            btn_EndEnrollment.setVisible(false);
+
             try {
                 Node aux = schedules.getNode(1);
 
@@ -333,99 +337,66 @@ public class FXMLDeEnroll2Controller implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
-            if (this.ComboBox_Course.getValue() == "") {
+            if (this.ComboBox_Course.getValue() == "" && this.textAMotivo.getText() == "") {
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Ventana de Diálogo");
                 alert.setHeaderText("Información");
                 alert.setContentText("Debe seleccionar la carrera que desea eliminar");
                 alert.showAndWait();
             } else {
-                int count = 0;
+
+                //Verificaciones
                 try {
-                    Node aux = schedules.getNode(1);
+                    Node aux = enrollment.getNode(1);
 
-                    while (aux != null) {
+                    while (aux != enrollment.getNodeLast()) {
 
-                        TimeTable tem = (TimeTable) aux.data;
+                        Enrollment tem = (Enrollment) aux.data;
                         if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-                            if (!tem.getSchedule1().equals(this.txf_Schedule.getText()) && !tem.getSchedule2().equals(this.txf_Schedule.getText())) {
-                                count++;
-                            }
+
+                            temp = tem.getCourseID();
+                            enroll = tem;
                         }
 
                         aux = aux.next;
+
+                    }
+                    Enrollment tem = (Enrollment) aux.data;
+                    if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
+                        temp = tem.getCourseID();
+                        enroll = tem;
+                    }
+
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    Node aux1 = schedules.getNode(1);
+
+                    while (aux1 != null) {
+
+                        TimeTable te = (TimeTable) aux1.data;
+                        if (util.Utility.equals(this.ComboBox_Course.getValue(), te.getCourseID().getName())) {
+                            te.setIdEnrollment(1);
+
+                        }
+
+                        aux1 = aux1.next;
 
                     }
 
                 } catch (ListException ex) {
                     Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                enroll.setIdEnroll(1);
+                this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp, enroll.getSchedule(), textAMotivo.getText()));
+                display();
+                this.ComboBox_Course.setValue("");
+                this.textAMotivo.setText("");
 
-                if (count > 0) {
-                    Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                    alert2.setTitle("Ventana de Diálogo");
-                    alert2.setHeaderText("Información");
-                    alert2.setContentText("Los horarios ya fueron ingresados");
-                    alert2.showAndWait();
-
-                    display();
-
-                }
-                //Verificaciones
-                if (count == 0) {
-                    try {
-                        Node aux = enrollment.getNode(1);
-
-                        while (aux != enrollment.getNodeLast()) {
-
-                            Enrollment tem = (Enrollment) aux.data;
-                            if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-
-                                temp = tem.getCourseID();
-                                enroll = tem;
-                            }
-
-                            aux = aux.next;
-
-                        }
-                        Enrollment tem = (Enrollment) aux.data;
-                        if (util.Utility.equals(this.ComboBox_Course.getValue(), tem.getCourseID().getName())) {
-                            temp = tem.getCourseID();
-                            enroll = tem;
-                        }
-
-                       
-                    } catch (ListException ex) {
-                        Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    try {
-                        Node aux1 = schedules.getNode(1);
-
-                        while (aux1 != null) {
-
-                            TimeTable te = (TimeTable) aux1.data;
-                            if (util.Utility.equals(this.ComboBox_Course.getValue(), te.getCourseID().getName())) {
-                                te.setIdEnrollment(1);
-
-                            }
-
-                            aux1 = aux1.next;
-
-                        }
-
-                    } catch (ListException ex) {
-                        Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    enroll.setIdEnroll(1);
-                    this.enrollment.add(new DeEnrollment(student.getId(), this.dateToDay, student, temp, enroll.getSchedule(), textAMotivo.getText()));
-                    display();
-                    this.ComboBox_Course.setValue("");
-                    this.textAMotivo.setText("");
-
-                    //Contador
-                    int i = 1;
-                    util.Utility.setDeEnrollmentCounter(util.Utility.getDeEnrollmentCounter()+i);
-                }
+                //Contador
+                int i = 1;
+                util.Utility.setDeEnrollmentCounter(util.Utility.getDeEnrollmentCounter() + i);
 
             }
 
@@ -434,6 +405,7 @@ public class FXMLDeEnroll2Controller implements Initializable {
         }
 
     }
+
     private String asunto() {
         String result = "Retiro de cursos del estudiante";
         return result;
@@ -448,18 +420,18 @@ public class FXMLDeEnroll2Controller implements Initializable {
         while (aux != this.deEnrollment.getNodeLast()) {
             DeEnrollment tem = (DeEnrollment) aux.data;
             if (util.Utility.equals(this.student.getId(), tem.getId())) {
-                result += "Curso: " + tem.getCourseID().getName() + " Horario: " + tem.getSchedule() + " Carrera: " + tem.getCourseID().getCareerID().getDescription() + "Motivo del retiro: "+tem.getRemark()+"\n";
-                
+                result += "Curso: " + tem.getCourseID().getName() + " Horario: " + tem.getSchedule() + " Carrera: " + tem.getCourseID().getCareerID().getDescription() + "Motivo del retiro: " + tem.getRemark() + "\n";
+
             }
 
             aux = aux.next;
         }
         DeEnrollment tem = (DeEnrollment) aux.data;
         if (util.Utility.equals(this.student.getId(), tem.getId())) {
-            result += "Curso: " + tem.getCourseID().getName() + " Horario: " + tem.getSchedule() + " Carrera: " + tem.getCourseID().getCareerID().getDescription()  + "Motivo del retiro: "+tem.getRemark()+ "\n";
-            
+            result += "Curso: " + tem.getCourseID().getName() + " Horario: " + tem.getSchedule() + " Carrera: " + tem.getCourseID().getCareerID().getDescription() + "Motivo del retiro: " + tem.getRemark() + "\n";
+
         }
-        
+
         return result;
 
     }

@@ -19,14 +19,16 @@ public class Enrollment implements Serializable{
    private Course courseID;
    private String schedule;
    private int idEnroll;
+   private int identifier;
 
-    public Enrollment(int id, Date date, Student studentID, Course courseID, String schedule,int idEnroll) {
+    public Enrollment(int id, Date date, Student studentID, Course courseID, String schedule,int idEnroll, int identifier) {
         this.id = id;
         this.date = date;
         this.studentID = studentID;
         this.courseID = courseID;
         this.schedule = schedule;
         this.idEnroll=idEnroll;
+        this.identifier=identifier;
     }
 
     public int getIdEnroll() {
@@ -36,6 +38,15 @@ public class Enrollment implements Serializable{
     public void setIdEnroll(int idEnroll) {
         this.idEnroll = idEnroll;
     }
+
+    public int getIdentifier() {
+        return identifier;
+    }
+
+    public void setIdentifier(int identifier) {
+        this.identifier = identifier;
+    }
+    
     
     
 
