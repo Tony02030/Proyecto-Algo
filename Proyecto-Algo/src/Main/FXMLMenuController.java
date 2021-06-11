@@ -102,6 +102,14 @@ public class FXMLMenuController implements Initializable {
     private MenuItem muestraCarreras;
     @FXML
     private MenuItem Exit;
+    @FXML
+    private MenuItem pdfEstudiantes;
+    @FXML
+    private MenuItem pdfCursos;
+    @FXML
+    private MenuItem pdfEstuMatriculados;
+    @FXML
+    private MenuItem pdfRetiros;
 
     /**
      * Initializes the controller class.
@@ -482,6 +490,7 @@ public class FXMLMenuController implements Initializable {
         System.exit(0);
     }
 
+    @FXML
     private void pdfEstudiantes(ActionEvent event) throws FileNotFoundException, DocumentException, ListException, BadElementException, IOException {
         if (student.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -500,6 +509,7 @@ public class FXMLMenuController implements Initializable {
         }
     }
 
+    @FXML
     private void pdfCursos(ActionEvent event) throws DocumentException, ListException, BadElementException, IOException {
         if (course.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -519,6 +529,7 @@ public class FXMLMenuController implements Initializable {
 
     }
 
+    @FXML
     private void pdfEstuMatriculados(ActionEvent event) throws DocumentException, ListException, BadElementException, IOException {
         if (enrollment.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
@@ -538,6 +549,7 @@ public class FXMLMenuController implements Initializable {
 
     }
 
+    @FXML
     private void pdfRetiros(ActionEvent event) throws DocumentException, ListException, BadElementException, IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Ventana de dialogo");

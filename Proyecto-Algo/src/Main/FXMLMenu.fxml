@@ -41,6 +41,14 @@
                   <MenuItem fx:id="retiroCurso" mnemonicParsing="false" onAction="#retiroCurso" text="Retirar curso" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Reportes">
+              <items>
+                <MenuItem fx:id="pdfEstudiantes" mnemonicParsing="false" onAction="#pdfEstudiantes" text="Estudiantes" />
+                  <MenuItem fx:id="pdfCursos" mnemonicParsing="false" onAction="#pdfCursos" text="Cursos" />
+                  <MenuItem fx:id="pdfEstuMatriculados" mnemonicParsing="false" onAction="#pdfEstuMatriculados" text="Cursos Matriculados" />
+                  <MenuItem fx:id="pdfRetiros" mnemonicParsing="false" onAction="#pdfRetiros" text="Cursos Retiros" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Horarios">
             <items>
               <MenuItem fx:id="agregaHorario" mnemonicParsing="false" onAction="#agregaHorario" text="Horario Curso" />
