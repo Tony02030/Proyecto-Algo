@@ -71,7 +71,7 @@ public class FXMLMenuAdmiController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         //Imagen del Logo de la UCR
         Image imageUCR = new Image(getClass().getResourceAsStream("logo.png"));
         ImageView imageViewUCR = new ImageView(imageUCR);
@@ -81,7 +81,7 @@ public class FXMLMenuAdmiController implements Initializable {
 
         imageViewUCR.setX(25);
         imageViewUCR.setY(15);
-        
+
         //Imagen de Seguridad
         Image imageSecurity = new Image(getClass().getResourceAsStream("MenuSesion.jpg"));
         ImageView imageViewSecurity = new ImageView(imageSecurity);
@@ -101,6 +101,7 @@ public class FXMLMenuAdmiController implements Initializable {
     private void btnIngreso(MouseEvent event) throws ClassNotFoundException {
         try {
 
+            //Leer Archivo de Seguridad
             if (this.security.contains1(this.textFieldUser.getText(), this.textFieldPassword.getText())) {
                 try {
                     FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
@@ -109,6 +110,8 @@ public class FXMLMenuAdmiController implements Initializable {
                         Career careerR = (Career) oisCareer.readObject();
                         career.add(careerR);
                     }
+
+                    //Leer Archivo de Estudiante
                     FileInputStream fisStudent = new FileInputStream("StudentsReport.txt");
                     ObjectInputStream oisStudent = new ObjectInputStream(fisStudent);
 
@@ -118,6 +121,8 @@ public class FXMLMenuAdmiController implements Initializable {
                         student.add(studentR);
 
                     }
+
+                    //Leer Archivo de Cursos
                     FileInputStream fisCourse = new FileInputStream("CourseReport.txt");
                     ObjectInputStream oisCourse = new ObjectInputStream(fisCourse);
 
@@ -126,7 +131,6 @@ public class FXMLMenuAdmiController implements Initializable {
                         course.add(courseR);
                     }
 
-                   
                     //Leer Archivo de Horarios
                     FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
                     ObjectInputStream oisSchedule = new ObjectInputStream(fisSchedule);
@@ -136,7 +140,6 @@ public class FXMLMenuAdmiController implements Initializable {
                         schedule.add(timeTableR);
                     }
 
-                  
                     //Leer Archivo Enrollment
                     FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
                     ObjectInputStream oisEnrollment = new ObjectInputStream(fisEnrollment);
@@ -146,7 +149,6 @@ public class FXMLMenuAdmiController implements Initializable {
                         enrollment.add(enrollmentR);
                     }
 
-                    
                     //Leer Archivo deEnrollment
                     FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
                     ObjectInputStream oisDeEnrollment = new ObjectInputStream(fisDeEnrollment);
@@ -177,7 +179,7 @@ public class FXMLMenuAdmiController implements Initializable {
 
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }
 
     }
 
