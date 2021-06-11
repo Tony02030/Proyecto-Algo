@@ -81,91 +81,100 @@ public class FXMLRemoveCourseController implements Initializable {
     @FXML
     private void btnBorrarCurso(ActionEvent event) throws ListException {
         int count = 0;
-        if (!course.isEmpty()) {
-            Node aux2;
+        if (this.tfBorrarCurso.getText() != "") {
+            if (!course.isEmpty()) {
+                Node aux2;
 
-            aux2 = course.getNode(1);
+                aux2 = course.getNode(1);
 
-            while (aux2 != course.getNodeLast()) {
+                while (aux2 != course.getNodeLast()) {
+                    Course temp = (Course) aux2.data;
+                    if (temp.getName().equals(this.tfBorrarCurso.getText())) {
+                        curso = temp;
+                    }
+                    aux2 = aux2.next;
+
+                }
                 Course temp = (Course) aux2.data;
                 if (temp.getName().equals(this.tfBorrarCurso.getText())) {
                     curso = temp;
                 }
-                aux2=aux2.next;
-
             }
-            Course temp = (Course) aux2.data;
-            if (temp.getName().equals(this.tfBorrarCurso.getText())) {
-                curso = temp;
-            }
-        }
 
-        if (!schedule.isEmpty()) {
+            if (!schedule.isEmpty()) {
 
-            try {
+                try {
 
-                Node aux = schedule.getNode(1);
+                    Node aux = schedule.getNode(1);
 
-                while (aux != null) {
+                    while (aux != null) {
 
-                    TimeTable temp = (TimeTable) aux.data;
-                    if (curso.getName().equals(temp.getCourseID().getName())) {
-                        count++;
+                        TimeTable temp = (TimeTable) aux.data;
+                        if (curso.getName().equals(temp.getCourseID().getName())) {
+                            count++;
+
+                        }
+                        aux = aux.next;
 
                     }
-                    aux=aux.next;
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (!this.enrollment.isEmpty()) {
+
+                Node aux = enrollment.getNode(1);
+                //Node last = courses.getNode(courses.size());
+                while (aux != enrollment.getNodeLast()) {
+
+                    Enrollment temp = (Enrollment) aux.data;
+                    if (curso.getName().equals(temp.getCourseID().getName())) {
+                        count++;
+                    }
+
+                    aux = aux.next;
 
                 }
-            } catch (ListException ex) {
-                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if (!this.enrollment.isEmpty()) {
-
-            Node aux = enrollment.getNode(1);
-            //Node last = courses.getNode(courses.size());
-            while (aux != enrollment.getNodeLast()) {
-
                 Enrollment temp = (Enrollment) aux.data;
                 if (curso.getName().equals(temp.getCourseID().getName())) {
                     count++;
                 }
-
-                aux = aux.next;
-
             }
-            Enrollment temp = (Enrollment) aux.data;
-            if (curso.getName().equals(temp.getCourseID().getName())) {
-                count++;
-            }
-        }
 
-        if (count > 0) {
+            if (count > 0) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Ventana de Diálogo");
+                alert.setHeaderText("Información");
+                alert.setContentText("No se puede modificar la carrera");
+                alert.showAndWait();
+
+            } else {
+                try {
+
+                    if (course.contains1(tfBorrarCurso.getText())) {
+                        course.remove(tfBorrarCurso.getText());
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Ventana de dialogo");
+                        alert.setHeaderText("Informacion");
+                        alert.setContentText("Se eliminó la carrera");
+                        alert.showAndWait();
+                        this.tfBorrarCurso.setText("");
+                        this.txMessage.setVisible(false);
+                    } else {
+                        this.txMessage.setVisible(true);
+
+                    }
+                } catch (ListException ex) {
+                    Logger.getLogger(FXMLMenuCarrersDeleteController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de Diálogo");
+            alert.setTitle("Ventana de dialogo");
             alert.setHeaderText("Información");
-            alert.setContentText("No se puede modificar la carrera");
+            alert.setContentText("Debe llenar los campos de texto");
             alert.showAndWait();
 
-        } else {
-            try {
-
-                if (course.contains1(tfBorrarCurso.getText())) {
-                    course.remove(tfBorrarCurso.getText());
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Informacion");
-                    alert.setContentText("Se eliminó la carrera");
-                    alert.showAndWait();
-                    this.tfBorrarCurso.setText("");
-                    this.txMessage.setVisible(false);
-                } else {
-                    this.txMessage.setVisible(true);
-
-                }
-            } catch (ListException ex) {
-                Logger.getLogger(FXMLMenuCarrersDeleteController.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }

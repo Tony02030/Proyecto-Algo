@@ -226,44 +226,50 @@ public class FXMLModifyCourseController implements Initializable {
     @FXML
     private void btnCambiarCurso(ActionEvent event) throws ListException {
 
-        try {
+        if (txfNewCredits.getText() != "" || txfNewName.getText() != "") {
+            try {
 
-            Node aux = course.getNode(1);
+                Node aux = course.getNode(1);
 
-            while (aux != course.getNodeLast()) {
+                while (aux != course.getNodeLast()) {
+                    Course temp = (Course) aux.data;
+                    if (util.Utility.equals(temp.getName(), this.tfName)) {
+                        curso = temp;
+                    }
+                    aux = aux.next;
+                }
                 Course temp = (Course) aux.data;
                 if (util.Utility.equals(temp.getName(), this.tfName)) {
                     curso = temp;
-
-//                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//                    alert.setTitle("Ventana de dialogo");
-//                    alert.setHeaderText("Información");
-//                    alert.setContentText("Curso modificado correctamente");
-//                    alert.showAndWait();
                 }
-                aux = aux.next;
+
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+
             }
 
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+            curso.setName(txfNewName.getText());
+            curso.setCredits(Integer.parseInt(txfNewCredits.getText()));
 
+            txtMessage2.setVisible(false);
+            txtMessage3.setVisible(false);
+            txtMessage4.setVisible(false);
+
+            txfNewName.setText("");
+            txfNewCredits.setText("");
+            ComboBox.setVisible(false);
+            btnCambiarCurso.setText("");
+
+            txfNewName.setVisible(false);
+            txfNewCredits.setVisible(false);
+            btnCambiarCurso.setVisible(false);
+        }else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("Debe llenar los campos de texto");
+            alert.showAndWait();
         }
-
-        curso.setName(txfNewName.getText());
-        curso.setCredits(Integer.parseInt(txfNewCredits.getText()));
-
-        txtMessage2.setVisible(false);
-        txtMessage3.setVisible(false);
-        txtMessage4.setVisible(false);
-
-        txfNewName.setText("");
-        txfNewCredits.setText("");
-        ComboBox.setVisible(false);
-        btnCambiarCurso.setText("");
-
-        txfNewName.setVisible(false);
-        txfNewCredits.setVisible(false);
-        btnCambiarCurso.setVisible(false);
 
     }
 
