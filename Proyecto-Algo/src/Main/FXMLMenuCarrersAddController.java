@@ -41,35 +41,42 @@ public class FXMLMenuCarrersAddController implements Initializable {
 
         util.Utility.letterOnly(this.textFieldCareer);
     }
-    
 
     @FXML
     private void btnAdd(ActionEvent event) throws ListException, FileNotFoundException, IOException {
         //Agregar carrera a la lista
-        
-        if(!career.contains1(this.textFieldCareer.getText())){
+
+        int z = 0;
+        if ("".equals(this.textFieldCareer.getText())) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("No puede dejar el espacio en blanco");
+            alert.showAndWait();
+            z++;
+
+        }
+        if (!career.contains1(this.textFieldCareer.getText()) && z != 1) {
             career.add(new Career(this.textFieldCareer.getText()));
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de Diálogo");
-        alert.setHeaderText("Información");
-        alert.setContentText("Se agregó la carrera correctamente");
-        alert.showAndWait();
-        this.textFieldCareer.setText("");
-        
-             //Contador
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("Se agregó la carrera correctamente");
+            alert.showAndWait();
+            this.textFieldCareer.setText("");
+
+            //Contador
             int i = 0;
             util.Utility.setCareersCounter(i++);
-            
-        }else{
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de Diálogo");
-        alert.setHeaderText("Información");
-        alert.setContentText("Ya existe esta carrera en la Lista");
-        alert.showAndWait();
+
         }
-       
-       
-        
+        if (career.contains1(this.textFieldCareer.getText())) { //(career.contains1(this.textFieldCareer.getText())) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("Ya existe esta carrera en la Lista");
+            alert.showAndWait();
+        }
 
     }
 

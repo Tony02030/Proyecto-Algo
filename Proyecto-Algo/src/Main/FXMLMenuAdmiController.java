@@ -5,16 +5,23 @@
  */
 package Main;
 
+import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.CircularLinkedList;
+import domain.Course;
+import domain.DeEnrollment;
 import domain.DoublyLinkedList;
+import domain.Enrollment;
 import domain.ListException;
 import domain.SingleLinkedList;
+import domain.Student;
+import domain.TimeTable;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -32,6 +39,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -97,73 +105,75 @@ public class FXMLMenuAdmiController implements Initializable {
         if (this.security.contains1(this.textFieldUser.getText(), this.textFieldPassword.getText())) {
             txtMessage.setVisible(false);
 
-//            //Leer archivo de Counters
-//            FileInputStream fis = new FileInputStream("Counters.txt");
-//            InputStreamReader isr = new InputStreamReader(fis);
-//            BufferedReader br = new BufferedReader(isr);
-//
-//            util.Utility.setStudentCounter(Integer.parseInt(br.readLine()));
-//            util.Utility.setSecurityCounter(Integer.parseInt(br.readLine()));
-//            util.Utility.setCareersCounter(Integer.parseInt(br.readLine()));
-//            util.Utility.setCoursesCounter(Integer.parseInt(br.readLine()));
-//            util.Utility.setSchedulesCounter(Integer.parseInt(br.readLine()));
-//            util.Utility.setEnrollmentCounter(Integer.parseInt(br.readLine()));
-//            util.Utility.setDeEnrollmentCounter(Integer.parseInt(br.readLine()));
+            //Leer archivo de Counters
+            FileInputStream fis = new FileInputStream("Counters.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            if (br.readLine() != null) {
+                util.Utility.setStudentCounter(Integer.parseInt(br.readLine()));
+                util.Utility.setSecurityCounter(Integer.parseInt(br.readLine()));
+                util.Utility.setCareersCounter(Integer.parseInt(br.readLine()));
+                util.Utility.setCoursesCounter(Integer.parseInt(br.readLine()));
+                util.Utility.setSchedulesCounter(Integer.parseInt(br.readLine()));
+                util.Utility.setEnrollmentCounter(Integer.parseInt(br.readLine()));
+                util.Utility.setDeEnrollmentCounter(Integer.parseInt(br.readLine()));
 
-//                    //Leer Archivo de Seguridad
-//                    FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
-//                    ObjectInputStream oisCareer = new ObjectInputStream(fisCareer);
-//                    for (int i = 0; i < util.Utility.getCareersCounter(); i++) {
-//                        Career careerR = (Career) oisCareer.readObject();
-//                        career.add(careerR);
-//                    }
-//
-//                    //Leer Archivo de Estudiante
-//                    FileInputStream fisStudent = new FileInputStream("StudentsReport.txt");
-//                    ObjectInputStream oisStudent = new ObjectInputStream(fisStudent);
-//
-//                    for (int i = 0; i < util.Utility.getStudentCounter(); i++) {
-//
-//                        Student studentR = (Student) oisStudent.readObject();
-//                        student.add(studentR);
-//
-//                    }
-//
-//                    //Leer Archivo de Cursos
-//                    FileInputStream fisCourse = new FileInputStream("CourseReport.txt");
-//                    ObjectInputStream oisCourse = new ObjectInputStream(fisCourse);
-//
-//                    for (int i = 0; i < util.Utility.getCoursesCounter(); i++) {
-//                        Course courseR = (Course) oisCourse.readObject();
-//                        course.add(courseR);
-//                    }
-//
-//                    //Leer Archivo de Horarios
-//                    FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
-//                    ObjectInputStream oisSchedule = new ObjectInputStream(fisSchedule);
-//
-//                    for (int i = 0; i < util.Utility.getSchedulesCounter(); i++) {
-//                        TimeTable timeTableR = (TimeTable) oisSchedule.readObject();
-//                        schedule.add(timeTableR);
-//                    }
-//
-//                    //Leer Archivo Enrollment
-//                    FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
-//                    ObjectInputStream oisEnrollment = new ObjectInputStream(fisEnrollment);
-//
-//                    for (int i = 0; i < util.Utility.getEnrollmentCounter(); i++) {
-//                        Enrollment enrollmentR = (Enrollment) oisEnrollment.readObject();
-//                        enrollment.add(enrollmentR);
-//                    }
-//
-//                    //Leer Archivo deEnrollment
-//                    FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
-//                    ObjectInputStream oisDeEnrollment = new ObjectInputStream(fisDeEnrollment);
-//
-//                    for (int i = 0; i < util.Utility.getDeEnrollmentCounter(); i++) {
-//                        DeEnrollment DeEnrollmentR = (DeEnrollment) oisDeEnrollment.readObject();
-//                        deEnrollment.add(DeEnrollmentR);
-//                    }
+                //Leer Archivo de Seguridad
+                FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
+                ObjectInputStream oisCareer = new ObjectInputStream(fisCareer);
+                for (int i = 0; i < util.Utility.getCareersCounter(); i++) {
+                    Career careerR = (Career) oisCareer.readObject();
+                    career.add(careerR);
+                }
+
+                //Leer Archivo de Estudiante
+                FileInputStream fisStudent = new FileInputStream("StudentsReport.txt");
+                ObjectInputStream oisStudent = new ObjectInputStream(fisStudent);
+
+                for (int i = 0; i < util.Utility.getStudentCounter(); i++) {
+
+                    Student studentR = (Student) oisStudent.readObject();
+                    student.add(studentR);
+
+                }
+
+                //Leer Archivo de Cursos
+                FileInputStream fisCourse = new FileInputStream("CourseReport.txt");
+                ObjectInputStream oisCourse = new ObjectInputStream(fisCourse);
+
+                for (int i = 0; i < util.Utility.getCoursesCounter(); i++) {
+                    Course courseR = (Course) oisCourse.readObject();
+                    course.add(courseR);
+                }
+
+                //Leer Archivo de Horarios
+                FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
+                ObjectInputStream oisSchedule = new ObjectInputStream(fisSchedule);
+
+                for (int i = 0; i < util.Utility.getSchedulesCounter(); i++) {
+                    TimeTable timeTableR = (TimeTable) oisSchedule.readObject();
+                    schedule.add(timeTableR);
+                }
+
+                //Leer Archivo Enrollment
+                FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
+                ObjectInputStream oisEnrollment = new ObjectInputStream(fisEnrollment);
+
+                for (int i = 0; i < util.Utility.getEnrollmentCounter(); i++) {
+                    Enrollment enrollmentR = (Enrollment) oisEnrollment.readObject();
+                    enrollment.add(enrollmentR);
+                }
+
+                //Leer Archivo deEnrollment
+                FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
+                ObjectInputStream oisDeEnrollment = new ObjectInputStream(fisDeEnrollment);
+
+                for (int i = 0; i < util.Utility.getDeEnrollmentCounter(); i++) {
+                    DeEnrollment DeEnrollmentR = (DeEnrollment) oisDeEnrollment.readObject();
+                    deEnrollment.add(DeEnrollmentR);
+                }
+            }
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMenu.fxml"));
 
             Parent parent = (Parent) loader.load();
@@ -173,6 +183,7 @@ public class FXMLMenuAdmiController implements Initializable {
 
             Scene scene = new Scene(parent, 878, 680);
             Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
             stage.showAndWait();

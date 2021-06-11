@@ -78,6 +78,7 @@ public class FXMLMenuCarrersChangeController implements Initializable {
                 if (temp.getDescription().equals(this.txtFieldSearch.getText())) {
                     carr = temp;
                 }
+                aux=aux.next;
 
             }
         } catch (ListException ex) {
@@ -112,6 +113,7 @@ public class FXMLMenuCarrersChangeController implements Initializable {
                 if (temp.getCareerID().getDescription().equals(carr.getDescription())) {
                     count++;
                 }
+                aux2=aux2.next;
 
             }
             Course temp = (Course) aux2.data;

@@ -272,25 +272,7 @@ public class FXMLEnroll2Controller implements Initializable {
                 //Horas
                 int o = Integer.parseInt(hor);
                 int p = Integer.parseInt(hor01);
-                if (!enrollment.isEmpty()) {
-                    try {
-                        Node aux = schedules.getNode(1);
-
-                        while (aux != null) {
-
-                            TimeTable tempo = (TimeTable) aux.data;
-                            if (!util.Utility.equals(tempo.getCourseID().getName(), this.ComboBox_Course.getValue()) && !util.Utility.equals(tempo.getSchedule1(), this.txf_Schedule) && !util.Utility.equals(tempo.getSchedule2(), this.txf_Schedule)) {
-                                count1++;
-                            }
-
-                            aux = aux.next;
-
-                        }
-
-                    } catch (ListException ex) {
-                        Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
+                
 
                 if (!enrollment.isEmpty()) {
                     try {
@@ -352,7 +334,7 @@ public class FXMLEnroll2Controller implements Initializable {
                             if (tempo1.getStudentID().getId() == student.getId()) {
                                 if (((oo >= o && oo <= p) || (pp >= o && pp <= p))) {
                                     if (day == day3 || day01 == day03) {
-                                        count1++;
+                                        count++;
 
                                     }
                                 }
