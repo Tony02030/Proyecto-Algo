@@ -31,6 +31,6 @@
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <Button fx:id="btn_StartEnrollment" layoutX="379.0" layoutY="508.0" mnemonicParsing="false" onAction="#btn_StartEnrollment" prefHeight="31.0" prefWidth="125.0" style="-fx-background-color: white;" text="Iniciar Matrícula" />
+      <Button fx:id="btn_StartEnrollment" layoutX="379.0" layoutY="508.0" mnemonicParsing="false" onAction="#btn_StartEnrollment" prefHeight="31.0" prefWidth="125.0" style="-fx-background-color: white;" text="Iniciar Retiro" />
    </children>
 </AnchorPane>

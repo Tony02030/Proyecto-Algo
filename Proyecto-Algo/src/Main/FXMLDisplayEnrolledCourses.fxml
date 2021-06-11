@@ -3,16 +3,22 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="534.0" prefWidth="716.0" style="-fx-background-color: #0073ff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLDisplayEnrolledCoursesController">
+<AnchorPane id="AnchorPane" prefHeight="534.0" prefWidth="716.0" style="-fx-background-color: #0073ff; -fx-min-width: 878; -fx-min-height: 680;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLDisplayEnrolledCoursesController">
    <children>
-      <TableView fx:id="tV_Enrolled" layoutX="187.0" layoutY="101.0" prefHeight="307.0" prefWidth="451.0">
+      <TableView fx:id="tV_Enrolled" layoutX="156.0" layoutY="128.0" prefHeight="402.0" prefWidth="566.0">
         <columns>
           <TableColumn fx:id="tC_Course" prefWidth="147.20001220703125" text="Curso" />
-          <TableColumn fx:id="tC_Schedule" prefWidth="169.5999755859375" text="Horario" />
-            <TableColumn fx:id="tC_Career" prefWidth="131.19992065429688" text="Carrera" />
+          <TableColumn fx:id="tC_Schedule" prefWidth="242.0" text="Horario" />
+            <TableColumn fx:id="tC_Career" prefWidth="175.0" text="Carrera" />
         </columns>
       </TableView>
+      <Text fill="WHITE" layoutX="314.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cursos Matriculados" textAlignment="CENTER">
+         <font>
+            <Font name="Corbel" size="30.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
