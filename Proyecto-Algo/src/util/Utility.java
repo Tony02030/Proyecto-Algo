@@ -22,11 +22,13 @@ import domain.ListException;
 import domain.Security;
 import domain.Student;
 import domain.TimeTable;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 
 /**
  *
@@ -332,10 +334,10 @@ public class Utility {
 //                Career c1 = (Career) data;
 //                String c2 = (String) element;
 //                return c1.getDescription().equals(c2);
-//            case "course":
-//                Course co1 = (Course) data;
-//                String co2 = (String) element;
-//                return co1.getId().equals(co2);
+            case "course":
+                Course co1 = (Course) data;
+                Integer co2 = (Integer) element;
+                return co1.getId().equals(co2);
 ////                case "employee":
 ////                Employee e1 = (Employee) data;
 ////                String e2 = (String) element;
@@ -410,9 +412,9 @@ public class Utility {
 //            return "student";
 //        }
 //
-//        if (data instanceof Course && element instanceof String) {
-//            return "course";
-//        }
+        if (data instanceof Course && element instanceof Integer) {
+            return "course";
+        }
 //        if (data instanceof Enrollment && element instanceof Integer) {
 //            return "enroll";
 //        }
@@ -518,4 +520,5 @@ public class Utility {
         }
         return true;
     }
+   
 }

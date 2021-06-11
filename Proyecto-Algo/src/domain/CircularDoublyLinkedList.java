@@ -72,6 +72,22 @@ public class CircularDoublyLinkedList implements List {
         return util.Utility.equals(aux.data, element); 
 
     }
+     public boolean contains2(Object element) throws ListException {
+
+        if (isEmpty()) {
+            return false;
+        }
+        Node aux = first;
+        while (aux != last) {
+            if (util.Utility.equals2(aux.data, element)) {
+                return true;
+            }
+            aux = aux.next;
+        }
+        return util.Utility.equals2(aux.data, element); 
+
+    }
+    
 
     @Override
     public void add(Object element) {

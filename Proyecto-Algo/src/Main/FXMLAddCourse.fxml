@@ -19,7 +19,7 @@
          </font></Text>
       <TextField fx:id="txfID" layoutX="433.0" layoutY="135.0" />
       <TextField fx:id="txfName" layoutX="433.0" layoutY="184.0" />
-      <Button fx:id="btnAddCourse" layoutX="356.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnAddCourse" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: white;" text="Agregar" />
+      <Button fx:id="btnAddCourse" layoutX="356.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnAddCourse" onKeyTyped="#btnAddCourse" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: white;" text="Agregar" />
       <Text fill="WHITE" layoutX="169.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carrera correspondida al Curso:">
          <font>
             <Font name="Corbel" size="18.0" />

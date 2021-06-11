@@ -30,13 +30,14 @@ public class FXMLRemoveCourseController implements Initializable {
     private CircularDoublyLinkedList course = util.Utility.getCourses();
 
     @FXML
-    private Text txBorrarCurso;
-    @FXML
     private TextField tfBorrarCurso;
     @FXML
     private Button btnBorrarCurso;
+    
     @FXML
-    private Text txBorrarCurso1;
+    private Text txIngreseCurso;
+    @FXML
+    private Text txMessage;
 
     /**
      * Initializes the controller class.
@@ -44,7 +45,7 @@ public class FXMLRemoveCourseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
-    numericOnly(tfBorrarCurso);
+    
     
     
     }
@@ -55,6 +56,7 @@ public class FXMLRemoveCourseController implements Initializable {
                     ObservableValue<? extends String> observable,
                     String oldValue, String newValue) {
                 if (!newValue.matches("\\d*")) {
+                    
                     field.setText(newValue.replaceAll("[^\\d]", ""));
                 }
             }
@@ -66,19 +68,21 @@ public class FXMLRemoveCourseController implements Initializable {
     @FXML
     private void btnBorrarCurso(ActionEvent event) {
         
-          int value = Integer.parseInt(this.tfBorrarCurso.getText());
+          
         try {
-            if (course.contains1(value)) {
-                course.remove(value);
+          
+            
+            if (course.contains1(tfBorrarCurso.getText())) {
+                course.remove(tfBorrarCurso.getText());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Ventana de dialogo");
                 alert.setHeaderText("Informacion");
                 alert.setContentText("Se eliminó la carrera");
                 alert.showAndWait();
                 this.tfBorrarCurso.setText("");
-                this.txBorrarCurso1.setVisible(false);
+                this.txMessage.setVisible(false);
             } else {
-                this.txBorrarCurso1.setVisible(true);
+                this.txMessage.setVisible(true);
 
             }
         } catch (ListException ex) {

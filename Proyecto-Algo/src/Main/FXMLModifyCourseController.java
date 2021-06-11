@@ -11,7 +11,11 @@ import domain.Course;
 import domain.DoublyLinkedList;
 import domain.ListException;
 import domain.Node;
+import domain.SingleLinkedList;
+import domain.TimeTable;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,21 +41,18 @@ public class FXMLModifyCourseController implements Initializable {
 
     private CircularDoublyLinkedList course = util.Utility.getCourses();
     private DoublyLinkedList career = util.Utility.getCareers();
+    private Course curso;
 
-    @FXML
-    private TextField tfCursoID;
-    @FXML
-    private Text txtCursoNoAgregado;
-    @FXML
-    private Text txtMessage1;
+    
+    
+    
     @FXML
     private Text txtMessage2;
     @FXML
     private Text txtMessage3;
     @FXML
     private Text txtMessage4;
-    @FXML
-    private TextField txfNewID;
+    
     @FXML
     private TextField txfNewName;
     @FXML
@@ -63,6 +64,11 @@ public class FXMLModifyCourseController implements Initializable {
     private Button btnCambiarCurso;
     @FXML
     private Button btnBuscarCurso;
+    @FXML
+    private Text txtMessage;
+     private SingleLinkedList schedule = util.Utility.getSchedules();
+    @FXML
+    private TextField tfName;
 
     /**
      * Initializes the controller class.
@@ -70,8 +76,8 @@ public class FXMLModifyCourseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        numericOnly(tfCursoID);
-        numericOnly(txfNewID);
+        
+       
         // TODO
          Node aux;
         try {
@@ -94,26 +100,104 @@ public class FXMLModifyCourseController implements Initializable {
 
     @FXML
     private void btnBuscarCurso(ActionEvent event) {
-        int x = Integer.parseInt(tfCursoID.getText());
+        
+        int i=0;
+        
+         try{
+         
+            Node aux = course.getNode(1);
+            
+                    while(aux!=course.getNodeLast()){
+                    Course temp=(Course) aux.data;
+                    if (util.Utility.equals(temp.getName(), this.tfName)) {
+                    curso=temp;
+                   
+                 
+                     }
+                    aux=aux.next;
+                    }
+                     Course temp=(Course) aux.data;
+                    if (util.Utility.equals(temp.getName(), this.tfName)) {
+                    curso=temp;
+                   
+                 
+                     }
+                    }catch (ListException ex) {
+            Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+         if(!schedule.isEmpty()){
+         
+         try {
+             
+           Node aux = schedule.getNode(1);
 
-        try {
-            if (course.contains1(x)) {
-                txtCursoNoAgregado.setVisible(false);
-                txtMessage1.setVisible(true);
+            while (aux != null) { 
+                
+                TimeTable temp = (TimeTable) aux.data;
+               if(curso.getName().equals(temp.getCourseID().getName())){
+               i++;
+               
+               }
+               
+
+            }
+        } catch (ListException ex) {
+            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         }
+         if(i>0){
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Ventana de dialogo");
+                    alert.setHeaderText("Información");
+                    alert.setContentText("No se puede modificar el curso");
+                    alert.showAndWait();
+         
+         
+         }else{
+         
+         try {
+            if (course.contains1(tfName.getText()) ){
+                curso=null;
+                txtMessage.setText("");
+                
                 txtMessage2.setVisible(true);
                 txtMessage3.setVisible(true);
                 txtMessage4.setVisible(true);
-                txfNewID.setVisible(true);
+               
                 txfNewName.setVisible(true);
                 txfNewCredits.setVisible(true);
                 ComboBox.setVisible(true);
+                btnCambiarCurso.setVisible(true);
 
             } else {
-                this.txtCursoNoAgregado.setVisible(true);
+                this.txtMessage.setText("El curso no está en la lista");
             }
         } catch (ListException ex) {
             Logger.getLogger(FXMLModifyCourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
+         
+         
+         }
+        
+//        try {
+//            if (course.contains2(tfCursoID.getText()) ){
+//                txtMessage.setText("");
+//                txtMessage1.setVisible(true);
+//                txtMessage2.setVisible(true);
+//                txtMessage3.setVisible(true);
+//                txtMessage4.setVisible(true);
+//                txfNewID.setVisible(true);
+//                txfNewName.setVisible(true);
+//                txfNewCredits.setVisible(true);
+//                ComboBox.setVisible(true);
+//
+//            } else {
+//                this.txtMessage.setText("El curso no está en la lista");
+//            }
+//        } catch (ListException ex) {
+//            Logger.getLogger(FXMLModifyCourseController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
     
@@ -121,23 +205,20 @@ public class FXMLModifyCourseController implements Initializable {
     private void btnCambiarCurso(ActionEvent event) throws ListException {
         
         try{
-            Career CareerID = null;
+         
             Node aux = course.getNode(1);
-            int ID = Integer.parseInt(tfCursoID.getText());
-                    while(aux!=null){
-                    
-                    if (util.Utility.equals(aux.data, ID)) {
+            
+                    while(aux!=course.getNodeLast()){
                     Course temp=(Course) aux.data;
-                    temp.setId(txfNewID.getText());
-                    temp.setName(txfNewName.getText());
-                    temp.setCredits(Integer.parseInt(txfNewCredits.getText()));
-                    temp.setCareerID(CareerID);
+                    if (util.Utility.equals(temp.getName(), this.tfName)) {
+                    curso=temp;
+                   
                     
-                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Información");
-                    alert.setContentText("Curso modificado correctamente");
-                    alert.showAndWait();
+//                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//                    alert.setTitle("Ventana de dialogo");
+//                    alert.setHeaderText("Información");
+//                    alert.setContentText("Curso modificado correctamente");
+//                    alert.showAndWait();
                     
                      }
                     aux=aux.next;
@@ -147,27 +228,22 @@ public class FXMLModifyCourseController implements Initializable {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
                     
                     }  
-        
-        
+                    
+                    curso.setName(txfNewName.getText());
+                   curso.setCredits(Integer.parseInt(txfNewCredits.getText()));
+                    
                
-    
-                txtMessage1.setVisible(false);
                 txtMessage2.setVisible(false);
                 txtMessage3.setVisible(false);
                 txtMessage4.setVisible(false);
         
-                txfNewID.setText("");
+                
                 txfNewName.setText("");
                 txfNewCredits.setText("");
                 ComboBox.setVisible(false);
                 btnCambiarCurso.setText("");
                 
-                
-                
-                
-                
-                
-                txfNewID.setVisible(false);
+               
                 txfNewName.setVisible(false);
                 txfNewCredits.setVisible(false);
                 btnCambiarCurso.setVisible(false);
