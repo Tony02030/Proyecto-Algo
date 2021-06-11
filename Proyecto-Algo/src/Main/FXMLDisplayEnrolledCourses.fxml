@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="534.0" prefWidth="716.0" style="-fx-background-color: #0073ff;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLDisplayEnrolledCoursesController">
+   <children>
+      <TableView fx:id="tV_Enrolled" layoutX="140.0" layoutY="98.0" prefHeight="307.0" prefWidth="451.0">
+        <columns>
+          <TableColumn fx:id="tC_Course" prefWidth="147.20001220703125" text="Curso" />
+          <TableColumn fx:id="tC_Schedule" prefWidth="169.5999755859375" text="Horario" />
+            <TableColumn fx:id="tC_Career" prefWidth="131.19992065429688" text="Carrera" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

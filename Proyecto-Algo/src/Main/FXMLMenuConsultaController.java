@@ -34,6 +34,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.layout.BorderPane;
 
@@ -47,9 +48,9 @@ public class FXMLMenuConsultaController implements Initializable {
     private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
     private Student student = util.Utility.getConsulta();
     @FXML
-    private Menu showCourses;
+    private Button showCourses;
     @FXML
-    private Menu generaPdf;
+    private Button generaPdf;
     @FXML
     private BorderPane bp;
 
@@ -85,11 +86,11 @@ public class FXMLMenuConsultaController implements Initializable {
         alert.setHeaderText("Informacion");
         alert.setContentText("Se generó el reporte");
         alert.showAndWait();
-        generaRetiroMatricula();
+        generaMatricula();
 
     }
 
-    public void generaRetiroMatricula() throws FileNotFoundException, DocumentException, ListException, BadElementException, IOException {
+    public void generaMatricula() throws FileNotFoundException, DocumentException, ListException, BadElementException, IOException {
 
         FileOutputStream archivo = new FileOutputStream("HorarioEstudiante" + this.student.getId() + ".pdf");
         Document docu = new Document(PageSize.A4, 10, 10, 10, 10);
@@ -97,7 +98,7 @@ public class FXMLMenuConsultaController implements Initializable {
         PdfWriter.getInstance(docu, archivo);
         docu.open();
 
-        Paragraph title = new Paragraph(this.student.getFirstname() + " " + this.student.getLastname(), FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
+        Paragraph title = new Paragraph(this.student.getFirstname() + " " + this.student.getLastname()+"\n", FontFactory.getFont("arial", 22, Font.BOLD, BaseColor.BLACK));
         title.setAlignment(Paragraph.ALIGN_CENTER);
 
         Image img = Image.getInstance("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");

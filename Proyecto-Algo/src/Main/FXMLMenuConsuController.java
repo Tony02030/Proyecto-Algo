@@ -24,8 +24,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -33,22 +35,24 @@ import javafx.stage.Stage;
  * @author User
  */
 public class FXMLMenuConsuController implements Initializable {
-
+    
     private SingleLinkedList student = util.Utility.getStudents();
     private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
     @FXML
     private TextField txtFStudent;
     @FXML
     private Button btnIngreso;
+    @FXML
+    private BorderPane bp;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        util.Utility.numericOnly(txtFStudent);
     }
-
+    
     @FXML
     private void btnIngreso(ActionEvent event) throws ListException {
         if (student.isEmpty()) {
@@ -56,63 +60,62 @@ public class FXMLMenuConsuController implements Initializable {
             alert.setTitle("Ventana de Diálogo");
             alert.setHeaderText("Información");
             alert.setContentText("La lista de estudiantes esta vacía");
-
+            
             alert.showAndWait();
         } else if (this.enrollment.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ventana de Diálogo");
             alert.setHeaderText("Información");
             alert.setContentText("La lista de matriculados esta vacia");
-
+            
             alert.showAndWait();
 //           
-        } else if (!this.enrollment.contains1(this.txtFStudent.getText())) {
+        } else if (!this.enrollment.contains1(Integer.parseInt(this.txtFStudent.getText()))) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ventana de Diálogo");
             alert.setHeaderText("Información");
             alert.setContentText("El estudiante no está matriculado");
-
+            
             alert.showAndWait();
         } else {
+            this.bp.setVisible(true);
             try {
                 Node aux = enrollment.getNode(1);
-              
+                
                 while (aux != enrollment.getNodeLast()) {
-
+                    
                     Enrollment temp = (Enrollment) aux.data;
-                    if (util.Utility.equals(this.txtFStudent.getText(), String.valueOf(temp.getId())) && !util.Utility.exist(temp.getIdEnroll())) {
+                    if (util.Utility.equals(this.txtFStudent.getText(), String.valueOf(temp.getId()))) {
                         util.Utility.setConsulta(temp.getStudentID());
                     }
-
+                    
                     aux = aux.next;
-
+                    
                 }
                 Enrollment temp = (Enrollment) aux.data;
-                if (util.Utility.equals(this.txtFStudent.getText(), String.valueOf(temp.getId())) && !util.Utility.exist(temp.getIdEnroll())) {
+                if (util.Utility.equals(this.txtFStudent.getText(), String.valueOf(temp.getId()))) {
                     util.Utility.setConsulta(temp.getStudentID());
                 }
-
+                
             } catch (ListException ex) {
                 Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMenuConsulta.fxml"));
-
-                Parent root = loader.load();
-
-                FXMLMenuController controlador = loader.getController();
-
-                Scene scene = new Scene(root);
-                Stage stage = new Stage();
-                stage.initModality(Modality.APPLICATION_MODAL);
-                stage.setScene(scene);
-                stage.showAndWait();
-                
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            loadPage("FXMLMenuConsulta");
+            
         }
-
+        
     }
-
+    
+    private void loadPage(String page) {
+        Parent root = null;
+        try {
+            
+            root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLMenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.bp.setCenter(root);
+        
+    }
+    
 }

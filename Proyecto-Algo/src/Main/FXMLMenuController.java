@@ -25,12 +25,15 @@ import domain.DoublyLinkedList;
 import domain.Enrollment;
 import domain.ListException;
 import domain.Node;
+import domain.Security;
 import domain.SingleLinkedList;
 import domain.Student;
 import domain.TimeTable;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintStream;
 import java.net.URL;
@@ -46,6 +49,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -463,29 +467,30 @@ public class FXMLMenuController implements Initializable {
         }
 
         // Archivo Seguridad
-//        FileOutputStream fosSecurity = new FileOutputStream("SecurityReport.txt");
-//        ObjectOutputStream oosSecurity = new ObjectOutputStream(fosSecurity);
-//
-//        Node auxSecurity = security.getNode(1);
-//
-//        while (auxSecurity != security.getNode(security.size())) {  //getNodeLast()
-//
-//            Security securityW = (Security) auxSecurity.data;
-//            oosSecurity.writeObject(securityW);
-//            auxSecurity = auxSecurity.next;
-//        }
-//        Security securityW = (Security) auxSecurity.data;
-//        oosSecurity.writeObject(securityW);
-//
-//        //Leer Archivo seguridad
-//          FileInputStream fisSecurity = new FileInputStream("SecurityReport.txt");
-//        ObjectInputStream oisSecurity = new ObjectInputStream(fisSecurity);
-//        
-//          for (int i = 0; i < util.Utility.getSecurityCounter(); i++) {
-//            Security securityR = (Security) oisSecurity.readObject();
-//            this.security.add(securityR);
-//
-//        }
+        FileOutputStream fosSecurity = new FileOutputStream("SecurityReport.txt");
+        ObjectOutputStream oosSecurity = new ObjectOutputStream(fosSecurity);
+
+        Node auxSecurity = security.getNode(1);
+
+        while (auxSecurity != security.getNode(security.size())) {  //getNodeLast()
+
+            Security securityW = (Security) auxSecurity.data;
+            oosSecurity.writeObject(securityW);
+            auxSecurity = auxSecurity.next;
+        }
+        Security securityW = (Security) auxSecurity.data;
+        oosSecurity.writeObject(securityW);
+
+        //Leer Archivo seguridad
+        FileInputStream fisSecurity = new FileInputStream("SecurityReport.txt");
+        ObjectInputStream oisSecurity = new ObjectInputStream(fisSecurity);
+
+        for (int i = 0; i < util.Utility.getSecurityCounter(); i++) {
+            Security securityR = (Security) oisSecurity.readObject();
+            this.security.add(securityR);
+
+        }
+
         System.exit(0);
     }
 

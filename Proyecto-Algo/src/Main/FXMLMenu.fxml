@@ -57,7 +57,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Más Opciones">
                <items>
-                  <MenuItem fx:id="Exit" mnemonicParsing="false" onAction="#Exit" text="Sair" />
+                  <MenuItem fx:id="Exit" mnemonicParsing="false" onAction="#Exit" text="Salir" />
                </items></Menu>
         </menus>
       </MenuBar>

@@ -18,6 +18,11 @@
                   <MenuItem fx:id="openAdmin" mnemonicParsing="false" onAction="#openAdmin" text="Administrador" />
                   <MenuItem fx:id="openStudent" mnemonicParsing="false" onAction="#openStudent" text="Estudiante" />
                </items></Menu>
+            <Menu mnemonicParsing="false" text="Mas Opciones">
+              <items>
+                <MenuItem fx:id="Exit" mnemonicParsing="false" onAction="#Exit" text="Salir" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
       <Text layoutX="211.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Universidad de Costa Rica" textAlignment="CENTER" wrappingWidth="455.14141845703125">

@@ -127,6 +127,8 @@ public class Utility {
         try {
             if (!security.contains1("admin", "1234")) {
                 security.add(new Security("admin", "1234"));
+                int i =1;
+                util.Utility.setSecurityCounter(util.Utility.getSecurityCounter()+i);
             }
         } catch (ListException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);

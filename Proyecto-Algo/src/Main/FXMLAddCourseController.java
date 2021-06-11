@@ -17,6 +17,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -55,6 +57,7 @@ public class FXMLAddCourseController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        addTextLimiter(this.txfCredits, 1);
         util.Utility.numericOnly(this.txfCredits);
         Node aux;
         try {
@@ -72,6 +75,17 @@ public class FXMLAddCourseController implements Initializable {
         }
         CareerComboBox.setItems(oL_ComboBox);
 
+    }
+    public static void addTextLimiter(final TextField tf, final int maxLength) {
+        tf.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
+                if (tf.getText().length() > maxLength) {
+                    String s = tf.getText().substring(0, maxLength);
+                    tf.setText(s);
+                }
+            }
+        });
     }
 
     //Agrega el curso y realiza las respectivas verificaciones
