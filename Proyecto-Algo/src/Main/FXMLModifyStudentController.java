@@ -119,7 +119,6 @@ public class FXMLModifyStudentController implements Initializable {
         if (!this.deEnrollment.isEmpty()) {
 
             Node aux = deEnrollment.getNode(1);
-            //Node last = courses.getNode(courses.size());
             while (aux != deEnrollment.getNodeLast()) {
 
                 DeEnrollment temp = (DeEnrollment) aux.data;
@@ -138,7 +137,6 @@ public class FXMLModifyStudentController implements Initializable {
         if (!this.enrollment.isEmpty()) {
 
             Node aux = enrollment.getNode(1);
-            //Node last = courses.getNode(courses.size());
             while (aux != enrollment.getNodeLast()) {
 
                 Enrollment temp = (Enrollment) aux.data;
@@ -156,7 +154,7 @@ public class FXMLModifyStudentController implements Initializable {
         }
         if (count > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
+            alert.setTitle("Ventana de Diálogo");
             alert.setHeaderText("Información");
             alert.setContentText("No se puede modificar el curso");
             alert.showAndWait();

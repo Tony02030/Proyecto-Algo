@@ -10,8 +10,11 @@ import domain.CircularLinkedList;
 import domain.DoublyLinkedList;
 import domain.ListException;
 import domain.SingleLinkedList;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -94,6 +97,19 @@ public class FXMLMenuAdmiController implements Initializable {
         if (this.security.contains1(this.textFieldUser.getText(), this.textFieldPassword.getText())) {
             txtMessage.setVisible(false);
 
+//            //Leer archivo de Counters
+//            FileInputStream fis = new FileInputStream("Counters.txt");
+//            InputStreamReader isr = new InputStreamReader(fis);
+//            BufferedReader br = new BufferedReader(isr);
+//
+//            util.Utility.setStudentCounter(Integer.parseInt(br.readLine()));
+//            util.Utility.setSecurityCounter(Integer.parseInt(br.readLine()));
+//            util.Utility.setCareersCounter(Integer.parseInt(br.readLine()));
+//            util.Utility.setCoursesCounter(Integer.parseInt(br.readLine()));
+//            util.Utility.setSchedulesCounter(Integer.parseInt(br.readLine()));
+//            util.Utility.setEnrollmentCounter(Integer.parseInt(br.readLine()));
+//            util.Utility.setDeEnrollmentCounter(Integer.parseInt(br.readLine()));
+
 //                    //Leer Archivo de Seguridad
 //                    FileInputStream fisCareer = new FileInputStream("CareersReport.txt");
 //                    ObjectInputStream oisCareer = new ObjectInputStream(fisCareer);
@@ -149,12 +165,11 @@ public class FXMLMenuAdmiController implements Initializable {
 //                        deEnrollment.add(DeEnrollmentR);
 //                    }
             FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMenu.fxml"));
-           
 
             Parent parent = (Parent) loader.load();
 
             FXMLMenuController controlador = loader.getController();
-             loader.setController(controlador);
+            loader.setController(controlador);
 
             Scene scene = new Scene(parent, 878, 680);
             Stage stage = new Stage();

@@ -5,7 +5,6 @@
  */
 package Main;
 
-import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.CircularLinkedList;
 import domain.Course;
@@ -14,7 +13,6 @@ import domain.Enrollment;
 import domain.ListException;
 import domain.Node;
 import domain.SingleLinkedList;
-import domain.Student;
 import domain.TimeTable;
 import java.net.URL;
 import java.util.ResourceBundle;

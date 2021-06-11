@@ -9,7 +9,6 @@ package util;
 //import domain.Student;
 import domain.Career;
 import java.util.Date;
-import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import domain.SingleLinkedList;
@@ -22,13 +21,11 @@ import domain.ListException;
 import domain.Security;
 import domain.Student;
 import domain.TimeTable;
-import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 
 /**
  *

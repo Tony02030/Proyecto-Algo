@@ -31,6 +31,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -369,7 +370,6 @@ public class FXMLMenuController implements Initializable {
 
     @FXML
     private void Exit(ActionEvent event) throws IOException, ClassNotFoundException, ListException {
-//        System.exit(0);
 
         //Archivo Carreras
 //        if (!career.isEmpty()) {
@@ -384,6 +384,28 @@ public class FXMLMenuController implements Initializable {
 //                auxCareer = auxCareer.next;
 //            }
 //        }
+        //Archivo de contadores
+        FileOutputStream fos = new FileOutputStream("Counters.txt", true);
+
+        PrintStream ps = new PrintStream(fos);
+
+        int studentC = util.Utility.getStudentCounter();
+        int securityC = util.Utility.getSecurityCounter();
+        int careerC = util.Utility.getCareersCounter();
+        int coursesC = util.Utility.getCoursesCounter();
+        int schedulesC = util.Utility.getSchedulesCounter();
+        int enrollmentC = util.Utility.getEnrollmentCounter();
+        int deEnrollmentC = util.Utility.getDeEnrollmentCounter();
+
+        ps.println(studentC);
+        ps.println(securityC);
+        ps.println(careerC);
+        ps.println(coursesC);
+        ps.println(schedulesC);
+        ps.println(enrollmentC);
+        ps.println(deEnrollmentC);
+
+        //Archivo de Estudiante
         if (!student.isEmpty()) {
             FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");
             ObjectOutputStream oosStudent = new ObjectOutputStream(fosStudent);
@@ -402,7 +424,7 @@ public class FXMLMenuController implements Initializable {
 
             Node auxCourse = course.getNode(1);
 
-            while (auxCourse != course.getNodeLast()) {  //getNodeLast()
+            while (auxCourse != course.getNodeLast()) {
                 Course courseW = (Course) auxCourse.data;
                 oosCourse.writeObject(courseW);
                 auxCourse = auxCourse.next;
@@ -428,7 +450,7 @@ public class FXMLMenuController implements Initializable {
 
             Node auxEnrollment = enrollment.getNode(1);
 
-            while (auxEnrollment != enrollment.getNodeLast()) {  //getNodeLast()
+            while (auxEnrollment != enrollment.getNodeLast()) {
                 Enrollment enrollmentW = (Enrollment) auxEnrollment.data;
                 oosEnrollment.writeObject(enrollmentW);
                 auxEnrollment = auxEnrollment.next;
@@ -442,7 +464,7 @@ public class FXMLMenuController implements Initializable {
 
             Node auxDeEnrollment = deEnrollment.getNode(1);
 
-            while (auxDeEnrollment != deEnrollment.getNodeLast()) {  //getNodeLast()
+            while (auxDeEnrollment != deEnrollment.getNodeLast()) {
                 DeEnrollment deEnrollmentW = (DeEnrollment) auxDeEnrollment.data;
                 oosDeEnrollment.writeObject(deEnrollmentW);
 
