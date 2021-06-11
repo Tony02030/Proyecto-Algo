@@ -4,10 +4,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="451.0" prefWidth="656.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="Main.FXMLDisplayStudentController">
+<AnchorPane id="AnchorPane" prefHeight="451.0" prefWidth="656.0" style="-fx-min-width: 878; -fx-min-height: 680;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLDisplayStudentController">
    <children>
-      <TableView fx:id="tV_ShowStudents" prefHeight="599.0" prefWidth="867.0">
+      <TableView fx:id="tV_ShowStudents" prefHeight="680.0" prefWidth="878.0">
         <columns>
           <TableColumn fx:id="tC_ID" prefWidth="59.0" text="Cédula" />
           <TableColumn fx:id="tC_StudentID" prefWidth="60.0" text="Carné" />
@@ -16,8 +15,8 @@
             <TableColumn fx:id="tC_Birthday" prefWidth="122.0" text="Fecha de Nacimiento" />
             <TableColumn fx:id="tC_PhoneN" prefWidth="136.0" text="Número de Teléfono" />
             <TableColumn fx:id="tC_Email" prefWidth="137.0" text="Correo Electrónico" />
-            <TableColumn fx:id="tC_Adress" prefWidth="93.0" text="Dirección" />
-            <TableColumn fx:id="tC_Career" prefWidth="111.0" text="Carrera Elegida" />
+            <TableColumn fx:id="tC_Adress" prefWidth="109.0" text="Dirección" />
+            <TableColumn fx:id="tC_Career" prefWidth="106.0" text="Carrera Elegida" />
         </columns>
       </TableView>
    </children>

@@ -21,11 +21,11 @@
       </Text>
       <TextField fx:id="textFieldUser" layoutX="440.0" layoutY="243.0" prefHeight="26.0" prefWidth="184.0" />
       <PasswordField fx:id="textFieldPassword" layoutX="440.0" layoutY="305.0" prefHeight="26.0" prefWidth="184.0" />
-      <Button fx:id="btnIngreso" layoutX="374.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#btnIngreso" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: white;" text="Ingresar">
+      <Button fx:id="btnIngreso" layoutX="374.0" layoutY="359.0" mnemonicParsing="false" onMouseClicked="#btnIngreso" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: white;" text="Ingresar">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Text fx:id="txtMessage" fill="RED" layoutX="271.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario o Contraseña inválidos" textAlignment="CENTER" visible="false" wrappingWidth="313.80006408691406">
+      <Text fx:id="txtMessage" fill="RED" layoutX="275.0" layoutY="425.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario o Contraseña inválidos" textAlignment="CENTER" visible="false" wrappingWidth="313.80006408691406">
          <font>
             <Font name="Corbel" size="22.0" />
          </font>

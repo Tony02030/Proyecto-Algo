@@ -52,6 +52,8 @@ public class FXMLMenuTimeTableDisplayController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    //TableView para mostrar los horarios con sus horarios y periodo respectivo
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          this.colCurso.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
@@ -87,6 +89,8 @@ public class FXMLMenuTimeTableDisplayController implements Initializable {
         this.tableTimeSchedule.setItems(getData());
        
     }
+    
+    //ObservableList para añadir los horarios con sus horarios y periodo respectivo a la TableView
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;

@@ -5,14 +5,11 @@
  */
 package Main;
 
-import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.Course;
-import domain.DoublyLinkedList;
 import domain.ListException;
 import domain.Node;
 import domain.SingleLinkedList;
-import domain.Student;
 import domain.TimeTable;
 import java.net.URL;
 import java.util.ArrayList;
@@ -36,7 +33,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 /**
@@ -47,7 +43,6 @@ import javafx.util.Callback;
 public class FXMLMenuTimeTableController implements Initializable {
 
     private CircularDoublyLinkedList courses = util.Utility.getCourses();
-    private DoublyLinkedList career = util.Utility.getCareers();
     private SingleLinkedList schedule = util.Utility.getSchedules();
     private Course temp;
     private TimeTable sch;
@@ -76,7 +71,7 @@ public class FXMLMenuTimeTableController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//        
+       
         display();
 
     }
@@ -127,13 +122,13 @@ public class FXMLMenuTimeTableController implements Initializable {
 
     }
 
+    //ObservableList para insertar los cursos y la carrera a la que pertenecen en la TableView
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;
 
         try {
             aux = courses.getNode(1);
-            //Node last = courses.getNode(courses.size());
             while (aux != courses.getNodeLast()) {
                 List<String> array = new ArrayList<>();
                 Course temp = (Course) aux.data;
@@ -171,6 +166,7 @@ public class FXMLMenuTimeTableController implements Initializable {
         });
     }
 
+    //Agregra los horarios de los cursos seleccionados y hace las verificaciones respectivas
     @FXML
     private void btnAdd(ActionEvent event) {
         int count1 = 0;
@@ -210,8 +206,8 @@ public class FXMLMenuTimeTableController implements Initializable {
             String temp4 = temp2.toUpperCase();
             if (this.txtFieldSchedule1.getText().length() < 17 || this.txtFieldSchedule2.getText().length() < 17 || comboBox.getValue() == "") {
                 Alert alert3 = new Alert(Alert.AlertType.INFORMATION);
-                alert3.setTitle("Ventana de dialogo");
-                alert3.setHeaderText("Informacion");
+                alert3.setTitle("Ventana de Diálogo");
+                alert3.setHeaderText("Información");
                 alert3.setContentText("Los horarios que ingresó no son validos");
                 alert3.showAndWait();
                 display();
@@ -337,8 +333,8 @@ public class FXMLMenuTimeTableController implements Initializable {
                 }
                 if (count1 !=0) {
                     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-                    alert1.setTitle("Ventana de dialogo");
-                    alert1.setHeaderText("Informacion");
+                    alert1.setTitle("Ventana de Diálogo");
+                    alert1.setHeaderText("Información");
                     alert1.setContentText("Los horarios ya fueron ingresados");
                     alert1.showAndWait();
                     display();
@@ -347,8 +343,8 @@ public class FXMLMenuTimeTableController implements Initializable {
 
                 if (count !=0) {
                     Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
-                    alert2.setTitle("Ventana de dialogo");
-                    alert2.setHeaderText("Informacion");
+                    alert2.setTitle("Ventana de Diálogo");
+                    alert2.setHeaderText("Información");
                     alert2.setContentText("Los horarios que ingresó no son validos");
                     alert2.showAndWait();
                     display();

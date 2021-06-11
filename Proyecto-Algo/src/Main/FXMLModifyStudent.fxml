@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="784.0" style="-fx-background-color: #0073ff; -fx-min-width: 878; -fx-min-height: 624;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLModifyStudentController">
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="784.0" style="-fx-background-color: #0073ff; -fx-min-width: 878; -fx-min-height: 680;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLModifyStudentController">
    <children>
       <Text fx:id="txtFirstname" fill="WHITE" layoutX="198.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Digite su nombre:" visible="false" wrappingWidth="176.154296875">
          <font>
