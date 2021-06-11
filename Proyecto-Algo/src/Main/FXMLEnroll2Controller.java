@@ -399,8 +399,8 @@ public class FXMLEnroll2Controller implements Initializable {
                     this.ComboBox_Course.setValue("");
                     this.txf_Schedule.setText("");
                     //Contador
-                    int i = 0;
-                    util.Utility.setEnrollmentCounter(i++);
+                    int i = 1;
+                    util.Utility.setEnrollmentCounter(util.Utility.getEnrollmentCounter()+i);
                 }
                 count = 0;
                 count1 = 0;

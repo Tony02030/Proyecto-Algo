@@ -98,6 +98,8 @@ public class FXMLDisplayCourseController implements Initializable {
                 array.add((String.valueOf(temp.getCredits())));
                 array.add(temp.getCareerID().getDescription());
                 data.add(array);
+                aux=aux.next;
+                
 
             }
             Course temp = (Course) aux.data;

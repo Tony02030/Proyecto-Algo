@@ -16,6 +16,7 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.CircularLinkedList;
 import domain.Course;
@@ -264,7 +265,6 @@ public class FXMLMenuController implements Initializable {
         loadPage("FXMLDeEnroll1");
     }
 
-
     @FXML
     private void agregaHorario(ActionEvent event) {
         if (course.isEmpty()) {
@@ -303,7 +303,6 @@ public class FXMLMenuController implements Initializable {
         }
 
     }
-
 
     @FXML
     private void agregaCarrera(ActionEvent event) {
@@ -361,18 +360,6 @@ public class FXMLMenuController implements Initializable {
     private void Exit(ActionEvent event) throws IOException, ClassNotFoundException, ListException {
 
         //Archivo Carreras
-//        if (!career.isEmpty()) {
-//            FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
-//            ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
-//
-//            Node auxCareer = career.getNode(1);
-//
-//            while (auxCareer != null) {
-//                Career careerW = (Career) auxCareer.data;
-//                oosCareer.writeObject(careerW);
-//                auxCareer = auxCareer.next;
-//            }
-//        }
         //Archivo de contadores
         FileOutputStream fos = new FileOutputStream("Counters.txt", true);
 
@@ -386,14 +373,26 @@ public class FXMLMenuController implements Initializable {
         int enrollmentC = util.Utility.getEnrollmentCounter();
         int deEnrollmentC = util.Utility.getDeEnrollmentCounter();
 
-        ps.println(studentC);
-        ps.println(securityC);
-        ps.println(careerC);
-        ps.println(coursesC);
-        ps.println(schedulesC);
-        ps.println(enrollmentC);
-        ps.println(deEnrollmentC);
+        ps.println(String.valueOf(studentC));
+        ps.println(String.valueOf(securityC));
+        ps.println(String.valueOf(careerC));
+        ps.println(String.valueOf(coursesC));
+        ps.println(String.valueOf(schedulesC));
+        ps.println(String.valueOf(enrollmentC));
+        ps.println(String.valueOf(deEnrollmentC));
 
+        if (!career.isEmpty()) {
+            FileOutputStream fosCareer = new FileOutputStream("CareersReport.txt");
+            ObjectOutputStream oosCareer = new ObjectOutputStream(fosCareer);
+
+            Node auxCareer = career.getNode(1);
+
+            while (auxCareer != null) {
+                Career careerW = (Career) auxCareer.data;
+                oosCareer.writeObject(careerW);
+                auxCareer = auxCareer.next;
+            }
+        }
         //Archivo de Estudiante
         if (!student.isEmpty()) {
             FileOutputStream fosStudent = new FileOutputStream("StudentsReport.txt");

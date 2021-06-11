@@ -66,8 +66,8 @@ public class FXMLMenuCarrersAddController implements Initializable {
             this.textFieldCareer.setText("");
 
             //Contador
-            int i = 0;
-            util.Utility.setCareersCounter(i++);
+            int i = 1;
+            util.Utility.setCareersCounter(util.Utility.getCareersCounter()+i);
 
         }
         if (career.contains1(this.textFieldCareer.getText())) { //(career.contains1(this.textFieldCareer.getText())) {

@@ -367,6 +367,8 @@ public class FXMLMenuTimeTableController implements Initializable {
                         this.txtFieldSchedule2.setText("");
                         this.txtFPeriod.setText("");
                         this.comboBox.setValue("");
+                        int i=1;
+                        util.Utility.setSchedulesCounter(util.Utility.getSchedulesCounter()+i);
 
                     }
                 } else {

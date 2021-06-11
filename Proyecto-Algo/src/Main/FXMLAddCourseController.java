@@ -107,8 +107,8 @@ public class FXMLAddCourseController implements Initializable {
             temp = null;
 
             //Contador
-            int i = 0;
-            util.Utility.setCoursesCounter(i++);
+            int i = 1;
+            util.Utility.setCoursesCounter(util.Utility.getCoursesCounter()+i);
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

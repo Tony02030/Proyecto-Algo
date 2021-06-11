@@ -158,52 +158,52 @@ public class FXMLAddStudentController implements Initializable {
             Student.add(st = new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp, 0));
 
             //Contador para archivos
-            int i = 0;
-            util.Utility.setStudentCounter(i++);
+            int i = 1;
+            util.Utility.setStudentCounter(util.Utility.getStudentCounter()+i);
 
             //Claves para enviar correos por "gmail" al estudiante
-            Properties propiedad = new Properties();
-            propiedad.put("mail smtp host", "smtp gmail com");
-            propiedad.put("mail smtp port", "587");
-            propiedad.put("mail.smtp.auth", "true");
-            propiedad.put("mail.smtp.starttls.enable", "true");
-            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
-            propiedad.put("mail.smtp.clave", "");
-
-            Session sesion = Session.getDefaultInstance(propiedad);
-
-            String correoEnvia = "anthony.rs02@gmail.com";
-            String contraseña = "18702NACE";
-            String destinatario = txfEmail.getText();
-
-            MimeMessage mail = new MimeMessage(sesion);
-
-            //Creación del cuerpo y asunto del correo
-                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-
-                mail.setSubject(asunto());
-                Multipart multipart = new MimeMultipart();
-
-                MimeBodyPart message1 = new MimeBodyPart();
-                String htmlText = "<img src=\"cid:image\">";
-                message1.setContent(htmlText, "text/html");
-
-                MimeBodyPart message2 = new MimeBodyPart();
-                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
-                message2.setDataHandler(new DataHandler(source));
-                message2.setHeader("Content-ID", "<image>");
-                
-                MimeBodyPart message3 = new MimeBodyPart();
-                message3.setText(mensaje());
-
-                multipart.addBodyPart(message1);
-                multipart.addBodyPart(message2);
-                multipart.addBodyPart(message3);
-                mail.setContent(multipart);
-                Transport transporte = sesion.getTransport("smtp");
-                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
-                transporte.sendMessage(mail, mail.getAllRecipients());
-                transporte.close();
+//            Properties propiedad = new Properties();
+//            propiedad.put("mail smtp host", "smtp gmail com");
+//            propiedad.put("mail smtp port", "587");
+//            propiedad.put("mail.smtp.auth", "true");
+//            propiedad.put("mail.smtp.starttls.enable", "true");
+//            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
+//            propiedad.put("mail.smtp.clave", "");
+//
+//            Session sesion = Session.getDefaultInstance(propiedad);
+//
+//            String correoEnvia = "anthony.rs02@gmail.com";
+//            String contraseña = "18702NACE";
+//            String destinatario = txfEmail.getText();
+//
+//            MimeMessage mail = new MimeMessage(sesion);
+//
+//            //Creación del cuerpo y asunto del correo
+//                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+//
+//                mail.setSubject(asunto());
+//                Multipart multipart = new MimeMultipart();
+//
+//                MimeBodyPart message1 = new MimeBodyPart();
+//                String htmlText = "<img src=\"cid:image\">";
+//                message1.setContent(htmlText, "text/html");
+//
+//                MimeBodyPart message2 = new MimeBodyPart();
+//                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
+//                message2.setDataHandler(new DataHandler(source));
+//                message2.setHeader("Content-ID", "<image>");
+//                
+//                MimeBodyPart message3 = new MimeBodyPart();
+//                message3.setText(mensaje());
+//
+//                multipart.addBodyPart(message1);
+//                multipart.addBodyPart(message2);
+//                multipart.addBodyPart(message3);
+//                mail.setContent(multipart);
+//                Transport transporte = sesion.getTransport("smtp");
+//                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
+//                transporte.sendMessage(mail, mail.getAllRecipients());
+//                transporte.close();
                 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");

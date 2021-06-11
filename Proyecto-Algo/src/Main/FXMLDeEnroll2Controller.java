@@ -243,56 +243,56 @@ public class FXMLDeEnroll2Controller implements Initializable {
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeYes) {
-            Properties propiedad = new Properties();
-            propiedad.put("mail smtp host", "smtp gmail com");
-            propiedad.put("mail smtp port", "587");
-            propiedad.put("mail.smtp.auth", "true");
-            propiedad.put("mail.smtp.starttls.enable", "true");
-            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
-            propiedad.put("mail.smtp.clave", "");
-
-            Session sesion = Session.getDefaultInstance(propiedad);
-
-            String correoEnvia = "anthony.rs02@gmail.com";
-            String contraseña = "18702NACE";
-            String destinatario = this.student.getEmail();
-
-            MimeMessage mail = new MimeMessage(sesion);
-
-            try {
-//                mail.setFrom(new InternetAddress(correoEnvia));
-                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-
-                mail.setSubject(asunto());
-                Multipart multipart = new MimeMultipart();
-
-                MimeBodyPart message1 = new MimeBodyPart();
-                String htmlText = "<img src=\"cid:image\">";
-                message1.setContent(htmlText, "text/html");
-
-                MimeBodyPart message2 = new MimeBodyPart();
-                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
-                message2.setDataHandler(new DataHandler(source));
-                message2.setHeader("Content-ID", "<image>");
-//                message1.setFileName(source.getName());
-
-                MimeBodyPart message3 = new MimeBodyPart();
-                message3.setText(mensaje());
-
-                multipart.addBodyPart(message1);
-                multipart.addBodyPart(message2);
-                multipart.addBodyPart(message3);
-                mail.setContent(multipart);
-                Transport transporte = sesion.getTransport("smtp");
-                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
-                transporte.sendMessage(mail, mail.getAllRecipients());
-                transporte.close();
-
-            } catch (AddressException ex) {
-                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (MessagingException ex) {
-                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            Properties propiedad = new Properties();
+//            propiedad.put("mail smtp host", "smtp gmail com");
+//            propiedad.put("mail smtp port", "587");
+//            propiedad.put("mail.smtp.auth", "true");
+//            propiedad.put("mail.smtp.starttls.enable", "true");
+//            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
+//            propiedad.put("mail.smtp.clave", "");
+//
+//            Session sesion = Session.getDefaultInstance(propiedad);
+//
+//            String correoEnvia = "anthony.rs02@gmail.com";
+//            String contraseña = "18702NACE";
+//            String destinatario = this.student.getEmail();
+//
+//            MimeMessage mail = new MimeMessage(sesion);
+//
+//            try {
+////                mail.setFrom(new InternetAddress(correoEnvia));
+//                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+//
+//                mail.setSubject(asunto());
+//                Multipart multipart = new MimeMultipart();
+//
+//                MimeBodyPart message1 = new MimeBodyPart();
+//                String htmlText = "<img src=\"cid:image\">";
+//                message1.setContent(htmlText, "text/html");
+//
+//                MimeBodyPart message2 = new MimeBodyPart();
+//                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
+//                message2.setDataHandler(new DataHandler(source));
+//                message2.setHeader("Content-ID", "<image>");
+////                message1.setFileName(source.getName());
+//
+//                MimeBodyPart message3 = new MimeBodyPart();
+//                message3.setText(mensaje());
+//
+//                multipart.addBodyPart(message1);
+//                multipart.addBodyPart(message2);
+//                multipart.addBodyPart(message3);
+//                mail.setContent(multipart);
+//                Transport transporte = sesion.getTransport("smtp");
+//                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
+//                transporte.sendMessage(mail, mail.getAllRecipients());
+//                transporte.close();
+//
+//            } catch (AddressException ex) {
+//                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (MessagingException ex) {
+//                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             tV_DeEnrollCourse.setVisible(false);
             txtMessage.setVisible(false);
             ComboBox_Course.setVisible(false);
@@ -423,8 +423,8 @@ public class FXMLDeEnroll2Controller implements Initializable {
                     this.textAMotivo.setText("");
 
                     //Contador
-                    int i = 0;
-                    util.Utility.setDeEnrollmentCounter(i++);
+                    int i = 1;
+                    util.Utility.setDeEnrollmentCounter(util.Utility.getDeEnrollmentCounter()+i);
                 }
 
             }
