@@ -83,6 +83,7 @@ public class FXMLModifyCourseController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         // TODO
+        oL_ComboBox.clear();
         Node aux;
         try {
             aux = career.getNode(1);
@@ -112,14 +113,14 @@ public class FXMLModifyCourseController implements Initializable {
 
             while (aux != course.getNodeLast()) {
                 Course temp = (Course) aux.data;
-                if (util.Utility.equals(temp.getName(), this.tfName)) {
+                if (util.Utility.equals(temp.getName(), this.tfName.getText())) {
                     curso = temp;
 
                 }
                 aux = aux.next;
             }
             Course temp = (Course) aux.data;
-            if (util.Utility.equals(temp.getName(), this.tfName)) {
+            if (util.Utility.equals(temp.getName(), this.tfName.getText())) {
                 curso = temp;
 
             }
