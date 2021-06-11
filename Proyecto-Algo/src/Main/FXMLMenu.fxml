@@ -39,7 +39,6 @@
             <items>
                   <MenuItem fx:id="matriculaEstudiante" mnemonicParsing="false" onAction="#matriculaEstudiante" text="Matricular Estudiante" />
                   <MenuItem fx:id="retiroCurso" mnemonicParsing="false" onAction="#retiroCurso" text="Retirar curso" />
-                  <MenuItem fx:id="muestraEstudiantesM" mnemonicParsing="false" onAction="#muestraEstudianteM" text="Estudiantes Matriculados" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Horarios">
@@ -48,19 +47,6 @@
                   <MenuItem fx:id="muestraHorarios" mnemonicParsing="false" onAction="#muestraHorarios" text="Mostrar horarios" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Administrador">
-              <items>
-                <MenuItem fx:id="agregaAdministrador" mnemonicParsing="false" onAction="#agregaAdministrador" text="Agregar Administrador" />
-                  <Menu mnemonicParsing="false" text="Reportes">
-                    <items>
-                      <MenuItem fx:id="pdfEstudiantes" mnemonicParsing="false" onAction="#pdfEstudiantes" text="Estudiantes" />
-                        <MenuItem fx:id="pdfCursos" mnemonicParsing="false" onAction="#pdfCursos" text="Cursos" />
-                        <MenuItem fx:id="pdfEstuMatriculados" mnemonicParsing="false" onAction="#pdfEstuMatriculados" text="Estudiantes Matriculados" />
-                        <MenuItem fx:id="pdfRetiros" mnemonicParsing="false" onAction="#pdfRetiros" text="Retiro de Cursos" />
-                    </items>
-                  </Menu>
-              </items>
-            </Menu>
             <Menu mnemonicParsing="false" text="Más Opciones">
                <items>
                   <MenuItem fx:id="Exit" mnemonicParsing="false" onAction="#Exit" text="Sair" />
