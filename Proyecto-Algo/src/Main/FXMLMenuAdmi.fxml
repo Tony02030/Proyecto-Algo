@@ -9,28 +9,28 @@
 
 <AnchorPane id="AnchorPane" fx:id="ap" prefHeight="435.0" prefWidth="646.0" style="-fx-background-color: #0073ff; -fx-min-width: 878; -fx-min-height: 624;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuAdmiController">
    <children>
-      <Text fill="WHITE" layoutX="261.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Usuario:">
+      <Text fill="WHITE" layoutX="237.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de Usuario:">
          <font>
             <Font name="Corbel" size="22.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="333.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
+      <Text fill="WHITE" layoutX="309.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña:">
          <font>
             <Font name="Corbel" size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="textFieldUser" layoutX="457.0" layoutY="178.0" prefHeight="26.0" prefWidth="184.0" />
-      <PasswordField fx:id="textFieldPassword" layoutX="456.0" layoutY="240.0" prefHeight="26.0" prefWidth="184.0" />
-      <Button fx:id="btnIngreso" layoutX="380.0" layoutY="319.0" mnemonicParsing="false" onMouseClicked="#btnIngreso" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: white;" text="Ingresar">
+      <TextField fx:id="textFieldUser" layoutX="440.0" layoutY="243.0" prefHeight="26.0" prefWidth="184.0" />
+      <PasswordField fx:id="textFieldPassword" layoutX="440.0" layoutY="305.0" prefHeight="26.0" prefWidth="184.0" />
+      <Button fx:id="btnIngreso" layoutX="374.0" layoutY="384.0" mnemonicParsing="false" onMouseClicked="#btnIngreso" prefHeight="35.0" prefWidth="117.0" style="-fx-background-color: white;" text="Ingresar">
          <font>
             <Font size="15.0" />
          </font></Button>
-      <Text fx:id="txtMessage" fill="RED" layoutX="315.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="256.80006408691406">
+      <Text fx:id="txtMessage" fill="RED" layoutX="271.0" layoutY="486.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario o Contraseña inválidos" textAlignment="CENTER" visible="false" wrappingWidth="313.80006408691406">
          <font>
             <Font name="Corbel" size="22.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="342.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio de Sesión">
+      <Text fill="WHITE" layoutX="330.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio de Sesión">
          <font>
             <Font name="Corbel" size="32.0" />
          </font>

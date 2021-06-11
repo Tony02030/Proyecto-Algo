@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="654.0" prefWidth="864.0" style="-fx-background-color: white; -fx-border-color: black;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuController">
+<AnchorPane id="AnchorPane" minHeight="558.0" prefHeight="624.0" prefWidth="878.0" style="-fx-background-color: white; -fx-border-color: black; -fx-min-width: 878; -fx-min-height: 624;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLMenuController">
    <children>
-      <BorderPane fx:id="bp" layoutX="2.0" layoutY="28.0" prefHeight="624.0" prefWidth="878.0" />
+      <BorderPane fx:id="bp" layoutX="1.0" layoutY="27.0" minWidth="825.0" prefHeight="597.0" prefWidth="878.0" style="-fx-min-width: 878;" />
       <MenuBar prefHeight="27.0" prefWidth="878.0" style="-fx-border-color: black; -fx-background-color: white;">
         <menus>
           <Menu mnemonicParsing="false" text="Carreras">
