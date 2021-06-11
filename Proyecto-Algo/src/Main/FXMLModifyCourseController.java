@@ -7,8 +7,11 @@ package Main;
 
 import domain.Career;
 import domain.CircularDoublyLinkedList;
+import domain.CircularLinkedList;
 import domain.Course;
+import domain.DeEnrollment;
 import domain.DoublyLinkedList;
+import domain.Enrollment;
 import domain.ListException;
 import domain.Node;
 import domain.SingleLinkedList;
@@ -39,20 +42,23 @@ import javafx.scene.text.Text;
  */
 public class FXMLModifyCourseController implements Initializable {
 
-    private CircularDoublyLinkedList course = util.Utility.getCourses();
+    private SingleLinkedList student = util.Utility.getStudents();
+    private CircularLinkedList security = util.Utility.getSecurity();
     private DoublyLinkedList career = util.Utility.getCareers();
+    private CircularDoublyLinkedList course = util.Utility.getCourses();
+    private SingleLinkedList schedule = util.Utility.getSchedules();
+    private CircularDoublyLinkedList enrollment = util.Utility.getEnrollment();
+    private CircularDoublyLinkedList deEnrollment = util.Utility.getDeEnrollment();
+
     private Course curso;
 
-    
-    
-    
     @FXML
     private Text txtMessage2;
     @FXML
     private Text txtMessage3;
     @FXML
     private Text txtMessage4;
-    
+
     @FXML
     private TextField txfNewName;
     @FXML
@@ -66,7 +72,7 @@ public class FXMLModifyCourseController implements Initializable {
     private Button btnBuscarCurso;
     @FXML
     private Text txtMessage;
-     private SingleLinkedList schedule = util.Utility.getSchedules();
+
     @FXML
     private TextField tfName;
 
@@ -76,10 +82,8 @@ public class FXMLModifyCourseController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        
-       
         // TODO
-         Node aux;
+        Node aux;
         try {
             aux = career.getNode(1);
             int x = 0;
@@ -94,166 +98,175 @@ public class FXMLModifyCourseController implements Initializable {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
         ComboBox.setItems(oL_ComboBox);
-    
 
     }
 
     @FXML
-    private void btnBuscarCurso(ActionEvent event) {
-        
-        int i=0;
-        
-         try{
-         
+    private void btnBuscarCurso(ActionEvent event) throws ListException {
+
+        int i = 0;
+
+        try {
+
             Node aux = course.getNode(1);
-            
-                    while(aux!=course.getNodeLast()){
-                    Course temp=(Course) aux.data;
-                    if (util.Utility.equals(temp.getName(), this.tfName)) {
-                    curso=temp;
-                   
-                 
-                     }
-                    aux=aux.next;
-                    }
-                     Course temp=(Course) aux.data;
-                    if (util.Utility.equals(temp.getName(), this.tfName)) {
-                    curso=temp;
-                   
-                 
-                     }
-                    }catch (ListException ex) {
+
+            while (aux != course.getNodeLast()) {
+                Course temp = (Course) aux.data;
+                if (util.Utility.equals(temp.getName(), this.tfName)) {
+                    curso = temp;
+
+                }
+                aux = aux.next;
+            }
+            Course temp = (Course) aux.data;
+            if (util.Utility.equals(temp.getName(), this.tfName)) {
+                curso = temp;
+
+            }
+        } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if (!schedule.isEmpty()) {
+
+            try {
+
+                Node aux = schedule.getNode(1);
+
+                while (aux != null) {
+
+                    TimeTable temp = (TimeTable) aux.data;
+                    if (curso.getName().equals(temp.getCourseID().getName())) {
+                        i++;
+
                     }
-         if(!schedule.isEmpty()){
-         
-         try {
-             
-           Node aux = schedule.getNode(1);
+                    aux = aux.next;
 
-            while (aux != null) { 
-                
-                TimeTable temp = (TimeTable) aux.data;
-               if(curso.getName().equals(temp.getCourseID().getName())){
-               i++;
-               
-               }
-               
+                }
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (!this.deEnrollment.isEmpty()) {
+
+            Node aux = deEnrollment.getNode(1);
+            //Node last = courses.getNode(courses.size());
+            while (aux != deEnrollment.getNodeLast()) {
+
+                DeEnrollment temp = (DeEnrollment) aux.data;
+                if (curso.getName().equals(temp.getCourseID().getName())) {
+                    i++;
+
+                }
+
+                aux = aux.next;
 
             }
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         }
-         if(i>0){
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Ventana de dialogo");
-                    alert.setHeaderText("Información");
-                    alert.setContentText("No se puede modificar el curso");
-                    alert.showAndWait();
-         
-         
-         }else{
-         
-         try {
-            if (course.contains1(tfName.getText()) ){
-                curso=null;
-                txtMessage.setText("");
-                
-                txtMessage2.setVisible(true);
-                txtMessage3.setVisible(true);
-                txtMessage4.setVisible(true);
-               
-                txfNewName.setVisible(true);
-                txfNewCredits.setVisible(true);
-                ComboBox.setVisible(true);
-                btnCambiarCurso.setVisible(true);
+            DeEnrollment temp = (DeEnrollment) aux.data;
+            if (curso.getName().equals(temp.getCourseID().getName())) {
+                i++;
 
-            } else {
-                this.txtMessage.setText("El curso no está en la lista");
             }
-        } catch (ListException ex) {
-            Logger.getLogger(FXMLModifyCourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-         
-         
-         }
-        
-//        try {
-//            if (course.contains2(tfCursoID.getText()) ){
-//                txtMessage.setText("");
-//                txtMessage1.setVisible(true);
-//                txtMessage2.setVisible(true);
-//                txtMessage3.setVisible(true);
-//                txtMessage4.setVisible(true);
-//                txfNewID.setVisible(true);
-//                txfNewName.setVisible(true);
-//                txfNewCredits.setVisible(true);
-//                ComboBox.setVisible(true);
-//
-//            } else {
-//                this.txtMessage.setText("El curso no está en la lista");
-//            }
-//        } catch (ListException ex) {
-//            Logger.getLogger(FXMLModifyCourseController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        if (!this.enrollment.isEmpty()) {
 
+            Node aux = enrollment.getNode(1);
+            //Node last = courses.getNode(courses.size());
+            while (aux != enrollment.getNodeLast()) {
+
+                Enrollment temp = (Enrollment) aux.data;
+                if (curso.getName().equals(temp.getCourseID().getName())) {
+                    i++;
+
+                }
+
+                aux = aux.next;
+
+            }
+            Enrollment temp = (Enrollment) aux.data;
+            if (curso.getName().equals(temp.getCourseID().getName())) {
+                i++;
+
+            }
+        }
+        if (i > 0) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de dialogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("No se puede modificar el curso");
+            alert.showAndWait();
+
+        } else {
+
+            try {
+                if (course.contains1(tfName.getText())) {
+                    curso = null;
+                    txtMessage.setText("");
+
+                    txtMessage2.setVisible(true);
+                    txtMessage3.setVisible(true);
+                    txtMessage4.setVisible(true);
+
+                    txfNewName.setVisible(true);
+                    txfNewCredits.setVisible(true);
+                    ComboBox.setVisible(true);
+                    btnCambiarCurso.setVisible(true);
+
+                } else {
+                    this.txtMessage.setText("El curso no está en la lista");
+                }
+            } catch (ListException ex) {
+                Logger.getLogger(FXMLModifyCourseController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+//     
     }
-    
+
     @FXML
     private void btnCambiarCurso(ActionEvent event) throws ListException {
-        
-        try{
-         
+
+        try {
+
             Node aux = course.getNode(1);
-            
-                    while(aux!=course.getNodeLast()){
-                    Course temp=(Course) aux.data;
-                    if (util.Utility.equals(temp.getName(), this.tfName)) {
-                    curso=temp;
-                   
-                    
+
+            while (aux != course.getNodeLast()) {
+                Course temp = (Course) aux.data;
+                if (util.Utility.equals(temp.getName(), this.tfName)) {
+                    curso = temp;
+
 //                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 //                    alert.setTitle("Ventana de dialogo");
 //                    alert.setHeaderText("Información");
 //                    alert.setContentText("Curso modificado correctamente");
 //                    alert.showAndWait();
-                    
-                     }
-                    aux=aux.next;
-                    }
-                    
-                    }catch (ListException ex) {
+                }
+                aux = aux.next;
+            }
+
+        } catch (ListException ex) {
             Logger.getLogger(FXMLMenuCarrersChangeController.class.getName()).log(Level.SEVERE, null, ex);
-                    
-                    }  
-                    
-                    curso.setName(txfNewName.getText());
-                   curso.setCredits(Integer.parseInt(txfNewCredits.getText()));
-                    
-               
-                txtMessage2.setVisible(false);
-                txtMessage3.setVisible(false);
-                txtMessage4.setVisible(false);
-        
-                
-                txfNewName.setText("");
-                txfNewCredits.setText("");
-                ComboBox.setVisible(false);
-                btnCambiarCurso.setText("");
-                
-               
-                txfNewName.setVisible(false);
-                txfNewCredits.setVisible(false);
-                btnCambiarCurso.setVisible(false);
-                        
-                
-                
-                
-               
-        
+
+        }
+
+        curso.setName(txfNewName.getText());
+        curso.setCredits(Integer.parseInt(txfNewCredits.getText()));
+
+        txtMessage2.setVisible(false);
+        txtMessage3.setVisible(false);
+        txtMessage4.setVisible(false);
+
+        txfNewName.setText("");
+        txfNewCredits.setText("");
+        ComboBox.setVisible(false);
+        btnCambiarCurso.setText("");
+
+        txfNewName.setVisible(false);
+        txfNewCredits.setVisible(false);
+        btnCambiarCurso.setVisible(false);
+
     }
+
     public static void numericOnly(final TextField field) {
         field.textProperty().addListener(new ChangeListener<String>() {
             @Override
