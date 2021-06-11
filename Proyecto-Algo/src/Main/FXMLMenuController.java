@@ -16,7 +16,6 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.CircularLinkedList;
 import domain.Course;
@@ -25,15 +24,12 @@ import domain.DoublyLinkedList;
 import domain.Enrollment;
 import domain.ListException;
 import domain.Node;
-import domain.Security;
 import domain.SingleLinkedList;
 import domain.Student;
 import domain.TimeTable;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,7 +44,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class

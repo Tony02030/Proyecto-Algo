@@ -5,25 +5,15 @@
  */
 package Main;
 
-import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.CircularLinkedList;
-import domain.Course;
-import domain.DeEnrollment;
 import domain.DoublyLinkedList;
-import domain.Enrollment;
 import domain.ListException;
 import domain.SingleLinkedList;
-import domain.Student;
-import domain.TimeTable;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

@@ -10,7 +10,6 @@ package Main;
 import domain.ListException;
 import domain.Node;
 import domain.SingleLinkedList;
-import domain.Student;
 import domain.TimeTable;
 import java.net.URL;
 import java.util.ArrayList;

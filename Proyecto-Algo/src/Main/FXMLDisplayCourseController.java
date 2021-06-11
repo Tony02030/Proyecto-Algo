@@ -5,10 +5,8 @@
  */
 package Main;
 
-import domain.Career;
 import domain.CircularDoublyLinkedList;
 import domain.Course;
-import domain.Enrollment;
 import domain.ListException;
 import domain.Node;
 import java.net.URL;
@@ -25,7 +23,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 
 /**

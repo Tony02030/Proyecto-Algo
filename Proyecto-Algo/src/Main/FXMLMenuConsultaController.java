@@ -17,7 +17,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import domain.CircularDoublyLinkedList;
-import domain.DeEnrollment;
 import domain.Enrollment;
 import domain.ListException;
 import domain.Node;
