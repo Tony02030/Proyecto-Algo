@@ -147,13 +147,6 @@ public class Utility {
     }
 
     public static CircularDoublyLinkedList getCourses() {
-        try {
-            if (!careers.contains1("info")) {
-                careers.add(new Career("info"));
-            }
-        } catch (ListException ex) {
-            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
         return courses;
     }
@@ -265,7 +258,7 @@ public class Utility {
             case "schedule":
                 TimeTable t1 = (TimeTable) data;
                 String t2 = (String) element;
-                return t1.getSchedule1().equals(t2) || t1.getSchedule2().equals(t2) ;
+                return t1.getSchedule1().equals(t2) || t1.getSchedule2().equals(t2);
         }
         return false;
     }
@@ -376,11 +369,10 @@ public class Utility {
         if (data instanceof Enrollment && element instanceof String) {
             return "enroll1";
         }
-       
+
 //         if (data instanceof Student && element instanceof Student) {
 //            return "student";
 //        }
-
 //         if (data instanceof Course && element instanceof Course) {
 //            return "course";
 //        }
@@ -517,5 +509,5 @@ public class Utility {
         }
         return true;
     }
-   
+
 }
