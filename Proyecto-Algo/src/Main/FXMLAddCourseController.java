@@ -71,9 +71,10 @@ public class FXMLAddCourseController implements Initializable {
             Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
         }
         CareerComboBox.setItems(oL_ComboBox);
-        // TODO
+
     }
 
+    //Agrega el curso y realiza las respectivas verificaciones
     @FXML
     private void btnAddCourse(ActionEvent event) throws ListException, FileNotFoundException, IOException {
 
@@ -96,25 +97,24 @@ public class FXMLAddCourseController implements Initializable {
             }
             course.add(new Course(this.txfID.getText().toUpperCase(), this.txfName.getText(), temp1, temp, 0));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
-            alert.setContentText("Se agregó el curso");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("Se agregó el curso correctamente");
             alert.showAndWait();
             this.txfName.setText("");
             this.txfID.setText("");
             this.txfCredits.setText("");
             temp = null;
 
-            
             //Contador
             int i = 0;
             util.Utility.setCoursesCounter(i++);
-      
+
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
-            alert.setContentText("Ya se agregó ese curso");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("Este curso ha sido agregado con anterioridad");
             alert.showAndWait();
         }
 

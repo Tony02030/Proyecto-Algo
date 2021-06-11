@@ -49,24 +49,11 @@ public class FXMLDisplayCourseController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    
+    //TableView con los cursos y sus respectivos datos
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-//          Node aux;
-////        try {
-//            aux = course.getNode(1);
-//            int x=0;
-//            while (aux != null) {
-//                Course temp=(Course)aux.data;
-//                courses.add(x, temp);
-//                aux=aux.next;
-//                x=x+1;
-//            }
-//        } catch (ListException ex) {
-//            Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        colCarrers.setCellValueFactory(new PropertyValueFactory("description"));
-//        tableCourses.setItems(courses);
-
+        
         this.IDcolumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<List<String>, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<List<String>, String> data) {
@@ -95,6 +82,7 @@ public class FXMLDisplayCourseController implements Initializable {
     }
     // TODO
 
+    //ObservableList que trae los cursos y sus respectivos datos y los agrega a la TableView
     public ObservableList<List<String>> getData() {
         final ObservableList<List<String>> data = FXCollections.observableArrayList();
         Node aux;

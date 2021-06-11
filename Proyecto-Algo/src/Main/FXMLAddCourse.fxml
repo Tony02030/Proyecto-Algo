@@ -7,39 +7,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="800.0" style="-fx-background-color: #0073ff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLAddCourseController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="524.0" prefWidth="800.0" style="-fx-background-color: #0073ff; -fx-min-width: 878; -fx-min-height: 680;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Main.FXMLAddCourseController">
    <children>
-      <Text fill="WHITE" layoutX="169.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserte el ID del Curso:">
+      <Text fill="WHITE" layoutX="233.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserte el ID del Curso:">
          <font>
             <Font name="Corbel" size="18.0" />
          </font></Text>
-      <Text fill="WHITE" layoutX="172.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserte el Nombre del Curso:">
+      <Text fill="WHITE" layoutX="236.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserte el Nombre del Curso:">
          <font>
             <Font size="18.0" />
          </font></Text>
-      <TextField fx:id="txfID" layoutX="433.0" layoutY="135.0" />
-      <TextField fx:id="txfName" layoutX="433.0" layoutY="184.0" />
-      <Button fx:id="btnAddCourse" layoutX="356.0" layoutY="376.0" mnemonicParsing="false" onAction="#btnAddCourse" onKeyTyped="#btnAddCourse" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: white;" text="Agregar" />
-      <Text fill="WHITE" layoutX="169.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carrera correspondida al Curso:">
+      <TextField fx:id="txfID" layoutX="497.0" layoutY="154.0" />
+      <TextField fx:id="txfName" layoutX="497.0" layoutY="203.0" />
+      <Button fx:id="btnAddCourse" layoutX="420.0" layoutY="395.0" mnemonicParsing="false" onAction="#btnAddCourse" onKeyTyped="#btnAddCourse" prefHeight="34.0" prefWidth="92.0" style="-fx-background-color: white;" text="Agregar" />
+      <Text fill="WHITE" layoutX="233.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Carrera correspondida al Curso:">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <ComboBox fx:id="CareerComboBox" layoutX="432.0" layoutY="306.0" prefWidth="150.0" />
-      <Text fill="WHITE" layoutX="171.0" layoutY="265.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserte la cantidad de Cŕeditos:">
+      <ComboBox fx:id="CareerComboBox" layoutX="496.0" layoutY="325.0" prefWidth="150.0" />
+      <Text fill="WHITE" layoutX="235.0" layoutY="284.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserte la cantidad de Cŕeditos:">
          <font>
             <Font name="Corbel" size="18.0" />
          </font>
       </Text>
-      <TextField fx:id="txfCredits" layoutX="433.0" layoutY="247.0" />
-      <Text fill="WHITE" layoutX="313.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Curso">
+      <TextField fx:id="txfCredits" layoutX="497.0" layoutY="266.0" />
+      <Text fill="WHITE" layoutX="377.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Agregar Curso">
          <font>
             <Font name="Corbel" size="30.0" />
-         </font>
-      </Text>
-      <Text layoutX="60.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="92.0">
-         <font>
-            <Font size="20.0" />
          </font>
       </Text>
    </children>
