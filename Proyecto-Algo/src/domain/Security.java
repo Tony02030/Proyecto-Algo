@@ -18,7 +18,31 @@ public class Security {
 
     public Security(String user, String password) {
         this.user = user;
-        this.password = password;
+        this.password = encriptacion(password);
+    }
+
+    public String encriptacion(String contraseña) {
+        char array[] = contraseña.toCharArray();
+
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (char) (array[i] + (char) 5);
+        }
+
+        String encriptado = String.valueOf(array);
+
+        return encriptado;
+    }
+
+    public String desencriptacion(String contraseña) {
+        char arrayD[] = contraseña.toCharArray();
+
+        for (int i = 0; i < arrayD.length; i++) {
+            arrayD[i] = (char) (arrayD[i] - (char) 5);
+        }
+
+        String desencriptado = String.valueOf(arrayD);
+
+        return desencriptado;
     }
 
     public String getUser() {
@@ -30,12 +54,11 @@ public class Security {
     }
 
     public String getPassword() {
-        return password;
+        return desencriptacion(password);
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = encriptacion(password);
     }
 
-    
 }
