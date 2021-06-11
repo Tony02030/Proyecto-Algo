@@ -40,7 +40,6 @@ import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -98,7 +97,6 @@ public class FXMLAddStudentController implements Initializable {
     @FXML
     private ComboBox<String> ComboBox;
     ObservableList<String> oL_ComboBox = FXCollections.observableArrayList();
-    private TextField txfRecibe;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -126,7 +124,15 @@ public class FXMLAddStudentController implements Initializable {
     }
 
     @FXML
-    private void btnAddS(ActionEvent event) throws ListException, FileNotFoundException, IOException {
+    private void btnAddS(ActionEvent event) throws ListException, FileNotFoundException, IOException, MessagingException {
+        if (txfID.getText() == "" || txfStudentID.getText() == "" || txfLastname.getText() == "" || txfName.getText() == "" || txfPhoneNumber.getText() == "" || txfEmail.getText() == "" || txfAdress.getText() == "") {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("No puede dejar espacios en blanco");
+            alert.showAndWait();
+
+        }
 
         //Se agregan los estudiantes a la lista
         if (!Student.contains1(Integer.parseInt(txfID.getText()))) {
@@ -137,19 +143,16 @@ public class FXMLAddStudentController implements Initializable {
 
             Date date = Date.from(lD.atStartOfDay(defaultZoneId).toInstant());
             Node aux;
-            try {
-                aux = dLL.getNode(1);
 
-                while (aux != null) {
-                    if (util.Utility.equals(aux.data, ComboBox.getValue())) {
-                        temp = (Career) aux.data;
+            aux = dLL.getNode(1);
 
-                    }
-                    aux = aux.next;
+            while (aux != null) {
+                if (util.Utility.equals(aux.data, ComboBox.getValue())) {
+                    temp = (Career) aux.data;
 
                 }
-            } catch (ListException ex) {
-                Logger.getLogger(FXMLMenuCareersDisplayController.class.getName()).log(Level.SEVERE, null, ex);
+                aux = aux.next;
+
             }
 
             Student.add(st = new Student(Integer.parseInt(txfID.getText()), txfStudentID.getText(), txfLastname.getText(), txfName.getText(), date, txfPhoneNumber.getText(), txfEmail.getText(), txfAdress.getText(), temp, 0));
@@ -157,63 +160,54 @@ public class FXMLAddStudentController implements Initializable {
             //Contador para archivos
             int i = 0;
             util.Utility.setStudentCounter(i++);
-            
+
             //Claves para enviar correos por "gmail" al estudiante
-//            Properties propiedad = new Properties();
-//            propiedad.put("mail smtp host", "smtp gmail com");
-//            propiedad.put("mail smtp port", "587");
-//            propiedad.put("mail.smtp.auth", "true");
-//            propiedad.put("mail.smtp.starttls.enable", "true");
-//            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
-//            propiedad.put("mail.smtp.clave", "");
-//
-//            Session sesion = Session.getDefaultInstance(propiedad);
-//
-//            String correoEnvia = "anthony.rs02@gmail.com";
-//            String contraseña = "18702NACE";
-//            String destinatario = txfEmail.getText();
-//
-//            MimeMessage mail = new MimeMessage(sesion);
-//
-//            try {
-//                
-//                //Creación del cuerpo y asunto del correo
-//                
-//                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
-//
-//                mail.setSubject(asunto());
-//                Multipart multipart = new MimeMultipart();
-//
-//                MimeBodyPart message1 = new MimeBodyPart();
-//                String htmlText = "<img src=\"cid:image\">";
-//                message1.setContent(htmlText, "text/html");
-//
-//                MimeBodyPart message2 = new MimeBodyPart();
-//                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
-//                message2.setDataHandler(new DataHandler(source));
-//                message2.setHeader("Content-ID", "<image>");
-//
-//
-//                MimeBodyPart message3 = new MimeBodyPart();
-//                message3.setText(mensaje());
-//
-//                multipart.addBodyPart(message1);
-//                multipart.addBodyPart(message2);
-//                multipart.addBodyPart(message3);
-//                mail.setContent(multipart);
-//                Transport transporte = sesion.getTransport("smtp");
-//                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
-//                transporte.sendMessage(mail, mail.getAllRecipients());
-//                transporte.close();
-//
-//            } catch (AddressException ex) {
-//                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-//            } catch (MessagingException ex) {
-//                Logger.getLogger(FXMLAddStudentController.class.getName()).log(Level.SEVERE, null, ex);
-//            }
+            Properties propiedad = new Properties();
+            propiedad.put("mail smtp host", "smtp gmail com");
+            propiedad.put("mail smtp port", "587");
+            propiedad.put("mail.smtp.auth", "true");
+            propiedad.put("mail.smtp.starttls.enable", "true");
+            propiedad.put("mail.smtp.user", "anthony.rs02@gmail.com");
+            propiedad.put("mail.smtp.clave", "");
+
+            Session sesion = Session.getDefaultInstance(propiedad);
+
+            String correoEnvia = "anthony.rs02@gmail.com";
+            String contraseña = "18702NACE";
+            String destinatario = txfEmail.getText();
+
+            MimeMessage mail = new MimeMessage(sesion);
+
+            //Creación del cuerpo y asunto del correo
+                mail.addRecipient(Message.RecipientType.TO, new InternetAddress(destinatario));
+
+                mail.setSubject(asunto());
+                Multipart multipart = new MimeMultipart();
+
+                MimeBodyPart message1 = new MimeBodyPart();
+                String htmlText = "<img src=\"cid:image\">";
+                message1.setContent(htmlText, "text/html");
+
+                MimeBodyPart message2 = new MimeBodyPart();
+                DataSource source = new FileDataSource("C:\\Users\\User\\OneDrive\\Escritorio\\Algoritmos y Estructuras de Datos\\logoBueno.png");
+                message2.setDataHandler(new DataHandler(source));
+                message2.setHeader("Content-ID", "<image>");
+                
+                MimeBodyPart message3 = new MimeBodyPart();
+                message3.setText(mensaje());
+
+                multipart.addBodyPart(message1);
+                multipart.addBodyPart(message2);
+                multipart.addBodyPart(message3);
+                mail.setContent(multipart);
+                Transport transporte = sesion.getTransport("smtp");
+                transporte.connect("smtp.gmail.com", correoEnvia, contraseña);
+                transporte.sendMessage(mail, mail.getAllRecipients());
+                transporte.close();
+                
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setHeaderText("Información");
             alert.setContentText("Estudiante agregado correctamente");
             alert.showAndWait();
 
@@ -232,12 +226,11 @@ public class FXMLAddStudentController implements Initializable {
             alert.setContentText("Este estudiante ya se encuentra en la Lista");
             alert.showAndWait();
         }
-
     }
 
     public String asunto() {
         //Asunto del correo enviado
-        
+
         String result = "Aceptación en la Universidad de Costa Rica";
         return result;
 

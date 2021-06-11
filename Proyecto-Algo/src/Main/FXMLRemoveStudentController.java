@@ -76,6 +76,13 @@ public class FXMLRemoveStudentController implements Initializable {
     @FXML
     private void btnRemove(ActionEvent event) throws ListException {
         //Busca el estudiante en la lista
+        if (txfID.getText() == "") {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("No puede dejar espacios en blanco");
+            alert.showAndWait();
+        }
         if (!this.student.isEmpty()) {
             Node aux1;
             try {
@@ -134,7 +141,7 @@ public class FXMLRemoveStudentController implements Initializable {
         }
         if (count > 0) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
+            alert.setTitle("Ventana de Diálogo");
             alert.setHeaderText("Información");
             alert.setContentText("No se puede modificar el curso");
             alert.showAndWait();
