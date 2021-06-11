@@ -31,7 +31,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -60,36 +63,38 @@ public class FXMLMenuAdmiController implements Initializable {
 
     @FXML
     private Text txtMessage;
+    @FXML
+    private AnchorPane ap;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        //Imagen del Logo de la UCR
+        Image imageUCR = new Image(getClass().getResourceAsStream("logo.png"));
+        ImageView imageViewUCR = new ImageView(imageUCR);
 
-    }
+        imageViewUCR.setFitWidth(280);
+        imageViewUCR.setFitHeight(135);
 
-    private void loadPage(String page) {
-        Parent root = null;
-        try {
-            root = FXMLLoader.load(getClass().getResource(page + ".fxml"));
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLMenuSesionController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        imageViewUCR.setX(25);
+        imageViewUCR.setY(15);
+        
+        //Imagen de Seguridad
+        Image imageSecurity = new Image(getClass().getResourceAsStream("MenuSesion.jpg"));
+        ImageView imageViewSecurity = new ImageView(imageSecurity);
 
-        mn.getBp1().setCenter(root);
+        imageViewSecurity.setFitWidth(280);
+        imageViewSecurity.setFitHeight(135);
 
-    }
+        imageViewSecurity.setX(305);
+        imageViewSecurity.setY(425);
 
-    public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLMenuSesion.fxml"));
+        ap.getChildren().add(imageViewUCR);
+        ap.getChildren().add(imageViewSecurity);
 
-        Scene scene = new Scene(root);
-        primaryStage.setTitle("Proyecto");
-        primaryStage.setTitle("Inicio de Sesión");
-        primaryStage.setScene(scene);
-        primaryStage.setResizable(false);
-        primaryStage.show();
     }
 
     @FXML
@@ -121,7 +126,7 @@ public class FXMLMenuAdmiController implements Initializable {
                         course.add(courseR);
                     }
 
-                    //Escribir Archivo de Horarios
+                   
                     //Leer Archivo de Horarios
                     FileInputStream fisSchedule = new FileInputStream("SchedulesReport.txt");
                     ObjectInputStream oisSchedule = new ObjectInputStream(fisSchedule);
@@ -131,7 +136,7 @@ public class FXMLMenuAdmiController implements Initializable {
                         schedule.add(timeTableR);
                     }
 
-                    //Escribir Archivo Enrollment
+                  
                     //Leer Archivo Enrollment
                     FileInputStream fisEnrollment = new FileInputStream("EnrollmentReport.txt");
                     ObjectInputStream oisEnrollment = new ObjectInputStream(fisEnrollment);
@@ -141,14 +146,14 @@ public class FXMLMenuAdmiController implements Initializable {
                         enrollment.add(enrollmentR);
                     }
 
-                    //Escribir Archivo deEnrollment
+                    
                     //Leer Archivo deEnrollment
                     FileInputStream fisDeEnrollment = new FileInputStream("deEnrollmentReport.txt");
                     ObjectInputStream oisDeEnrollment = new ObjectInputStream(fisDeEnrollment);
 
                     for (int i = 0; i < util.Utility.getDeEnrollmentCounter(); i++) {
                         DeEnrollment DeEnrollmentR = (DeEnrollment) oisDeEnrollment.readObject();
-                        enrollment.add(DeEnrollmentR);
+                        deEnrollment.add(DeEnrollmentR);
                     }
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMenu.fxml"));
 
@@ -172,8 +177,7 @@ public class FXMLMenuAdmiController implements Initializable {
 
         } catch (ListException ex) {
             Logger.getLogger(FXMLMenuAdmiController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-//        
+        }       
 
     }
 
