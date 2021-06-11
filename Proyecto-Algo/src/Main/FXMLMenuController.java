@@ -135,8 +135,8 @@ public class FXMLMenuController implements Initializable {
     private void agregaCurso(ActionEvent event) {
         if (this.career.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay carreras agregadas");
             alert.showAndWait();
         } else {
@@ -149,8 +149,8 @@ public class FXMLMenuController implements Initializable {
     private void modificaCurso(ActionEvent event) {
         if (course.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista esta vacia");
 
             alert.showAndWait();
@@ -164,8 +164,8 @@ public class FXMLMenuController implements Initializable {
     private void eliminaCurso(ActionEvent event) {
         if (course.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista esta vacia");
 
             alert.showAndWait();
@@ -189,8 +189,8 @@ public class FXMLMenuController implements Initializable {
     private void modificaEstudiante(ActionEvent event) {
         if (student.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista esta vacia");
 
             alert.showAndWait();
@@ -204,8 +204,8 @@ public class FXMLMenuController implements Initializable {
     private void eliminaEstudiante(ActionEvent event) {
         if (student.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista esta vacia");
 
             alert.showAndWait();
@@ -219,16 +219,16 @@ public class FXMLMenuController implements Initializable {
     private void muestraEstudiante(ActionEvent event) {
         if (student.isEmpty() && career.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay estudiantes ni carreras agregadas");
 
             alert.showAndWait();
         }
         if (student.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay estudiantes agregados");
 
             alert.showAndWait();
@@ -243,14 +243,14 @@ public class FXMLMenuController implements Initializable {
     private void matriculaEstudiante(ActionEvent event) {
         if (this.student.isEmpty() && this.schedule.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay estudiantes ni horarios agregados");
             alert.showAndWait();
         } else if (this.schedule.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay horarios agregados");
             alert.showAndWait();
         } else {
@@ -269,8 +269,8 @@ public class FXMLMenuController implements Initializable {
     private void agregaHorario(ActionEvent event) {
         if (course.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay cursos agregados");
 
             alert.showAndWait();
@@ -284,16 +284,16 @@ public class FXMLMenuController implements Initializable {
     private void muestraHorarios(ActionEvent event) {
         if (course.isEmpty() && this.schedule.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay cursos ni horarios agregados");
 
             alert.showAndWait();
         }
         if (this.schedule.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay horarios agregados");
 
             alert.showAndWait();
@@ -314,8 +314,8 @@ public class FXMLMenuController implements Initializable {
     private void modificaCarrera(ActionEvent event) {
         if (career.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("No hay carreras agragadas");
 
             alert.showAndWait();
@@ -330,8 +330,8 @@ public class FXMLMenuController implements Initializable {
     private void eliminaCarrera(ActionEvent event) {
         if (career.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista esta vacia");
 
             alert.showAndWait();
@@ -345,8 +345,8 @@ public class FXMLMenuController implements Initializable {
     private void muestraCarreras(ActionEvent event) {
         if (career.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista esta vacia");
 
             alert.showAndWait();
@@ -494,15 +494,15 @@ public class FXMLMenuController implements Initializable {
     private void pdfEstudiantes(ActionEvent event) throws FileNotFoundException, DocumentException, ListException, BadElementException, IOException {
         if (student.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
-            alert.setContentText("La lista de estudiantes esta vacia");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
+            alert.setContentText("La lista de estudiantes está vacía");
             alert.showAndWait();
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("Se generó el reporte");
             alert.showAndWait();
             generaEstudiante();
@@ -513,15 +513,15 @@ public class FXMLMenuController implements Initializable {
     private void pdfCursos(ActionEvent event) throws DocumentException, ListException, BadElementException, IOException {
         if (course.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista de cursos esta vacia");
             alert.showAndWait();
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("Se generó el reporte");
             alert.showAndWait();
             generaCurso();
@@ -533,15 +533,15 @@ public class FXMLMenuController implements Initializable {
     private void pdfEstuMatriculados(ActionEvent event) throws DocumentException, ListException, BadElementException, IOException {
         if (enrollment.isEmpty()) {
             Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("La lista de matriculados esta vacia");
             alert.showAndWait();
 
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Ventana de dialogo");
-            alert.setHeaderText("Informacion");
+            alert.setTitle("Ventana de Diálogo");
+            alert.setHeaderText("Información");
             alert.setContentText("Se generó el reporte");
             alert.showAndWait();
             generaMatricula();
@@ -552,8 +552,8 @@ public class FXMLMenuController implements Initializable {
     @FXML
     private void pdfRetiros(ActionEvent event) throws DocumentException, ListException, BadElementException, IOException {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Ventana de dialogo");
-        alert.setHeaderText("Informacion");
+        alert.setTitle("Ventana de Diálogo");
+        alert.setHeaderText("Información");
         alert.setContentText("Se generó el reporte");
         alert.showAndWait();
         generaRetiroMatricula();
